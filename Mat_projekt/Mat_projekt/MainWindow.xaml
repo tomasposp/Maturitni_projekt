@@ -13,9 +13,16 @@
 
                 </LinearGradientBrush>
             </Grid.Background>
-
-
         </Grid>
-        
+
+        <Grid Name="mrizka2" Margin="386,58,97,41" RenderTransformOrigin="1.922,0.522">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+
+
     </Grid>
 </Window>
