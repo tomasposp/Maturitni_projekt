@@ -22,6 +22,8 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
+        <Label Name="Naboje" Content="10" HorizontalAlignment="Center" Height="30" Margin="350,23,317,366" VerticalAlignment="Center" Width="125"/>
+        <Button Name="Start" Content="Start" HorizontalAlignment="Left" Height="26" Margin="285,383,0,0" VerticalAlignment="Top" Width="170" Click="Start_Click"/>
 
 
     </Grid>
