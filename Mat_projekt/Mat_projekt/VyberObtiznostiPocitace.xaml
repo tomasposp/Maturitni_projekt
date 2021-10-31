@@ -1,0 +1,14 @@
+﻿<Window x:Class="Mat_projekt.VyberObtiznostiPocitace"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mat_projekt"
+        mc:Ignorable="d"
+        Title="VyberObtiznostiPocitace" Height="450" Width="800">
+    <Grid>
+        <Button Name="Easy" Content="Easy" HorizontalAlignment="Left" Height="90" Margin="220,100,0,0" VerticalAlignment="Top" Width="375" Click="Easy_Click"/>
+        <Button Name="Medium" Content="Medium" HorizontalAlignment="Left" Height="90" Margin="220,260,0,0" VerticalAlignment="Top" Width="375" Click="Medium_Click"/>
+
+    </Grid>
+</Window>
