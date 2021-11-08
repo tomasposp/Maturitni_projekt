@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800">
+        Title="Window1" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Button Name="SinglePlayer" Content="SinglePlayer" HorizontalAlignment="Left" Height="90" Margin="245,150,0,0" VerticalAlignment="Top" Width="310" Click="SinglePlayer_Click"/>
         <Button Name="MultiPlayer" Content="MultiPlayer" HorizontalAlignment="Left" Height="90" Margin="245,270,0,0" VerticalAlignment="Top" Width="310" Click="MultiPlayer_Click"/>
