@@ -402,7 +402,7 @@ namespace Mat_projekt
                                                 cislo2 = rnd.Next(1, 11);
 
 
-                                                Console.WriteLine("jsi kokot");
+                                               
                                             }
                                             else
                                             {
@@ -480,7 +480,7 @@ namespace Mat_projekt
                                                         cislo2 = rnd.Next(1, 11);
 
 
-                                                        Console.WriteLine("jsi kokot");
+                                                        
                                                     }
                                                     else
                                                     {
@@ -538,7 +538,6 @@ namespace Mat_projekt
                                                         cislo2 = rnd.Next(1, 11);
 
 
-                                                        Console.WriteLine("jsi kokot");
                                                     }
                                                     else
                                                     {
@@ -614,7 +613,6 @@ namespace Mat_projekt
                                                     cislo2 = rnd.Next(1, 11);
 
 
-                                                    Console.WriteLine("jsi kokot");
                                                 }
                                                 else
                                                 {
@@ -680,7 +678,6 @@ namespace Mat_projekt
                                                     cislo2 = rnd.Next(1, 11);
 
 
-                                                    Console.WriteLine("jsi kokot");
                                                 }
                                                 else
                                                 {
