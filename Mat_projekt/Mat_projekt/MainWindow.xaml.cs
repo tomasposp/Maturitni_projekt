@@ -151,7 +151,8 @@ namespace Mat_projekt
                     Grid.SetZIndex(pole[row, col], 0);
                     mrizka.Children.Add(pole[row, col]);
 
-                    Console.WriteLine(PoleRect[row, col].Tag);
+                    //Console.WriteLine(PoleRect[row, col].Tag);
+                    //Console.WriteLine(PoleLodi[row,col]);
 
                 }
 
@@ -191,7 +192,8 @@ namespace Mat_projekt
                     Grid.SetZIndex(pole2[row, col], 0);
                     mrizka2.Children.Add(pole2[row, col]);
 
-                    Console.WriteLine(PoleRect2[row, col].Tag);
+                    //Console.WriteLine(PoleRect2[row, col].Tag);
+                    //Console.WriteLine(PoleLodi[row,col]);
 
                 }
 
@@ -314,13 +316,13 @@ namespace Mat_projekt
 
                                         if (otoceni == true)
                                         {
-                                            if (PoleLodi2[r - 1, s] == 1)
+                                            if (PoleLodi2[r, s - 1] == 1)
                                             {
-                                                PoleLodi2[r - 1, s] = 1;
+                                                PoleLodi2[r, s - 1] = 1;
                                             }
-                                            if (PoleLodi2[r - 1, s] == 2)
+                                            if (PoleLodi2[r, s - 1] == 2)
                                             {
-                                                PoleLodi2[r - 1, s] = 2;
+                                                PoleLodi2[r, s - 1] = 2;
                                             }
                                             else
                                             {
@@ -373,13 +375,13 @@ namespace Mat_projekt
                                         else
                                         {
 
-                                            if (PoleLodi2[r, s - 1] == 1)
+                                            if (PoleLodi2[r - 1, s] == 1)
                                             {
-                                                PoleLodi2[r, s - 1] = 1;
+                                                PoleLodi2[r - 1, s] = 1;
                                             }
-                                            if (PoleLodi2[r, s - 1] == 2)
+                                            if (PoleLodi2[r - 1, s] == 2)
                                             {
-                                                PoleLodi2[r, s - 1] = 2;
+                                                PoleLodi2[r - 1, s] = 2;
                                             }
                                             else
                                             {
@@ -618,6 +620,15 @@ namespace Mat_projekt
 
             else if (zapnuty == true)
             {
+
+                Start.IsEnabled = false;
+                Start.Visibility = Visibility.Hidden;
+                Delete.Visibility = Visibility.Hidden;
+                SingleLod.Visibility = Visibility.Hidden;
+                DoubleLod.Visibility = Visibility.Hidden;
+                TripleLod.Visibility = Visibility.Hidden;
+
+
                 if (sender is Rectangle Rec)
                 {
 
@@ -631,7 +642,8 @@ namespace Mat_projekt
                             else if (PoleLodi[r, s] == 2) lode++;
                             else if ((int)PoleRect[r, s].Tag == 3) PoleLodi[r, s] = 3;
 
-                            Console.Write(PoleRect[r, s].Tag);
+                            //Console.Write(PoleRect[r, s].Tag);
+                            //Console.WriteLine(PoleLodi[r,s]);
 
                         }
                         Console.WriteLine();
@@ -648,6 +660,10 @@ namespace Mat_projekt
 
                             if ((int)PoleRect[r, s].Tag == 4)
                             {
+                                if (PoleRect[r,s].Fill == Brushes.Gray)
+                                {
+
+                                
                                 if ((int)PoleRect[r, s].Tag == 3)
                                 {
                                     indx = r;
@@ -656,8 +672,18 @@ namespace Mat_projekt
                                     PoleRect[r, s].Tag = 3;
                                     PoleLodi[r, s] = 3;
                                     r--;
-                                }
 
+                                }
+                                
+
+                                if (PoleLodi[r,s] == 9)
+                                {
+                                    indx = r;
+                                    indy = s;
+
+                                    PoleRect[r, s].Tag = 9;
+                                    PoleLodi[r, s] = 9;
+                                }
 
                                 if (PoleLodi[r, s] == 1)
                                 {
@@ -671,9 +697,41 @@ namespace Mat_projekt
 
 
                                 }
+                                
+
+                                
 
 
-                                else if (PoleLodi[r, s] == 2 || PoleLodi[r, s] == 5 || PoleLodi[r,s] == 6)
+                                else if ((int)PoleRect[r, s].Tag == 4)
+                                {
+
+                                    indx = r;
+                                    indy = s;
+
+                                    PoleRect[r, s].Tag = 4;
+                                    PoleLodi[r, s] = 4;
+
+
+
+
+                                    if (PoleRect[r, s].Fill == Brushes.Gray)
+                                    {
+                                        
+                                      PoleRect[r, s].Fill = Brushes.Red;                         
+
+                                    }
+                                    if (Class1.Easy == true)
+                                    {
+                                        Pocitac();
+                                    }
+
+                                    else if (Class1.Medium == true)
+                                    {
+                                        Pocitac2();
+                                    }
+                                }
+                                }
+                                else if (PoleLodi[r, s] == 2 || PoleLodi[r, s] == 5 || PoleLodi[r, s] == 6)
                                 {
 
                                     indx = r;
@@ -687,16 +745,20 @@ namespace Mat_projekt
                                     {
                                         PoleRect[r, s].Tag = 2;
                                         PoleLodi[r, s] = 2;
+
+
                                     }
                                     else if (PoleLodi[r, s] == 5)
                                     {
                                         PoleRect[r, s].Tag = 5;
                                         PoleLodi[r, s] = 5;
+
                                     }
                                     else if (PoleLodi[r, s] == 6)
                                     {
                                         PoleRect[r, s].Tag = 6;
                                         PoleLodi[r, s] = 6;
+
                                     }
 
 
@@ -738,38 +800,6 @@ namespace Mat_projekt
                                         Pocitac2();
                                     }
                                 }
-
-
-
-                                else if ((int)PoleRect[r, s].Tag == 4)
-                                {
-
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect[r, s].Tag = 4;
-                                    PoleLodi[r, s] = 4;
-
-
-
-
-                                    if ((int)PoleRect[r, s].Tag == 4)
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Red;
-
-
-                                    }
-                                    if (Class1.Easy == true)
-                                    {
-                                        Pocitac();
-                                    }
-
-                                    else if (Class1.Medium == true)
-                                    {
-                                        Pocitac2();
-                                    }
-                                }
-
 
 
                             }
