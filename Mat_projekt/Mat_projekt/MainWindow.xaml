@@ -27,6 +27,7 @@
         <Button Name="DoubleLod" Content="Dvojkoná loď" HorizontalAlignment="Left" Height="30" Margin="340,10,0,0" VerticalAlignment="Top" Width="105" Click="DoubleLod_Click"/>
         <Button Name="TripleLod" Content="Trojková loď" HorizontalAlignment="Left" Height="30" Margin="500,10,0,0" VerticalAlignment="Top" Width="105" Click="TripleLod_Click"/>
         <Button Name="Delete" Content="Delete" HorizontalAlignment="Left" Height="26" Margin="10,383,0,0" VerticalAlignment="Top" Width="80" Click="Delete_Click"/>
+        <Button Name="MainMenu" Content="Hlavní Menu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" Click="MainMenu_Click"/>
 
 
     </Grid>
