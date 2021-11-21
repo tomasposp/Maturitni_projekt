@@ -174,18 +174,52 @@ namespace Mat_projekt
                 for (int i = 0; i < trojovka; i++)
                 {
                     Random rnd = new Random();
-                    int cislo1 = rnd.Next(1, 11);
-                    int cislo2 = rnd.Next(1, 11);
+                    int cislo1 = rnd.Next(2, 10);
+                    int cislo2 = rnd.Next(2, 10);
                     int otocka = rnd.Next(0, 2);
+                    
                     if (otocka == 1)
                     {
                         while (true)
                         {
 
-                            if (PoleLodi[cislo1, cislo2] == 2 || PoleLodi[cislo1, cislo2] == 5 || PoleLodi[cislo1, cislo2] == 6 || PoleLodi[cislo1, cislo2] == 1)
+                            if (PoleLodi[cislo1 - 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 + 2, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 + 2] == 2 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 + 2] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 + 2] == 2 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 + 2, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 + 2] == 5 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 + 2] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 + 2] == 5 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 - 2] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 - 2] == 5)
                             {
-                                cislo1 = rnd.Next(1, 11);
-                                cislo2 = rnd.Next(1, 11);
+                                cislo1 = rnd.Next(2, 10);
+                                cislo2 = rnd.Next(2, 10);
 
                             }
                             else
@@ -213,10 +247,43 @@ namespace Mat_projekt
 
                         while (true)
                         {
-                            if (PoleLodi[cislo1, cislo2] == 2 || PoleLodi[cislo1, cislo2] == 5 || PoleLodi[cislo1, cislo2] == 6 || PoleLodi[cislo1, cislo2] == 1)
+                            if (PoleLodi[cislo1 - 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 + 2, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 + 2] == 2 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 + 2] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 + 2] == 2 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 - 2] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 + 2, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 + 2] == 5 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 + 2] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 + 2] == 5 ||
+                                                    PoleLodi[cislo1 + 2, cislo2 - 2] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2 - 2] == 5)
                             {
-                                cislo1 = rnd.Next(1, 11);
-                                cislo2 = rnd.Next(1, 11);
+                                cislo1 = rnd.Next(2, 10);
+                                cislo2 = rnd.Next(2, 10);
                             }
                             else
                             {
@@ -252,17 +319,57 @@ namespace Mat_projekt
                 for (int i = 0; i < dvojovka; i++)
                 {
                     Random rnd = new Random();
-                    int cislo1 = rnd.Next(1, 11);
+                    int cislo1 = rnd.Next(2, 11);
                     int cislo2 = rnd.Next(1, 11);
                     int otocka = rnd.Next(0, 2);
+                    //int otocka = 0;
                     if (otocka == 1)
                     {
                         while (true)
                     {
                       
-                            if (PoleLodi[cislo1, cislo2] == 2 || PoleLodi[cislo1, cislo2] == 5 || PoleLodi[cislo1, cislo2] == 6 || PoleLodi[cislo1, cislo2] == 1)
+                            if (PoleLodi[cislo1 - 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 6 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 6 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 6 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 6 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 6 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 6 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 6 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 6 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 6 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 1 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 1 ||
+                                                    //PoleLodi[cislo1 - 2, cislo2] == 1||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 1||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 1 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 1 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 1 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 1||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 1||
+                                                    PoleLodi[cislo1, cislo2] == 1 ||
+                                                    PoleLodi[cislo1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2] == 6)
                             {
-                                cislo1 = rnd.Next(1, 11);
+                                cislo1 = rnd.Next(2, 11);
                                 cislo2 = rnd.Next(1, 11);
 
                             }
@@ -288,9 +395,48 @@ namespace Mat_projekt
 
                         while (true)
                         {
-                            if (PoleLodi[cislo1, cislo2] == 2 || PoleLodi[cislo1, cislo2] == 5 || PoleLodi[cislo1, cislo2] == 6 || PoleLodi[cislo1, cislo2] == 1)
+                            if (PoleLodi[cislo1 - 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 5 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 5 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 2 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 2 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 6 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 6 ||
+                                                    PoleLodi[cislo1 - 2, cislo2] == 6 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 6 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 6 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 6 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 6 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 6 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 6 ||
+                                                    PoleLodi[cislo1 - 1, cislo2] == 1 ||
+                                                    PoleLodi[cislo1 + 1, cislo2] == 1 ||
+                                                    //PoleLodi[cislo1 - 2, cislo2] == 1 ||
+                                                    PoleLodi[cislo1, cislo2 - 1] == 1 ||
+                                                    PoleLodi[cislo1, cislo2 + 1] == 1 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 + 1] == 1 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 + 1] == 1 ||
+                                                    PoleLodi[cislo1 + 1, cislo2 - 1] == 1 ||
+                                                    PoleLodi[cislo1 - 1, cislo2 - 1] == 1 ||
+                                                    PoleLodi[cislo1, cislo2] == 1 ||
+                                                    PoleLodi[cislo1, cislo2] == 2 ||
+                                                    PoleLodi[cislo1, cislo2] == 5 ||
+                                                    PoleLodi[cislo1, cislo2] == 6)
                             {
-                                cislo1 = rnd.Next(1, 11);
+                                cislo1 = rnd.Next(2, 11);
                                 cislo2 = rnd.Next(1, 11);
                             }
                             else
@@ -322,37 +468,60 @@ namespace Mat_projekt
             {
                 for (int i = 0; i < jednotka; i++)
                 {
+                    Console.WriteLine(jednotka);
+                    Console.WriteLine(i);
                     Random rnd = new Random();
                     int cislo1 = rnd.Next(1, 11);
                     int cislo2 = rnd.Next(1, 11);
                     while (true)
                     {
 
-
-                        if (PoleLodi[cislo1, cislo2] == 2 || PoleLodi[cislo1, cislo2] == 5 || PoleLodi[cislo1, cislo2] == 6)
+                        Console.WriteLine(cislo1);
+                        if (PoleLodi[cislo1 - 1, cislo2] == 2 ||
+                                            PoleLodi[cislo1 + 1, cislo2] == 2 ||
+                                            PoleLodi[cislo1, cislo2 - 1] == 2 ||
+                                            PoleLodi[cislo1, cislo2 + 1] == 2 ||
+                                            PoleLodi[cislo1 - 1, cislo2] == 5 ||
+                                            PoleLodi[cislo1 + 1, cislo2] == 5 ||
+                                            PoleLodi[cislo1, cislo2 - 1] == 5 ||
+                                            PoleLodi[cislo1, cislo2 + 1] == 5 ||
+                                            PoleLodi[cislo1 - 1, cislo2] == 6 ||
+                                            PoleLodi[cislo1 + 1, cislo2] == 6 ||
+                                            PoleLodi[cislo1, cislo2 - 1] == 6 ||
+                                            PoleLodi[cislo1, cislo2 + 1] == 6 ||
+                                            PoleLodi[cislo1 - 1, cislo2] == 1 ||
+                                            PoleLodi[cislo1 + 1, cislo2] == 1 ||
+                                            PoleLodi[cislo1, cislo2 - 1] == 1 ||
+                                            PoleLodi[cislo1, cislo2 + 1] == 1 ||
+                                            PoleLodi[cislo1, cislo2] == 1 ||
+                                            PoleLodi[cislo1, cislo2] == 2 ||
+                                            PoleLodi[cislo1, cislo2] == 5 ||
+                                            PoleLodi[cislo1, cislo2] == 6)
                         {
                             cislo1 = rnd.Next(1, 11);
                             cislo2 = rnd.Next(1, 11);
                         }
-                        if (PoleLodi[cislo1 - 1, cislo2] != 2 &&
-                                            PoleLodi[cislo1 + 1, cislo2] != 2 &&
-                                            PoleLodi[cislo1, cislo2 - 1] != 2 &&
-                                            PoleLodi[cislo1, cislo2 + 1] != 2 &&
-                                            PoleLodi[cislo1 - 1, cislo2] != 5 &&
-                                            PoleLodi[cislo1 + 1, cislo2] != 5 &&
-                                            PoleLodi[cislo1, cislo2 - 1] != 5 &&
-                                            PoleLodi[cislo1, cislo2 + 1] != 5 &&
-                                            PoleLodi[cislo1 - 1, cislo2] != 6 &&
-                                            PoleLodi[cislo1 + 1, cislo2] != 6 &&
-                                            PoleLodi[cislo1, cislo2 - 1] != 6 &&
-                                            PoleLodi[cislo1, cislo2 + 1] != 6)
+                        else//(PoleLodi[cislo1 - 1, cislo2] != 2 &&
+                                            //PoleLodi[cislo1 + 1, cislo2] != 2 &&
+                                            //PoleLodi[cislo1, cislo2 - 1] != 2 &&
+                                            //PoleLodi[cislo1, cislo2 + 1] != 2 &&
+                                            //PoleLodi[cislo1 - 1, cislo2] != 5 &&
+                                            //PoleLodi[cislo1 + 1, cislo2] != 5 &&
+                                            //PoleLodi[cislo1, cislo2 - 1] != 5 &&
+                                            //PoleLodi[cislo1, cislo2 + 1] != 5 &&
+                                            //PoleLodi[cislo1 - 1, cislo2] != 6 &&
+                                            //PoleLodi[cislo1 + 1, cislo2] != 6 &&
+                                            //PoleLodi[cislo1, cislo2 - 1] != 6 &&
+                                            //PoleLodi[cislo1, cislo2 + 1] != 6)
                         {
                             PoleRect[cislo1, cislo2].Tag = 2;
                             PoleLodi[cislo1, cislo2] = 2;
                             PoleRect[cislo1, cislo2].Fill = Brushes.Yellow;
                             lode++;
+                            break;
 
                         }
+                        
                     }
                 }
 
@@ -472,6 +641,7 @@ namespace Mat_projekt
                                             lode2++;
                                             jednicka--;
                                             jednotka++;
+                                            
                                         }
                                         
 
