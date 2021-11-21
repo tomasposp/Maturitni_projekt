@@ -327,18 +327,31 @@ namespace Mat_projekt
                     int cislo2 = rnd.Next(1, 11);
                     while (true)
                     {
+
+
                         if (PoleLodi[cislo1, cislo2] == 2 || PoleLodi[cislo1, cislo2] == 5 || PoleLodi[cislo1, cislo2] == 6)
                         {
                             cislo1 = rnd.Next(1, 11);
                             cislo2 = rnd.Next(1, 11);
                         }
-                        else
+                        if (PoleLodi[cislo1 - 1, cislo2] != 2 &&
+                                            PoleLodi[cislo1 + 1, cislo2] != 2 &&
+                                            PoleLodi[cislo1, cislo2 - 1] != 2 &&
+                                            PoleLodi[cislo1, cislo2 + 1] != 2 &&
+                                            PoleLodi[cislo1 - 1, cislo2] != 5 &&
+                                            PoleLodi[cislo1 + 1, cislo2] != 5 &&
+                                            PoleLodi[cislo1, cislo2 - 1] != 5 &&
+                                            PoleLodi[cislo1, cislo2 + 1] != 5 &&
+                                            PoleLodi[cislo1 - 1, cislo2] != 6 &&
+                                            PoleLodi[cislo1 + 1, cislo2] != 6 &&
+                                            PoleLodi[cislo1, cislo2 - 1] != 6 &&
+                                            PoleLodi[cislo1, cislo2 + 1] != 6)
                         {
                             PoleRect[cislo1, cislo2].Tag = 2;
                             PoleLodi[cislo1, cislo2] = 2;
                             PoleRect[cislo1, cislo2].Fill = Brushes.Yellow;
                             lode++;
-                            break;
+
                         }
                     }
                 }
@@ -391,7 +404,7 @@ namespace Mat_projekt
         bool TriLode = false;
         int jednicka = 5;
         int dvojka = 3;
-        int trojka = 2;
+        int trojka = 1;
         bool otoceni = false;
         bool mazani = false;
         int jednotka;
@@ -426,12 +439,6 @@ namespace Mat_projekt
 
                     }
 
-
-
-
-
-
-
                     Rec.Tag = 4;
 
                     for (int r = 0; r < PoleLodi2.GetLength(0); r++)
@@ -442,19 +449,31 @@ namespace Mat_projekt
                             if ((int)PoleRect2[r, s].Tag == 4)
                             {
 
-                                int a;
-                                int b;
-
                                 if (JednaLod == true)
                                 {
                                     if (PoleLodi2[r, s] == 0)
                                     {
-                                        PoleRect2[r, s].Tag = 2;
-                                        PoleLodi2[r, s] = 2;
-                                        PoleRect2[r, s].Fill = Brushes.Yellow;
-                                        lode2++;
-                                        jednicka--;
-                                        jednotka++;
+                                        if (PoleLodi2[r-1,s] != 2 &&
+                                            PoleLodi2[r+1, s] != 2 &&
+                                            PoleLodi2[r, s-1] != 2 &&
+                                            PoleLodi2[r, s+1] != 2 &&
+                                            PoleLodi2[r - 1, s] != 5 &&
+                                            PoleLodi2[r + 1, s] != 5 &&
+                                            PoleLodi2[r, s - 1] != 5 && 
+                                            PoleLodi2[r, s + 1] != 5 && 
+                                            PoleLodi2[r-1, s] != 6 &&
+                                            PoleLodi2[r+1, s] != 6 && 
+                                            PoleLodi2[r, s-1] != 6 && 
+                                            PoleLodi2[r, s+1] != 6)
+                                        {
+                                            PoleRect2[r, s].Tag = 2;
+                                            PoleLodi2[r, s] = 2;
+                                            PoleRect2[r, s].Fill = Brushes.Yellow;
+                                            lode2++;
+                                            jednicka--;
+                                            jednotka++;
+                                        }
+                                        
 
                                         //SingleLod.Content = jednicka;
 
@@ -476,42 +495,103 @@ namespace Mat_projekt
 
                                         if (otoceni == true)
                                         {
-                                            if (PoleLodi2[r, s - 1] == 1)
+                                            if (PoleLodi2[r - 1, s] != 1 && PoleLodi2[r, s] == 0)
                                             {
-                                                PoleLodi2[r, s - 1] = 1;
-                                            }
-                                            if (PoleLodi2[r, s - 1] == 2)
-                                            {
-                                                PoleLodi2[r, s - 1] = 2;
-                                            }
-                                            else
-                                            {
+                                                
 
-                                                PoleRect2[r, s].Tag = 5;
-                                                PoleLodi2[r, s] = 5;
-                                                PoleRect2[r - 1, s].Tag = 5;
-                                                PoleLodi2[r - 1, s] = 5;
-                                                PoleRect2[r, s].Fill = Brushes.Pink;
-                                                PoleRect2[r - 1, s].Fill = Brushes.Pink;
-                                                lode2 = lode2 + 2;
-                                                dvojka--;
-                                                dvojovka++;
+                                                if (PoleLodi2[r - 1, s] != 5 && 
+                                                    PoleLodi2[r + 1, s] != 5 && 
+                                                    PoleLodi2[r -2 , s] != 5 &&
+                                                    PoleLodi2[r, s - 1] != 5 && 
+                                                    PoleLodi2[r, s + 1] != 5 &&
+                                                    PoleLodi2[r + 1, s + 1] != 5 &&
+                                                    PoleLodi2[r - 1, s + 1] != 5 && 
+                                                    PoleLodi2[r +1 , s - 1] != 5 && 
+                                                    PoleLodi2[r - 1, s - 1] != 5 &&
+                                                    PoleLodi2[r - 1, s] != 2 &&
+                                                    PoleLodi2[r + 1, s] != 2 &&
+                                                    PoleLodi2[r - 2, s] != 2 &&
+                                                    PoleLodi2[r, s - 1] != 2 &&
+                                                    PoleLodi2[r, s + 1] != 2 &&
+                                                    PoleLodi2[r + 1, s + 1] != 2 &&
+                                                    PoleLodi2[r - 1, s + 1] != 2 &&
+                                                    PoleLodi2[r + 1, s - 1] != 2 &&
+                                                    PoleLodi2[r - 1, s - 1] != 2 &&
+                                                    PoleLodi2[r - 1, s] != 6 &&
+                                                    PoleLodi2[r + 1, s] != 6 &&
+                                                    PoleLodi2[r - 2, s] != 6 &&
+                                                    PoleLodi2[r, s - 1] != 6 &&
+                                                    PoleLodi2[r, s + 1] != 6 &&
+                                                    PoleLodi2[r + 1, s + 1] != 6 &&
+                                                    PoleLodi2[r - 1, s + 1] != 6 &&
+                                                    PoleLodi2[r + 1, s - 1] != 6 &&
+                                                    PoleLodi2[r - 1, s - 1] != 6)
+                                                { 
+                                                        PoleRect2[r, s].Tag = 5;
+                                                        PoleLodi2[r, s] = 5;
+                                                        PoleRect2[r - 1, s].Tag = 5;
+                                                        PoleLodi2[r - 1, s] = 5;
+                                                        PoleRect2[r, s].Fill = Brushes.Pink;
+                                                        PoleRect2[r - 1, s].Fill = Brushes.Pink;
+                                                        lode2 = lode2 + 2;
+                                                        dvojka--;
+                                                        dvojovka++;
+                                                }
+
+                                                //else if (PoleLodi2[r - 1, s] != 6 && PoleLodi2[r + 1, s] != 6 && PoleLodi2[r, s - 1] != 6 && PoleLodi2[r, s + 1] != 6 && PoleLodi2[r + 1, s + 1] != 6 && PoleLodi2[r - 1, s + 1] != 6 && PoleLodi2[r + 1, s - 1] != 6 && PoleLodi2[r - 1, s - 1] != 6)
+                                                //{
+                                                //    PoleRect2[r, s].Tag = 5;
+                                                //    PoleLodi2[r, s] = 5;
+                                                //    PoleRect2[r - 1, s].Tag = 5;
+                                                //    PoleLodi2[r - 1, s] = 5;
+                                                //    PoleRect2[r, s].Fill = Brushes.Pink;
+                                                //    PoleRect2[r - 1, s].Fill = Brushes.Pink;
+                                                //    lode2 = lode2 + 2;
+                                                //    dvojka--;
+                                                //    dvojovka++;
+                                                //}
+
+                                                if (dvojka == 0)
+                                                {
+                                                    DoubleLod.IsEnabled = false;
+                                                    DveLode = false;
+                                                }
                                             }
+                                            
 
                                         }
-                                        else
+                                        else if (PoleLodi2[r, s -1] != 1 && PoleLodi2[r, s] == 0)
                                         {
-
-                                            if (PoleLodi2[r - 1, s] == 1)
+                                            if (PoleLodi2[r - 1, s] != 5 &&
+                                                PoleLodi2[r + 1, s] != 5 &&
+                                                PoleLodi2[r, s - 2] != 5 &&
+                                                PoleLodi2[r, s - 1] != 5 &&
+                                                PoleLodi2[r, s + 1] != 5 &&
+                                                PoleLodi2[r + 1, s + 1] != 5 &&
+                                                PoleLodi2[r - 1, s + 1] != 5 &&
+                                                PoleLodi2[r + 1, s - 1] != 5 && 
+                                                PoleLodi2[r - 1, s - 1] != 5 &&
+                                                PoleLodi2[r - 1, s] != 2 &&
+                                                PoleLodi2[r + 1, s] != 2 &&
+                                                PoleLodi2[r, s - 2] != 2 &&
+                                                PoleLodi2[r, s - 1] != 2 &&
+                                                PoleLodi2[r, s + 1] != 2 &&
+                                                PoleLodi2[r + 1, s + 1] != 2 &&
+                                                PoleLodi2[r - 1, s + 1] != 2 &&
+                                                PoleLodi2[r + 1, s - 1] != 2 &&
+                                                PoleLodi2[r - 1, s - 1] != 2 &&
+                                                PoleLodi2[r - 1, s] != 6 &&
+                                                PoleLodi2[r + 1, s] != 6 &&
+                                                PoleLodi2[r, s - 2] != 6 &&
+                                                PoleLodi2[r, s - 1] != 6 &&
+                                                PoleLodi2[r, s + 1] != 6 &&
+                                                PoleLodi2[r + 1, s + 1] != 6 &&
+                                                PoleLodi2[r - 1, s + 1] != 6 &&
+                                                PoleLodi2[r + 1, s - 1] != 6 &&
+                                                PoleLodi2[r - 1, s - 1] != 6)
                                             {
-                                                PoleLodi2[r - 1, s] = 1;
-                                            }
-                                            if (PoleLodi2[r - 1, s] == 2)
-                                            {
-                                                PoleLodi2[r - 1, s] = 2;
-                                            }
-                                            else
-                                            {
+                                                
+                                                
                                                 PoleRect2[r, s].Tag = 5;
                                                 PoleLodi2[r, s] = 5;
                                                 PoleRect2[r, s - 1].Tag = 5;
@@ -522,6 +602,8 @@ namespace Mat_projekt
                                                 dvojka--;
                                                 dvojovka++;
                                             }
+                                             
+                                            
   
 
                                             if (dvojka == 0)
@@ -553,8 +635,42 @@ namespace Mat_projekt
                                             {
                                                 PoleLodi2[r + 1, s] = 1;
                                             }
-                                            else
-                                            {
+
+                                                if (PoleLodi2[r - 1, s] != 2 &&
+                                                    PoleLodi2[r + 1, s] != 2 &&
+                                                    PoleLodi2[r, s - 2] != 2 &&
+                                                    PoleLodi2[r, s - 1] != 2 &&
+                                                    PoleLodi2[r, s + 1] != 2 &&
+                                                    PoleLodi2[r + 1, s + 1] != 2 &&
+                                                    PoleLodi2[r - 1, s + 1] != 2 &&
+                                                    PoleLodi2[r + 1, s - 1] != 2 &&
+                                                    PoleLodi2[r - 1, s - 1] != 2 &&
+                                                    PoleLodi2[r - 2, s] != 2 &&
+                                                    PoleLodi2[r + 2, s] != 2 &&
+                                                    PoleLodi2[r, s - 2] != 2 &&
+                                                    PoleLodi2[r, s + 2] != 2 &&
+                                                    PoleLodi2[r + 2, s + 2] != 2 &&
+                                                    PoleLodi2[r - 2, s + 2] != 2 &&
+                                                    PoleLodi2[r + 2, s - 2] != 2 &&
+                                                    PoleLodi2[r - 2, s - 2] != 2 &&
+                                                    PoleLodi2[r - 1, s] != 5 &&
+                                                    PoleLodi2[r + 1, s] != 5 &&
+                                                    PoleLodi2[r, s - 2] != 5 &&
+                                                    PoleLodi2[r, s - 1] != 5 &&
+                                                    PoleLodi2[r, s + 1] != 5 &&
+                                                    PoleLodi2[r + 1, s + 1] != 5 &&
+                                                    PoleLodi2[r - 1, s + 1] != 5 &&
+                                                    PoleLodi2[r + 1, s - 1] != 5 &&
+                                                    PoleLodi2[r - 1, s - 1] != 5 &&
+                                                    PoleLodi2[r - 2, s] != 5 &&
+                                                    PoleLodi2[r + 2, s] != 5 &&
+                                                    PoleLodi2[r, s - 2] != 5 &&
+                                                    PoleLodi2[r, s + 2] != 5 &&
+                                                    PoleLodi2[r + 2, s + 2] != 5 &&
+                                                    PoleLodi2[r - 2, s + 2] != 5 &&
+                                                    PoleLodi2[r + 2, s - 2] != 5 &&
+                                                    PoleLodi2[r - 2, s - 2] != 5)
+                                                {
                                                 PoleRect2[r, s].Tag = 6;
                                                 PoleLodi2[r, s] = 6;
                                                 PoleRect2[r + 1, s].Tag = 6;
@@ -567,8 +683,10 @@ namespace Mat_projekt
                                                 lode2 = lode2 + 3;
                                                 trojka--;
                                                 trojovka++;
- 
-                                            }
+                                               }
+                                                
+                                            
+                                           
 
 
 
@@ -590,7 +708,40 @@ namespace Mat_projekt
                                             {
                                                 PoleLodi2[r, s + 1] = 1;
                                             }
-                                            else
+                                            else if (PoleLodi2[r - 1, s] != 2 &&
+                                                    PoleLodi2[r + 1, s] != 2 &&
+                                                    PoleLodi2[r, s - 2] != 2 &&
+                                                    PoleLodi2[r, s - 1] != 2 &&
+                                                    PoleLodi2[r, s + 1] != 2 &&
+                                                    PoleLodi2[r + 1, s + 1] != 2 &&
+                                                    PoleLodi2[r - 1, s + 1] != 2 &&
+                                                    PoleLodi2[r + 1, s - 1] != 2 &&
+                                                    PoleLodi2[r - 1, s - 1] != 2 &&
+                                                    PoleLodi2[r - 2, s] != 2 &&
+                                                    PoleLodi2[r + 2, s] != 2 &&
+                                                    PoleLodi2[r, s - 2] != 2 &&
+                                                    PoleLodi2[r, s + 2] != 2 &&
+                                                    PoleLodi2[r + 2, s + 2] != 2 &&
+                                                    PoleLodi2[r - 2, s + 2] != 2 &&
+                                                    PoleLodi2[r + 2, s - 2] != 2 &&
+                                                    PoleLodi2[r - 2, s - 2] != 2 &&
+                                                    PoleLodi2[r - 1, s] != 5 &&
+                                                    PoleLodi2[r + 1, s] != 5 &&
+                                                    PoleLodi2[r, s - 2] != 5 &&
+                                                    PoleLodi2[r, s - 1] != 5 &&
+                                                    PoleLodi2[r, s + 1] != 5 &&
+                                                    PoleLodi2[r + 1, s + 1] != 5 &&
+                                                    PoleLodi2[r - 1, s + 1] != 5 &&
+                                                    PoleLodi2[r + 1, s - 1] != 5 &&
+                                                    PoleLodi2[r - 1, s - 1] != 5 &&
+                                                    PoleLodi2[r - 2, s] != 5 &&
+                                                    PoleLodi2[r + 2, s] != 5 &&
+                                                    PoleLodi2[r, s - 2] != 5 &&
+                                                    PoleLodi2[r, s + 2] != 5 &&
+                                                    PoleLodi2[r + 2, s + 2] != 5 &&
+                                                    PoleLodi2[r - 2, s + 2] != 5 &&
+                                                    PoleLodi2[r + 2, s - 2] != 5 &&
+                                                    PoleLodi2[r - 2, s - 2] != 5)
                                             {
 
 
@@ -735,10 +886,16 @@ namespace Mat_projekt
                                             PoleRect2[r, s - 2].Fill = Brushes.Gray;
                                         }
 
-                                        lode2--;
+                                            lode2--;
                                             trojka++;
                                             trojovka--;
+
+                                        if (trojka > 0)
+                                        {
+                                            TripleLod.IsEnabled = true;
+                                            TriLode = true;
                                         }
+                                    }
                                 }
                             }
                         }
@@ -749,12 +906,6 @@ namespace Mat_projekt
 
             else if (zapnuty == true)
             {
-
-
-
-
-
-
 
 
                 if (sender is Rectangle Rec)
