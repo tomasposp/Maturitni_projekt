@@ -7,8 +7,9 @@
         mc:Ignorable="d"
         Title="Window1" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <Button Name="SinglePlayer" Content="SinglePlayer" HorizontalAlignment="Left" Height="90" Margin="245,150,0,0" VerticalAlignment="Top" Width="310" Click="SinglePlayer_Click"/>
-        <Button Name="MultiPlayer" Content="MultiPlayer" HorizontalAlignment="Left" Height="90" Margin="245,270,0,0" VerticalAlignment="Top" Width="310" Click="MultiPlayer_Click"/>
+        <Button Name="SinglePlayer" Content="SinglePlayer" HorizontalAlignment="Left" Height="90" Margin="245,150,0,0" VerticalAlignment="Top" Width="310" Click="SinglePlayer_Click" FontSize="24"/>
+        <Button Name="MultiPlayer" Content="MultiPlayer" HorizontalAlignment="Left" Height="90" Margin="245,270,0,0" VerticalAlignment="Top" Width="310" Click="MultiPlayer_Click" FontSize="24"/>
+        <Label Name="Název" Content="Lodě" HorizontalAlignment="Left" Margin="225,30,0,306" VerticalAlignment="Center" Height="85" Width="355" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>

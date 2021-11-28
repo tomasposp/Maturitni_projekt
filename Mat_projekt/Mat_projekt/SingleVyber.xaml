@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="SingleVyber" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <Button Name="Pocitac" Content="Počítač" HorizontalAlignment="Left" Height="90" Margin="245,120,0,0" VerticalAlignment="Top" Width="285" Click="Pocitac_Click" />
-        <Button Name="NabojovyMode" Content="Nábojobý mode" HorizontalAlignment="Left" Height="90" Margin="245,250,0,0" VerticalAlignment="Top" Width="285" Click="NabojovyMode_Click"/>
+        <Button Name="Pocitac" Content="Počítač" HorizontalAlignment="Left" Height="90" Margin="245,120,0,0" VerticalAlignment="Top" Width="285" Click="Pocitac_Click" FontSize="24" />
+        <Button Name="NabojovyMode" Content="Nábojobý mode" HorizontalAlignment="Left" Height="90" Margin="245,250,0,0" VerticalAlignment="Top" Width="285" Click="NabojovyMode_Click" FontSize="24"/>
 
     </Grid>
 </Window>

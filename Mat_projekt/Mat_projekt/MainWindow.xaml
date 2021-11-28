@@ -28,6 +28,9 @@
         <Button Name="TripleLod" Content="Trojková loď" HorizontalAlignment="Left" Height="30" Margin="500,10,0,0" VerticalAlignment="Top" Width="105" Click="TripleLod_Click"/>
         <Button Name="Delete" Content="Delete" HorizontalAlignment="Left" Height="26" Margin="10,383,0,0" VerticalAlignment="Top" Width="80" Click="Delete_Click"/>
         <Button Name="MainMenu" Content="Hlavní Menu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" Click="MainMenu_Click"/>
+        <Label Name="Lodehrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="185,40,0,0" VerticalAlignment="Top" Width="80"/>
+        <Label Name="LodePC" Content="0" HorizontalAlignment="Left" Height="30" Margin="525,40,0,0" VerticalAlignment="Top" Width="80"/>
+        <Button Name="Napoveda" Content="Nápověda" HorizontalAlignment="Left" Height="25" Margin="710,0,0,0" VerticalAlignment="Top" Width="84" Click="Napoveda_Click" Visibility="Hidden"/>
 
 
     </Grid>
