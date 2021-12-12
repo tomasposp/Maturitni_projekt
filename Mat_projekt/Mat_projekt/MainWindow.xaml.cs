@@ -21,6 +21,7 @@ namespace Mat_projekt
     public partial class MainWindow : Window
     {
 
+        
 
         int[,] PoleLodi = new int[12, 12]; // velikost pole
         int[,] PoleLodi2 = new int[12, 12]; // velikost pole
@@ -1292,13 +1293,13 @@ namespace Mat_projekt
             mazani = false;
             if (JednaLod == true)
             {
-                SingleLod.Background = Brushes.Purple;
+                SingleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
             }
             if (TriLode == false || DveLode == false || mazani == false)
             {
-                TripleLod.Background = Brushes.Gray;
-                DoubleLod.Background = Brushes.Gray;
-                Delete.Background = Brushes.Gray;
+                TripleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                DoubleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                Delete.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
             }
         }
 
@@ -1311,13 +1312,13 @@ namespace Mat_projekt
             
             if (DveLode == true)
             {
-                DoubleLod.Background = Brushes.Purple;
+                DoubleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
             }
             if (TriLode == false || JednaLod == false || mazani == false)
             {
-                TripleLod.Background = Brushes.Gray;
-                SingleLod.Background = Brushes.Gray;
-                Delete.Background = Brushes.Gray;
+                TripleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                SingleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                Delete.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
             }
         }
 
@@ -1329,13 +1330,13 @@ namespace Mat_projekt
             mazani = false;
             if (TriLode == true)
             {
-                TripleLod.Background = Brushes.Purple;
+                TripleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
             }
             if (DveLode == false || JednaLod == false || mazani == false)
             {
-                DoubleLod.Background = Brushes.Gray;
-                SingleLod.Background = Brushes.Gray;
-                Delete.Background = Brushes.Gray;
+                DoubleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                SingleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                Delete.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
             }
             
 
@@ -1754,12 +1755,12 @@ namespace Mat_projekt
             mazani = !mazani;
             if (mazani == true)
             {
-                Delete.Background = Brushes.Purple;
-                TripleLod.Background = Brushes.Gray;
-                DoubleLod.Background = Brushes.Gray;
-                SingleLod.Background = Brushes.Gray;
-                    
-                
+                Delete.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
+                TripleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                DoubleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+                SingleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+
+
             }
 
         }

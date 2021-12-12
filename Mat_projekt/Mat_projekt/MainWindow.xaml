@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
+        <Image Source="Pictures/background2.png" Stretch="Fill"/>
         <Grid Name="mrizka" Margin="36,58,447,41">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -22,12 +23,18 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Button Name="Start" Content="Start" HorizontalAlignment="Left" Height="26" Margin="285,383,0,0" VerticalAlignment="Top" Width="170" Click="Start_Click"/>
-        <Button Name="SingleLod" Content="Jedničková loď" HorizontalAlignment="Left" Height="30" Margin="185,10,0,0" VerticalAlignment="Top" Width="105" Click="SingleLod_Click"/>
-        <Button Name="DoubleLod" Content="Dvojkoná loď" HorizontalAlignment="Left" Height="30" Margin="340,10,0,0" VerticalAlignment="Top" Width="105" Click="DoubleLod_Click"/>
-        <Button Name="TripleLod" Content="Trojková loď" HorizontalAlignment="Left" Height="30" Margin="500,10,0,0" VerticalAlignment="Top" Width="105" Click="TripleLod_Click"/>
-        <Button Name="Delete" Content="Delete" HorizontalAlignment="Left" Height="26" Margin="10,383,0,0" VerticalAlignment="Top" Width="80" Click="Delete_Click"/>
-        <Button Name="MainMenu" Content="Hlavní Menu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" Click="MainMenu_Click"/>
+        <Image Name="Start" HorizontalAlignment="Left" Height="46" Margin="330,365,0,0" VerticalAlignment="Top" Width="145" MouseDown="Start_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="Start_LBL" Content="Start" HorizontalAlignment="Left" Margin="260,347,0,-6" MouseDown="Start_Click" VerticalAlignment="Center" Height="80" Width="290" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="SingleLod" HorizontalAlignment="Left" Height="30" Margin="185,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="SingleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="SingleLod_LBL" Content="Jedničková loď" HorizontalAlignment="Left" Margin="185,10,0,381" MouseDown="SingleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="DoubleLod" HorizontalAlignment="Left" Height="30" Margin="340,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="DoubleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="DoubleLod_LBL" Content="Dvojková loď" HorizontalAlignment="Left" Margin="340,10,0,381" MouseDown="DoubleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="TripleLod" HorizontalAlignment="Left" Height="30" Margin="500,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="TripleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="TripleLod_LBL" Content="Trojková loď" HorizontalAlignment="Left" Margin="500,10,0,381" MouseDown="TripleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="Delete" HorizontalAlignment="Left" Height="26" Margin="10,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="Delete_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="Delete_LBL" Content="Delete" HorizontalAlignment="Left" Margin="10,384,0,13" MouseDown="Delete_Click" VerticalAlignment="Center" Height="24" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="MainMenu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="MainMenu_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="Main_Menu" Content="Main Menu" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="MainMenu_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Name="Lodehrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="185,40,0,0" VerticalAlignment="Top" Width="80"/>
         <Label Name="LodePC" Content="0" HorizontalAlignment="Left" Height="30" Margin="525,40,0,0" VerticalAlignment="Top" Width="80"/>
         <Button Name="Napoveda" Content="Nápověda" HorizontalAlignment="Left" Height="25" Margin="710,0,0,0" VerticalAlignment="Top" Width="84" Click="Napoveda_Click" Visibility="Hidden"/>

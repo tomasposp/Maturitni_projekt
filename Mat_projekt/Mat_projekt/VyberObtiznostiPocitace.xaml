@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="VyberObtiznostiPocitace" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <Button Name="Easy" Content="Easy" HorizontalAlignment="Left" Height="90" Margin="220,100,0,0" VerticalAlignment="Top" Width="375" Click="Easy_Click" FontSize="24"/>
-        <Button Name="Medium" Content="Medium" HorizontalAlignment="Left" Height="90" Margin="220,260,0,0" VerticalAlignment="Top" Width="375" Click="Medium_Click" FontSize="24"/>
+        <Image Source="Pictures/background2.png" Stretch="Fill"/>
+        <Image Name="Easy" HorizontalAlignment="Left" Height="90" Margin="220,100,0,0" VerticalAlignment="Top" Width="330" MouseDown="Easy_Click" Source="Pictures/long.png"/>
+        <Label Name="Easy_LBL" Content="Easy" HorizontalAlignment="Left" Margin="245,100,0,241" MouseDown="Easy_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="Medium" HorizontalAlignment="Left" Height="90" Margin="220,260,0,0" VerticalAlignment="Top" Width="330" MouseDown="Medium_Click" Source="Pictures/long.png"/>
+        <Label Name="Medium_LBL" Content="Medium" HorizontalAlignment="Left" Margin="245,260,0,81" MouseDown="Medium_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>

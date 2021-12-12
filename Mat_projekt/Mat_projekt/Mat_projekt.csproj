@@ -126,5 +126,17 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\long.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\background1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\background2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\long_hover.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
