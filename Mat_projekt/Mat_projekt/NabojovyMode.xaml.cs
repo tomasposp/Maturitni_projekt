@@ -167,6 +167,31 @@ namespace Mat_projekt
                             if ((int)PoleRect[r, s].Tag == 4)
                             {
 
+                            if (PoleRect[r, s].Fill == Brushes.Gray)
+                            {
+
+
+                                if ((int)PoleRect[r, s].Tag == 3)
+                                {
+                                    indx = r;
+                                    indy = s;
+
+                                    PoleRect[r, s].Tag = 3;
+                                    PoleLodi[r, s] = 3;
+                                    r--;
+
+                                }
+
+
+                                if (PoleLodi[r, s] == 9)
+                                {
+                                    indx = r;
+                                    indy = s;
+
+                                    PoleRect[r, s].Tag = 9;
+                                    PoleLodi[r, s] = 9;
+                                }
+
                                 if (PoleLodi[r, s] == 1)
                                 {
                                     indx = r;
@@ -175,11 +200,11 @@ namespace Mat_projekt
                                     PoleRect[r, s].Tag = 1;
                                     PoleLodi[r, s] = 1;
 
-                                    s--;
-                                    naboje--;
+                                   
+                                       s--;
+                                       naboje--;
 
                                 }
-
 
                                 else if (PoleLodi[r, s] == 2)
                                 {
@@ -205,6 +230,7 @@ namespace Mat_projekt
 
 
 
+
                                 else if ((int)PoleRect[r, s].Tag == 4)
                                 {
 
@@ -214,20 +240,80 @@ namespace Mat_projekt
                                     PoleRect[r, s].Tag = 4;
                                     PoleLodi[r, s] = 4;
 
+                                    naboje--;
 
 
-
-                                    if ((int)PoleRect[r, s].Tag == 4)
+                                    if (PoleRect[r, s].Fill == Brushes.Gray)
                                     {
+
                                         PoleRect[r, s].Fill = Brushes.Red;
 
-                                        naboje--;
                                     }
+
                                 }
-
-
-
                             }
+
+                            //if (PoleLodi[r, s] == 1)
+                            //{
+                            //    indx = r;
+                            //    indy = s;
+
+                            //    PoleRect[r, s].Tag = 1;
+                            //    PoleLodi[r, s] = 1;
+
+                            //    s--;
+                            //    naboje--;
+
+                            //}
+
+
+                            //else if (PoleLodi[r, s] == 2)
+                            //{
+
+                            //    indx = r;
+                            //    indy = s;
+
+                            //    PoleRect[r, s].Tag = 2;
+                            //    PoleLodi[r, s] = 2;
+
+
+
+                            //    if ((int)PoleRect[r, s].Tag == 2)
+                            //    {
+                            //        PoleRect[r, s].Tag = 9;
+                            //        PoleLodi[r, s] = 9;
+                            //        PoleRect[r, s].Fill = Brushes.Green;
+                            //        lode--;
+                            //        naboje--;
+                            //    }
+
+                            //}
+
+
+
+                            //else if ((int)PoleRect[r, s].Tag == 4)
+                            //{
+
+                            //    indx = r;
+                            //    indy = s;
+
+                            //    PoleRect[r, s].Tag = 4;
+                            //    PoleLodi[r, s] = 4;
+
+
+
+
+                            //    if ((int)PoleRect[r, s].Tag == 4)
+                            //    {
+                            //        PoleRect[r, s].Fill = Brushes.Red;
+
+                            //        naboje--;
+                            //    }
+                            //}
+
+
+
+                        }
 
                         }
 
@@ -244,7 +330,8 @@ namespace Mat_projekt
                 if (naboje == 0)
                 {
                     MessageBox.Show("Zbývalo ti střelit " + lode + " lodí");
-                }
+                this.Close();
+            }
 
             
         }
