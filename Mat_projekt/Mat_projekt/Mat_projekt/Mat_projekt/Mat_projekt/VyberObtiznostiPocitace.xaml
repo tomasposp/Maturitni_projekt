@@ -1,0 +1,17 @@
+﻿<Window x:Class="Mat_projekt.VyberObtiznostiPocitace"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mat_projekt"
+        mc:Ignorable="d"
+        Title="VyberObtiznostiPocitace" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid>
+        <Image Source="Pictures/background2.png" Stretch="Fill"/>
+        <Image Name="Easy" HorizontalAlignment="Left" Height="90" Margin="265,130,0,0" VerticalAlignment="Top" Width="285" MouseDown="Easy_Click" Source="Pictures/long.png"/>
+        <Label Name="Easy_LBL" Content="Easy" HorizontalAlignment="Left" Margin="265,130,0,211" MouseDown="Easy_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.368,0.562"/>
+        <Image Name="Medium" HorizontalAlignment="Left" Height="90" Margin="265,260,0,0" VerticalAlignment="Top" Width="285" MouseDown="Medium_Click" Source="Pictures/long.png"/>
+        <Label Name="Medium_LBL" Content="Medium" HorizontalAlignment="Left" Margin="265,260,0,81" MouseDown="Medium_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+
+    </Grid>
+</Window>
