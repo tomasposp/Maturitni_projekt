@@ -1,0 +1,27 @@
+﻿<Window x:Class="Mat_projekt.Multiplayer"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mat_projekt"
+        mc:Ignorable="d"
+        Title="Multiplayer" Height="450" Width="800">
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Grid Name="mrizka" Margin="69,61,414,38">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+
+        <Grid Name="mrizka2" Margin="414,56,69,43" RenderTransformOrigin="1.922,0.522">
+            <Grid.Background>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+
+                </LinearGradientBrush>
+            </Grid.Background>
+        </Grid>
+        <Label Name="Lbl" Content="Kolo" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="370,10,0,0"/>
+    </Grid>
+</Window>

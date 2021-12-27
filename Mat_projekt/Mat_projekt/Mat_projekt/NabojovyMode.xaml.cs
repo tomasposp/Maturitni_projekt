@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,12 +107,12 @@ namespace Mat_projekt
                 {
                     pole[row, col] = new Rectangle();
 
-                    pole[row, col].Fill = Brushes.Gray;
+                    pole[row, col].Fill = Brushes.White;
 
                     pole[row, col].MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
-
-                    pole[row, col].StrokeThickness = 0;
+                    pole[row, col].StrokeThickness = 0.2;
+                    pole[row, col].Stroke = Brushes.Black;
                     pole[row, col].Height = mrizka.Height / pole.GetLength(0);
                     pole[row, col].Width = mrizka.Width / pole.GetLength(1);
                     Grid.SetColumn(pole[row, col], col);
@@ -167,6 +168,31 @@ namespace Mat_projekt
                             if ((int)PoleRect[r, s].Tag == 4)
                             {
 
+                            if (PoleRect[r, s].Fill == Brushes.White)
+                            {
+
+
+                                if ((int)PoleRect[r, s].Tag == 3)
+                                {
+                                    indx = r;
+                                    indy = s;
+
+                                    PoleRect[r, s].Tag = 3;
+                                    PoleLodi[r, s] = 3;
+                                    r--;
+
+                                }
+
+
+                                if (PoleLodi[r, s] == 9)
+                                {
+                                    indx = r;
+                                    indy = s;
+
+                                    PoleRect[r, s].Tag = 9;
+                                    PoleLodi[r, s] = 9;
+                                }
+
                                 if (PoleLodi[r, s] == 1)
                                 {
                                     indx = r;
@@ -175,11 +201,11 @@ namespace Mat_projekt
                                     PoleRect[r, s].Tag = 1;
                                     PoleLodi[r, s] = 1;
 
-                                    s--;
-                                    naboje--;
+                                   
+                                       s--;
+                                       naboje--;
 
                                 }
-
 
                                 else if (PoleLodi[r, s] == 2)
                                 {
@@ -196,12 +222,16 @@ namespace Mat_projekt
                                     {
                                         PoleRect[r, s].Tag = 9;
                                         PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Green;
+                                        Uri hit;
+                                        hit = new Uri(Directory.GetCurrentDirectory() + @"\LodeHit.JPG");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        //PoleRect[r, s].Fill = Brushes.Green;
                                         lode--;
                                         naboje--;
                                     }
 
                                 }
+
 
 
 
@@ -214,20 +244,83 @@ namespace Mat_projekt
                                     PoleRect[r, s].Tag = 4;
                                     PoleLodi[r, s] = 4;
 
+                                    naboje--;
 
 
-
-                                    if ((int)PoleRect[r, s].Tag == 4)
+                                    if (PoleRect[r, s].Fill == Brushes.White)
                                     {
-                                        PoleRect[r, s].Fill = Brushes.Red;
 
-                                        naboje--;
+                                        Uri miss;
+                                        miss = new Uri(Directory.GetCurrentDirectory() + @"\LodeMiss.JPG");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(miss));
+                                        //PoleRect[r, s].Fill = Brushes.Red;
+
                                     }
+
                                 }
-
-
-
                             }
+
+                            //if (PoleLodi[r, s] == 1)
+                            //{
+                            //    indx = r;
+                            //    indy = s;
+
+                            //    PoleRect[r, s].Tag = 1;
+                            //    PoleLodi[r, s] = 1;
+
+                            //    s--;
+                            //    naboje--;
+
+                            //}
+
+
+                            //else if (PoleLodi[r, s] == 2)
+                            //{
+
+                            //    indx = r;
+                            //    indy = s;
+
+                            //    PoleRect[r, s].Tag = 2;
+                            //    PoleLodi[r, s] = 2;
+
+
+
+                            //    if ((int)PoleRect[r, s].Tag == 2)
+                            //    {
+                            //        PoleRect[r, s].Tag = 9;
+                            //        PoleLodi[r, s] = 9;
+                            //        PoleRect[r, s].Fill = Brushes.Green;
+                            //        lode--;
+                            //        naboje--;
+                            //    }
+
+                            //}
+
+
+
+                            //else if ((int)PoleRect[r, s].Tag == 4)
+                            //{
+
+                            //    indx = r;
+                            //    indy = s;
+
+                            //    PoleRect[r, s].Tag = 4;
+                            //    PoleLodi[r, s] = 4;
+
+
+
+
+                            //    if ((int)PoleRect[r, s].Tag == 4)
+                            //    {
+                            //        PoleRect[r, s].Fill = Brushes.Red;
+
+                            //        naboje--;
+                            //    }
+                            //}
+
+
+
+                        }
 
                         }
 
@@ -244,7 +337,8 @@ namespace Mat_projekt
                 if (naboje == 0)
                 {
                     MessageBox.Show("Zbývalo ti střelit " + lode + " lodí");
-                }
+                this.Close();
+            }
 
             
         }

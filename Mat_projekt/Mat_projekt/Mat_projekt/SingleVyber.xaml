@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="SingleVyber" Height="450" Width="800">
+        Title="SingleVyber" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <Button Name="Pocitac" Content="Počítač" HorizontalAlignment="Left" Height="90" Margin="245,120,0,0" VerticalAlignment="Top" Width="285" Click="Pocitac_Click" />
-        <Button Name="NabojovyMode" Content="Nábojobý mode" HorizontalAlignment="Left" Height="90" Margin="245,250,0,0" VerticalAlignment="Top" Width="285" Click="NabojovyMode_Click"/>
+        <Image Source="Pictures/background2.png" Stretch="Fill"/>
+        <Image Name="Pocitac" HorizontalAlignment="Left" Height="90" Margin="245,120,0,0" VerticalAlignment="Top" Width="285" MouseDown="Pocitac_Click" Source="Pictures/long.png"/>
+        <Label Name="Pocitac_LBL" Content="Počítač" HorizontalAlignment="Left" Margin="245,120,0,221" MouseDown="Pocitac_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="NabojovyMode" HorizontalAlignment="Left" Height="90" Margin="245,250,0,0" VerticalAlignment="Top" Width="285" MouseDown="NabojovyMode_Click" Source="Pictures/long.png"/>
+        <Label Name="NabojovyMode_LBL" Content="Nábojový Mode" HorizontalAlignment="Left" Margin="245,250,0,101" MouseDown="NabojovyMode_Click" VerticalAlignment="Center" Height="70" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>

@@ -126,5 +126,34 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\long.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\background1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\background2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\long_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\JednickovaLod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\DvojkovaLod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\SecretLod.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\JednickovaLod.jpg" />
+    <Resource Include="Pictures\LodeHit.jpg" />
+    <Resource Include="Pictures\LodeMiss.jpg" />
+    <Resource Include="Pictures\LodPredek.jpg" />
+    <Resource Include="Pictures\LodStred.jpg" />
+    <Resource Include="Pictures\LodZada.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

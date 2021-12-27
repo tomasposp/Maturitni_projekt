@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -106,12 +107,12 @@ namespace Mat_projekt
                 {
                     pole[row, col] = new Rectangle();
 
-                    pole[row, col].Fill = Brushes.Gray;
+                    pole[row, col].Fill = Brushes.White;
 
                     pole[row, col].MouseLeftButtonDown += MainWindow_MouseLeftButtonDown;
 
-
-                    pole[row, col].StrokeThickness = 0;
+                    pole[row, col].StrokeThickness = 0.2;
+                    pole[row, col].Stroke = Brushes.Black;
                     pole[row, col].Height = mrizka.Height / pole.GetLength(0);
                     pole[row, col].Width = mrizka.Width / pole.GetLength(1);
                     Grid.SetColumn(pole[row, col], col);
@@ -167,7 +168,7 @@ namespace Mat_projekt
                             if ((int)PoleRect[r, s].Tag == 4)
                             {
 
-                            if (PoleRect[r, s].Fill == Brushes.Gray)
+                            if (PoleRect[r, s].Fill == Brushes.White)
                             {
 
 
@@ -221,7 +222,10 @@ namespace Mat_projekt
                                     {
                                         PoleRect[r, s].Tag = 9;
                                         PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Green;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        //PoleRect[r, s].Fill = Brushes.Green;
                                         lode--;
                                         naboje--;
                                     }
@@ -243,10 +247,13 @@ namespace Mat_projekt
                                     naboje--;
 
 
-                                    if (PoleRect[r, s].Fill == Brushes.Gray)
+                                    if (PoleRect[r, s].Fill == Brushes.White)
                                     {
 
-                                        PoleRect[r, s].Fill = Brushes.Red;
+                                        Uri miss;
+                                        miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(miss));
+                                        //PoleRect[r, s].Fill = Brushes.Red;
 
                                     }
 

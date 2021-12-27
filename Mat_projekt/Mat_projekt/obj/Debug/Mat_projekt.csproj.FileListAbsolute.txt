@@ -59,3 +59,7 @@ C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\Mat_projekt\
 C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\Mat_projekt\obj\Debug\Mat_projekt.csproj.CoreCompileInputs.cache
 C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\Mat_projekt\obj\Debug\Mat_projekt.exe
 C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\Mat_projekt\obj\Debug\Mat_projekt.pdb
+C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\obj\Debug\Connect.g.cs
+C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\obj\Debug\Multiplayer.g.cs
+C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\obj\Debug\Connect.baml
+C:\Users\Tom\Desktop\Maturitni_projekt-main\Mat_projekt\Mat_projekt\obj\Debug\Multiplayer.baml

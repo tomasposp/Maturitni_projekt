@@ -35,14 +35,18 @@
         <Label Name="Delete_LBL" Content="Delete" HorizontalAlignment="Left" Margin="50,383,0,14" MouseDown="Delete_Click" VerticalAlignment="Center" Height="24" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Image Name="MainMenu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="MainMenu_Click" Source="Pictures/long.png" Stretch="Fill"/>
         <Label Name="Main_Menu" Content="Main Menu" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="MainMenu_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Label Name="JednickovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="10,90,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5"/>
-        <Label Name="DvojkovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="10,150,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5"/>
-        <Label Name="TrojkovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="10,210,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5"/>
-        <Label Name="JednickovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="730,90,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label Name="DvojkovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="730,150,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label Name="TrojkovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="729,210,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Name="JednickovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="0,90,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Visibility="Hidden"/>
+        <Label Name="DvojkovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="0,150,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Visibility="Hidden"/>
+        <Label Name="TrojkovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="0,210,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Visibility="Hidden"/>
+        <Label Name="JednickovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="725,90,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Name="DvojkovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="725,150,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Name="TrojkovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="725,210,0,0" VerticalAlignment="Top" Width="55"/>
         <Button Name="Napoveda" Content="Nápověda" HorizontalAlignment="Left" Height="25" Margin="710,0,0,0" VerticalAlignment="Top" Width="84" Click="Napoveda_Click" Visibility="Hidden"/>
-
-
+        <Image Name="JednickovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="745,90,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
+        <Image Name="JednickovaLodPoStartu" HorizontalAlignment="Left" Height="26" Margin="14,90,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308" Visibility="Hidden"/>
+        <Image Name="DvojkovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="739,150,0,0" VerticalAlignment="Top" Width="55"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
+        <Image Name="DvojkovaLodPoStartu" HorizontalAlignment="Left" Height="26" Margin="14,154,0,0" VerticalAlignment="Top" Width="55"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308" Visibility="Hidden"/>
+        <Image Name="TrojkovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="725,229,0,0" VerticalAlignment="Top" Width="69"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
+        <Image Name="TrojkovaLodPoStartu" HorizontalAlignment="Right" Height="26" Margin="0,229,725,0" VerticalAlignment="Top" Width="69"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308" Visibility="Hidden"/>
     </Grid>
 </Window>

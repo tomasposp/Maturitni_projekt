@@ -40,6 +40,8 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -59,6 +61,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Class1.cs" />
+    <Compile Include="Connect.xaml.cs">
+      <DependentUpon>Connect.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Multiplayer.xaml.cs">
+      <DependentUpon>Multiplayer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NabojovyMode.xaml.cs">
       <DependentUpon>NabojovyMode.xaml</DependentUpon>
     </Compile>
@@ -71,6 +79,10 @@
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="Connect.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,6 +95,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Multiplayer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NabojovyMode.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -137,6 +153,23 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Pictures\long_hover.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\JednickovaLod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\DvojkovaLod.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\SecretLod.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\JednickovaLod.jpg" />
+    <Resource Include="Pictures\LodeHit.jpg" />
+    <Resource Include="Pictures\LodeMiss.jpg" />
+    <Resource Include="Pictures\LodPredek.jpg" />
+    <Resource Include="Pictures\LodStred.jpg" />
+    <Resource Include="Pictures\LodZada.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

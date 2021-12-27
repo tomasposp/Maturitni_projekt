@@ -34,7 +34,9 @@ namespace Mat_projekt
 
         private void MultiPlayer_Click(object sender, RoutedEventArgs e)
         {
-            
+            Connect win = new Connect();
+            win.Show();
+            this.Close();
         }
 
 
