@@ -8,9 +8,9 @@
         Title="Connect" Height="450" Width="800">
     <Grid>
         
-        <Button Content="Button" HorizontalAlignment="Left" Height="35" Margin="420,100,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="170,195,0,0" VerticalAlignment="Top" Width="525" Height="105" Click="Button_Click_1"/>
-        <TextBox Name="TextIP" HorizontalAlignment="Left" Height="23" Margin="205,109,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <Button Name="connect" Content="Connect" HorizontalAlignment="Left" Height="35" Margin="420,100,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
+        <Button Name="CreateServer" Content="Create server" HorizontalAlignment="Left" Margin="170,195,0,0" VerticalAlignment="Top" Width="525" Height="105" Click="Button_Click_1"/>
+        <TextBox Name="TextIP" HorizontalAlignment="Left" Height="23" Margin="205,109,0,0" TextWrapping="Wrap" Text="localhost" VerticalAlignment="Top" Width="120"/>
 
 
     </Grid>

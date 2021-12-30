@@ -12,6 +12,9 @@
         <Label Name="Easy_LBL" Content="Easy" HorizontalAlignment="Left" Margin="265,130,0,211" MouseDown="Easy_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.368,0.562"/>
         <Image Name="Medium" HorizontalAlignment="Left" Height="90" Margin="265,260,0,0" VerticalAlignment="Top" Width="285" MouseDown="Medium_Click" Source="Pictures/long.png"/>
         <Label Name="Medium_LBL" Content="Medium" HorizontalAlignment="Left" Margin="265,260,0,81" MouseDown="Medium_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="Back" HorizontalAlignment="Left" Height="60" Margin="615,370,0,-9" VerticalAlignment="Top" Width="179" MouseDown="Back_MouseDown" Source="Pictures/long.png"/>
+        <Label Name="Back_LBL" Content="Back" HorizontalAlignment="Left" Margin="590,360,-26,0" VerticalAlignment="Center" Height="61" Width="230" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="Back_MouseDown"/>
+
 
     </Grid>
 </Window>

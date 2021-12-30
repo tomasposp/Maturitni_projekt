@@ -39,5 +39,12 @@ namespace Mat_projekt
             win.Show();
             this.Close();
         }
+
+        private void Back_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SingleVyber win = new SingleVyber();
+            win.Show();
+            this.Close();
+        }
     }
 }

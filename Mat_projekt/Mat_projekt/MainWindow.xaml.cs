@@ -677,7 +677,7 @@ namespace Mat_projekt
                             //else if (PoleLodi2[r, s] == 2) lode2++;
                             else if ((int)PoleRect2[r, s].Tag == 3) PoleLodi2[r, s] = 3;
 
-
+                            
 
                         }
 
@@ -2122,7 +2122,69 @@ namespace Mat_projekt
 
         private void Napoveda_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("");
+            if (Napoveda_Grid.Visibility == Visibility.Hidden)
+            {
+                Napoveda_Grid.Visibility = Visibility.Visible;
+            }
+            else if (Napoveda_Grid.Visibility == Visibility.Visible)
+            {
+                Napoveda_Grid.Visibility = Visibility.Hidden;
+            }
+            if (zapnuty == false)
+            {
+                if (Napoveda_Grid.Visibility == Visibility.Visible)
+                {
+                    Sipka1.Visibility = Visibility.Visible;
+                    Sipka2.Visibility = Visibility.Visible;
+                    Sipka3.Visibility = Visibility.Visible;
+                    Sipka4.Visibility = Visibility.Visible;
+                    Sipka5.Visibility = Visibility.Visible;
+                    Sipka6.Visibility = Visibility.Visible;
+                    Sipka7.Visibility = Visibility.Visible;
+                    Sipka8.Visibility = Visibility.Visible;
+                    Lode_LBL.Visibility = Visibility.Visible;
+                    PlacedSingleLode_LBL.Visibility = Visibility.Visible;
+                    PlacedDuoLode_LBL.Visibility = Visibility.Visible;
+                    PlacedTrioLode_LBL.Visibility = Visibility.Visible;
+                    Start_LBL1.Visibility = Visibility.Visible;
+                    Delete_LBL1.Visibility = Visibility.Visible;
+                    Delete_LBL2.Visibility = Visibility.Visible;
+
+                }
+                else if (Napoveda_Grid.Visibility == Visibility.Hidden)
+                {
+                    Sipka1.Visibility = Visibility.Hidden;
+                    Sipka2.Visibility = Visibility.Hidden;
+                    Sipka3.Visibility = Visibility.Hidden;
+                    Sipka4.Visibility = Visibility.Hidden;
+                    Sipka5.Visibility = Visibility.Hidden;
+                    Sipka6.Visibility = Visibility.Hidden;
+                    Sipka7.Visibility = Visibility.Hidden;
+                    Sipka8.Visibility = Visibility.Hidden;
+                    Lode_LBL.Visibility = Visibility.Hidden;
+                    PlacedSingleLode_LBL.Visibility = Visibility.Hidden;
+                    PlacedDuoLode_LBL.Visibility = Visibility.Hidden;
+                    PlacedTrioLode_LBL.Visibility = Visibility.Hidden;
+                    Start_LBL1.Visibility = Visibility.Hidden;
+                    Delete_LBL1.Visibility = Visibility.Hidden;
+                    Delete_LBL2.Visibility = Visibility.Hidden;
+                }
+            }
+            
+            if (zapnuty == true)
+            {
+                if (Napoveda_Grid.Visibility == Visibility.Visible)
+                {
+                    HracovoPole.Visibility = Visibility.Visible;
+                    PoleNepritele.Visibility = Visibility.Visible;
+                }
+
+                else if (Napoveda_Grid.Visibility == Visibility.Hidden)
+                {
+                    HracovoPole.Visibility = Visibility.Hidden;
+                    PoleNepritele.Visibility = Visibility.Hidden;
+                }
+            }
             
         }
     }

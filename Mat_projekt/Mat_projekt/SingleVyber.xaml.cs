@@ -37,5 +37,12 @@ namespace Mat_projekt
             win.Show();
             this.Close();
         }
+
+        private void Back_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Window1 win = new Window1();
+            win.Show();
+            this.Close();
+        }
     }
 }

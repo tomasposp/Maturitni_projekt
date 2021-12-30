@@ -171,5 +171,8 @@
     <Resource Include="Pictures\LodStred.jpg" />
     <Resource Include="Pictures\LodZada.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Sipka.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

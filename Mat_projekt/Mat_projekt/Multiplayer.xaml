@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="Multiplayer" Height="450" Width="800">
+        Title="Multiplayer" Height="450" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown">
     <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-        <Grid Name="mrizka" Margin="69,61,414,38">
+        <Grid Name="mrizka" Margin="69,61,414,38" MouseDown="mrizka_MouseDown_1">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
@@ -15,7 +15,7 @@
             </Grid.Background>
         </Grid>
 
-        <Grid Name="mrizka2" Margin="414,56,69,43" RenderTransformOrigin="1.922,0.522">
+        <Grid Name="mrizka2" Margin="414,56,69,43" RenderTransformOrigin="1.922,0.522" MouseDown="mrizka2_MouseDown">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
