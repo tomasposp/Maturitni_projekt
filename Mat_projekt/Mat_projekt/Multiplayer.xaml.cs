@@ -43,19 +43,10 @@ namespace Mat_projekt
         int lode = 1;
         int lode2 = 1;
 
+        int kolo = 0;
+
         public Multiplayer(bool isHost, string ip = null)
         {
-
-            Random rnd = new Random();
-
-            int cislo1 = rnd.Next(1, 11);
-            int cislo2 = rnd.Next(1, 11);
-            int cislo3 = rnd.Next(1, 11);
-            int cislo4 = rnd.Next(1, 11);
-
-
-
-
             InitializeComponent();
 
 
@@ -222,6 +213,8 @@ namespace Mat_projekt
                 sock = server.AcceptSocket();
                 mrizka2.IsEnabled = false;
                 mrizka.IsEnabled = true;
+                PoleRect[souradniceX1, souradniceY1].Fill = Brushes.Black;
+                
                 //test();
             }
             else
@@ -233,6 +226,9 @@ namespace Mat_projekt
                     MessageReceiver.RunWorkerAsync();
                     mrizka2.IsEnabled = true;
                     mrizka.IsEnabled = false;
+                    PoleRect[5, 5].Fill = Brushes.Black;
+
+
                 }
                 catch (Exception ex)
                 {
@@ -282,8 +278,6 @@ namespace Mat_projekt
             //        }
 
 
-
-
             //    }
 
             //}
@@ -295,6 +289,10 @@ namespace Mat_projekt
         {
             if (sender is Rectangle Rec)
             {
+
+                //byte[] num = { Convert.ToByte(1) };
+                //sock.Send(num);
+                //Kolo();
 
                 for (int r = 0; r < PoleRect.GetLength(0); r++)
                 {
@@ -314,6 +312,10 @@ namespace Mat_projekt
 
                 Rec.Tag = 4;
 
+                //byte[] num = { Convert.ToByte(1) };
+                //sock.Send(num);
+                //Kolo();
+
 
                 for (int r = 0; r < PoleLodi.GetLength(0); r++)
                 {
@@ -328,8 +330,21 @@ namespace Mat_projekt
 
                             if (PoleRect[r, s].Fill == Brushes.White)
                             {
+                                if (kolo % 2 == 0)
+                                {
+                                    PoleRect[r, s].Fill = Brushes.Black;
+                                    Lbl.Content = "Tvoje kolo";
+                                }
+                                else if (kolo % 2 == 1)
+                                {
+                                    Lbl.Content = "Kolo nepřítele";
+                                }
+                                kolo++;
 
 
+                                //byte[] num = { Convert.ToByte(1) };
+                                //sock.Send(num);
+                                //Kolo();
                                 //Kolo(); Kolo2();
 
                             }
@@ -344,6 +359,7 @@ namespace Mat_projekt
 
 
                 }
+
                 for (int r = 0; r < PoleLodi2.GetLength(0); r++)
                 {
                     for (int s = 0; s < PoleLodi2.GetLength(1); s++)
@@ -357,21 +373,36 @@ namespace Mat_projekt
 
                             if (PoleRect[r, s].Fill == Brushes.White)
                             {
+                                if (kolo % 2 == 0)
+                                {
+                                    Lbl.Content = "Kolo nepřítele";
+                                }
+                                else if (kolo % 2 == 1)
+                                {
+                                    PoleRect[r, s].Fill = Brushes.Black;
+                                    Lbl.Content = "Tvoje kolo";
+                                }
+                                kolo++;
 
 
+                                //byte[] num = { Convert.ToByte(1) };
+                                //sock.Send(num);
                                 //Kolo();
-
+                                //Kolo();
                             }
 
 
                         }
+
 
                     }
                     Console.WriteLine(souradniceX1);
 
                     PoleRect[indx, indy].Tag = 3;
 
-
+                    //byte[] num = { Convert.ToByte(r) };
+                    //sock.Send(num);
+                    //Kolo();
                 }
 
 
@@ -380,12 +411,9 @@ namespace Mat_projekt
 
 
             }
-            //byte[] num = { 1 };
-            //sock.Send(num);
 
 
 
-            //Kolo(); Kolo2();
 
         }
 
@@ -407,7 +435,10 @@ namespace Mat_projekt
             //    }
             //}
         }
-
+        private Socket sock;
+        private BackgroundWorker MessageReceiver = new BackgroundWorker();
+        private TcpListener server = null;
+        private TcpClient client;
 
         private void MessageReceiver_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -420,22 +451,15 @@ namespace Mat_projekt
             Lbl.Content = "Tvoje kolo";
         }
 
-        private Socket sock;
-        private BackgroundWorker MessageReceiver = new BackgroundWorker();
-        private TcpListener server = null;
-        private TcpClient client;
+
         public bool IsDisposed { get; }
 
         private void Kolo()
         {
             byte[] buffer = new byte[1];
             sock.Receive(buffer);
-            if (buffer[0] == 1)
-            {
-                PoleRect[souradniceX1, souradniceY1].Fill = Brushes.Black;
-                //PoleRect2[souradniceX, souradniceY].Fill = Brushes.Black;
-                //PoleRect2[souradniceX, souradniceY].Fill = Brushes.Black;
-            }
+            PoleRect[souradniceX1, souradniceY1].Fill = Brushes.Black;
+
             MessageReceiver.WorkerSupportsCancellation = true;
             MessageReceiver.CancelAsync();
 
@@ -454,13 +478,13 @@ namespace Mat_projekt
         }
 
         private void mrizka2_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //Kolo();
+        {  
+            //Kolo2();
         }
 
         private void mrizka_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-           //Kolo2();
+           //Kolo();
         }
     }
 }
