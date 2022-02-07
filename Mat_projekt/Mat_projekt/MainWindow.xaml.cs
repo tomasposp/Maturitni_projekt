@@ -918,15 +918,22 @@ namespace Mat_projekt
                                                 PoleLodi2[r + 1, s] = 6;
                                                 PoleRect2[r - 1, s].Tag = 6;
                                                 PoleLodi2[r - 1, s] = 6;
+                                                PoleRect2[r - 1, s-1].Tag = 6;
+                                                PoleLodi2[r - 1, s-1] = 6;
+                                                PoleRect2[r + 1, s -1].Tag = 6;
+                                                PoleLodi2[r + 1, s-1] = 6;
+
                                                 Uri lod;
                                                 Uri lod1;
                                                 Uri lod2;
-                                                lod = new Uri("pack://application:,,,/Pictures/LodPredek.jpg");
-                                                lod1 = new Uri("pack://application:,,,/Pictures/LodZada.jpg");
-                                                lod2 = new Uri("pack://application:,,,/Pictures/LodStred.jpg");
+                                                lod = new Uri("pack://application:,,,/Pictures/LodPredek_nahoru.jpg");
+                                                lod1 = new Uri("pack://application:,,,/Pictures/LodZada_Nahoru.jpg");
+                                                lod2 = new Uri("pack://application:,,,/Pictures/LodStred_nahoru.jpg");
                                                 PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod2));
                                                 PoleRect2[r - 1, s].Fill = new ImageBrush(new BitmapImage(lod));
                                                 PoleRect2[r + 1, s].Fill = new ImageBrush(new BitmapImage(lod1));
+                                                PoleRect2[r + 1, s+1].Fill = Brushes.Brown;
+                                                PoleRect2[r + 1, s-1].Fill = Brushes.Brown;
                                                 //PoleRect2[r + 1, s].Fill = Brushes.Brown;
                                                 //PoleRect2[r - 1, s].Fill = Brushes.Brown;
                                                 //PoleRect2[r, s].Fill = Brushes.Brown;

@@ -174,5 +174,10 @@
   <ItemGroup>
     <Resource Include="Pictures\Sipka.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\LodPredek_nahoru.jpg" />
+    <Resource Include="Pictures\LodStred_nahoru.jpg" />
+    <Resource Include="Pictures\LodZada_Nahoru.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
