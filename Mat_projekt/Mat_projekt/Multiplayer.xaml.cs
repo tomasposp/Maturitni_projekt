@@ -247,63 +247,450 @@ namespace Mat_projekt
 
         }
 
+        private void MessageReceiver_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            //return;
+
+            Lbl.Content = "Hraje nepřítel";
+            Kolo();
+            Lbl.Content = "Tvoje kolo";
+
+
+
+        }
+
         //////////////////private void Multiplayer_MouseDown(object sender, MouseButtonEventArgs e)
         //////////////////{
         //////////////////    throw new NotImplementedException();
         //////////////////}
 
-
-        //void test()
-        //{
-
-        //}
-
-        private void mrizka_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Kolo()
         {
-            //if (lode2 > 0)
-            //{
-            //    if (sender is Rectangle Rec)
-            //    {
-            //        Rec.Tag = 4;
-            //        for (int r = 0; r < PoleRect.GetLength(0); r++)
-            //        {
-            //            for (int s = 0; s < PoleRect.GetLength(1); s++)
-            //            {
-            //                if ((int)PoleRect[r, s].Tag == 0)
-            //                {
-            //                    souradniceX = r;
-            //                    souradniceY = s;
-            //                    PoleRect[r, s].Fill = Brushes.Red;
-            //                }
+            byte[] buffer = new byte[1];
+            sock.Receive(buffer);
+            Console.WriteLine(buffer[0]);
 
+            if (buffer[0] == 1)
+            {
+                PoleRect[1, 1].Fill = Brushes.Green;
+            }
+            if (buffer[0] == 2)
+            {
+                PoleRect[1, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 3)
+            {
+                PoleRect[1, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 4)
+            {
+                PoleRect[1, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 5)
+            {
+                PoleRect[1, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 6)
+            {
+                PoleRect[1, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 7)
+            {
+                PoleRect[1, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 8)
+            {
+                PoleRect[1, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 9)
+            {
+                PoleRect[1, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 10)
+            {
+                PoleRect[1, 10].Fill = Brushes.Black;
+            }
 
+            if (buffer[0] == 11)
+            {
+                PoleRect[2, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 12)
+            {
+                PoleRect[2, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 13)
+            {
+                PoleRect[2, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 14)
+            {
+                PoleRect[2, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 15)
+            {
+                PoleRect[2, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 16)
+            {
+                PoleRect[2, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 17)
+            {
+                PoleRect[2, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 18)
+            {
+                PoleRect[2, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 19)
+            {
+                PoleRect[2, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 20)
+            {
+                PoleRect[2, 10].Fill = Brushes.Black;
+            }
 
-            //                Console.WriteLine(souradniceX);
-            //                byte[] num = { Convert.ToByte(r) };
-            //                sock.Send(num);
+            if (buffer[0] == 21)
+            {
+                PoleRect[3, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 22)
+            {
+                PoleRect[3, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 23)
+            {
+                PoleRect[3, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 24)
+            {
+                PoleRect[3, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 25)
+            {
+                PoleRect[3, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 26)
+            {
+                PoleRect[3, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 27)
+            {
+                PoleRect[3, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 28)
+            {
+                PoleRect[3, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 29)
+            {
+                PoleRect[3, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 30)
+            {
+                PoleRect[3, 10].Fill = Brushes.Black;
+            }
 
-            //                Kolo(); Kolo2();
-            //            }
+            if (buffer[0] == 31)
+            {
+                PoleRect[4, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 32)
+            {
+                PoleRect[4, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 33)
+            {
+                PoleRect[4, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 34)
+            {
+                PoleRect[4, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 35)
+            {
+                PoleRect[4, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 36)
+            {
+                PoleRect[4, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 37)
+            {
+                PoleRect[4, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 38)
+            {
+                PoleRect[4, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 39)
+            {
+                PoleRect[4, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 40)
+            {
+                PoleRect[4, 10].Fill = Brushes.Black;
+            }
 
-            //        }
+            if (buffer[0] == 41)
+            {
+                PoleRect[5, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 42)
+            {
+                PoleRect[5, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 43)
+            {
+                PoleRect[5, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 44)
+            {
+                PoleRect[5, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 45)
+            {
+                PoleRect[5, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 46)
+            {
+                PoleRect[5, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 47)
+            {
+                PoleRect[5, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 48)
+            {
+                PoleRect[5, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 49)
+            {
+                PoleRect[5, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 50)
+            {
+                PoleRect[5, 10].Fill = Brushes.Black;
+            }
 
+            if (buffer[0] == 51)
+            {
+                PoleRect[6, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 52)
+            {
+                PoleRect[6, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 53)
+            {
+                PoleRect[6, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 54)
+            {
+                PoleRect[6, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 55)
+            {
+                PoleRect[6, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 56)
+            {
+                PoleRect[6, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 57)
+            {
+                PoleRect[6, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 58)
+            {
+                PoleRect[6, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 59)
+            {
+                PoleRect[6, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 60)
+            {
+                PoleRect[6, 10].Fill = Brushes.Black;
+            }
 
-            //    }
+            if (buffer[0] == 61)
+            {
+                PoleRect[7, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 62)
+            {
+                PoleRect[7, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 63)
+            {
+                PoleRect[7, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 64)
+            {
+                PoleRect[7, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 65)
+            {
+                PoleRect[7, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 66)
+            {
+                PoleRect[7, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 67)
+            {
+                PoleRect[7, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 68)
+            {
+                PoleRect[7, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 69)
+            {
+                PoleRect[7, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 70)
+            {
+                PoleRect[7, 10].Fill = Brushes.Black;
+            }
 
-            //}
-            //Console.WriteLine("XDDDD");
+            if (buffer[0] == 71)
+            {
+                PoleRect[8, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 72)
+            {
+                PoleRect[8, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 73)
+            {
+                PoleRect[8, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 74)
+            {
+                PoleRect[8, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 75)
+            {
+                PoleRect[8, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 76)
+            {
+                PoleRect[8, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 77)
+            {
+                PoleRect[8, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 78)
+            {
+                PoleRect[8, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 79)
+            {
+                PoleRect[8, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 80)
+            {
+                PoleRect[8, 10].Fill = Brushes.Black;
+            }
+
+            if (buffer[0] == 81)
+            {
+                PoleRect[9, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 82)
+            {
+                PoleRect[9, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 83)
+            {
+                PoleRect[9, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 84)
+            {
+                PoleRect[9, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 85)
+            {
+                PoleRect[9, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 86)
+            {
+                PoleRect[9, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 87)
+            {
+                PoleRect[9, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 88)
+            {
+                PoleRect[9, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 89)
+            {
+                PoleRect[9, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 90)
+            {
+                PoleRect[9, 10].Fill = Brushes.Black;
+            }
+
+            if (buffer[0] == 91)
+            {
+                PoleRect[10, 1].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 92)
+            {
+                PoleRect[10, 2].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 93)
+            {
+                PoleRect[10, 3].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 94)
+            {
+                PoleRect[10, 4].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 95)
+            {
+                PoleRect[10, 5].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 96)
+            {
+                PoleRect[10, 6].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 97)
+            {
+                PoleRect[10, 7].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 98)
+            {
+                PoleRect[10, 8].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 99)
+            {
+                PoleRect[10, 9].Fill = Brushes.Black;
+            }
+            if (buffer[0] == 100)
+            {
+                PoleRect[10, 10].Fill = Brushes.Black;
+            }
+
+            //MessageReceiver.WorkerSupportsCancellation = true;
+            //MessageReceiver.CancelAsync();
 
         }
+
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (sender is Rectangle Rec)
             {
-
-                //byte[] num = { Convert.ToByte(1) };
-                //sock.Send(num);
-                //Kolo();
-
                 for (int r = 0; r < PoleRect.GetLength(0); r++)
                 {
                     for (int s = 0; s < PoleRect.GetLength(1); s++)
@@ -322,16 +709,11 @@ namespace Mat_projekt
 
                 Rec.Tag = 4;
 
-                //byte[] num = { Convert.ToByte(1) };
-                //sock.Send(num);
-                //Kolo();
-
-
                 for (int r = 0; r < PoleLodi.GetLength(0); r++)
                 {
                     for (int s = 0; s < PoleLodi.GetLength(1); s++)
                     {
-
+                        
 
                         if ((int)PoleRect[r, s].Tag == 4)
                         {
@@ -340,24 +722,16 @@ namespace Mat_projekt
 
                             if (PoleRect[r, s].Fill == Brushes.White)
                             {
-                                if (kolo % 2 == 0)
-                                {
-                                    PoleRect[r, s].Fill = Brushes.Black;
-                                    Lbl.Content = "Tvoje kolo";
-                                }
-                                else if (kolo % 2 == 1)
-                                {
-                                    Lbl.Content = "Kolo nepřítele";
-                                }
-                                kolo++;
                                 
 
                                 if (PoleRect[r, s] == PoleRect [1,1])
                                 {
                                     byte[] num = { 1 };
                                     sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    
+                                    //Console.WriteLine(num[0]);
+                                    PoleRect[1, 1].Fill = Brushes.Red;
+                                    MessageReceiver.RunWorkerAsync();
+                                             
                                 }
                                 if (PoleRect[r, s] == PoleRect[1, 2])
                                 {
@@ -981,465 +1355,38 @@ namespace Mat_projekt
 
 
 
-
+            
         }
 
-        
+
 
 
         void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            //for (int r = 0; r < PoleRect2.GetLength(0); r++)
-            //{
-            //    for (int s = 0; s < PoleLodi2.GetLength(1); s++)
-            //    {
-            //        byte[] num = { Convert.ToByte(r) };
-            //        sock.Send(num);
-            //        //PoleRect[r, s].Fill = Brushes.Red;
-            //        //MessageReceiver.RunWorkerAsync();
+            for (int r = 0; r < PoleRect2.GetLength(0); r++)
+            {
+                for (int s = 0; s < PoleLodi2.GetLength(1); s++)
+                {
+                    byte[] num = { Convert.ToByte(r) };
+                    sock.Send(num);
+                    //PoleRect[r, s].Fill = Brushes.Red;
+                    //MessageReceiver.RunWorkerAsync();
 
-            //        Kolo();
-            //    }
-            //}
+                    Kolo();
+                }
+            }
         }
         private Socket sock;
         private BackgroundWorker MessageReceiver = new BackgroundWorker();
         private TcpListener server = null;
         private TcpClient client;
 
-        private void MessageReceiver_DoWork(object sender, DoWorkEventArgs e)
-        {
-            if (lode2 > 0)
-            {
-                return;
-            }
-            
-            Lbl.Content = "Hraje nepřítel";
-            Kolo();
-            Lbl.Content = "Tvoje kolo";
-        }
+
 
 
         public bool IsDisposed { get; }
 
-        private void Kolo()
-        {
-            byte[] buffer = new byte[1];
-            sock.Receive(buffer);
-            if (buffer[0] == 1)
-            {
-                PoleRect[1, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 2)
-            {
-                PoleRect[1, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 3)
-            {
-                PoleRect[1, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 4)
-            {
-                PoleRect[1, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 5)
-            {
-                PoleRect[1, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 6)
-            {
-                PoleRect[1, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 7)
-            {
-                PoleRect[1, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 8)
-            {
-                PoleRect[1, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 9)
-            {
-                PoleRect[1, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 10)
-            {
-                PoleRect[1, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 11)
-            {
-                PoleRect[2, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 12)
-            {
-                PoleRect[2, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 13)
-            {
-                PoleRect[2, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 14)
-            {
-                PoleRect[2, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 15)
-            {
-                PoleRect[2, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 16)
-            {
-                PoleRect[2, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 17)
-            {
-                PoleRect[2, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 18)
-            {
-                PoleRect[2, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 19)
-            {
-                PoleRect[2, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 20)
-            {
-                PoleRect[2, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 21)
-            {
-                PoleRect[3, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 22)
-            {
-                PoleRect[3, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 23)
-            {
-                PoleRect[3, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 24)
-            {
-                PoleRect[3, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 25)
-            {
-                PoleRect[3, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 26)
-            {
-                PoleRect[3, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 27)
-            {
-                PoleRect[3, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 28)
-            {
-                PoleRect[3, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 29)
-            {
-                PoleRect[3, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 30)
-            {
-                PoleRect[3, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 31)
-            {
-                PoleRect[4, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 32)
-            {
-                PoleRect[4, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 33)
-            {
-                PoleRect[4, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 34)
-            {
-                PoleRect[4, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 35)
-            {
-                PoleRect[4, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 36)
-            {
-                PoleRect[4, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 37)
-            {
-                PoleRect[4, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 38)
-            {
-                PoleRect[4, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 39)
-            {
-                PoleRect[4, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 40)
-            {
-                PoleRect[4, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 41)
-            {
-                PoleRect[5, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 42)
-            {
-                PoleRect[5, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 43)
-            {
-                PoleRect[5, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 44)
-            {
-                PoleRect[5, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 45)
-            {
-                PoleRect[5, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 46)
-            {
-                PoleRect[5, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 47)
-            {
-                PoleRect[5, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 48)
-            {
-                PoleRect[5, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 49)
-            {
-                PoleRect[5, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 50)
-            {
-                PoleRect[5, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 51)
-            {
-                PoleRect[6, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 52)
-            {
-                PoleRect[6, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 53)
-            {
-                PoleRect[6, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 54)
-            {
-                PoleRect[6, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 55)
-            {
-                PoleRect[6, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 56)
-            {
-                PoleRect[6, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 57)
-            {
-                PoleRect[6, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 58)
-            {
-                PoleRect[6, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 59)
-            {
-                PoleRect[6, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 60)
-            {
-                PoleRect[6, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 61)
-            {
-                PoleRect[7, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 62)
-            {
-                PoleRect[7, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 63)
-            {
-                PoleRect[7, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 64)
-            {
-                PoleRect[7, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 65)
-            {
-                PoleRect[7, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 66)
-            {
-                PoleRect[7, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 67)
-            {
-                PoleRect[7, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 68)
-            {
-                PoleRect[7, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 69)
-            {
-                PoleRect[7, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 70)
-            {
-                PoleRect[7, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 71)
-            {
-                PoleRect[8, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 72)
-            {
-                PoleRect[8, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 73)
-            {
-                PoleRect[8, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 74)
-            {
-                PoleRect[8, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 75)
-            {
-                PoleRect[8, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 76)
-            {
-                PoleRect[8, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 77)
-            {
-                PoleRect[8, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 78)
-            {
-                PoleRect[8, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 79)
-            {
-                PoleRect[8, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 80)
-            {
-                PoleRect[8, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 81)
-            {
-                PoleRect[9, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 82)
-            {
-                PoleRect[9, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 83)
-            {
-                PoleRect[9, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 84)
-            {
-                PoleRect[9, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 85)
-            {
-                PoleRect[9, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 86)
-            {
-                PoleRect[9, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 87)
-            {
-                PoleRect[9, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 88)
-            {
-                PoleRect[9, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 89)
-            {
-                PoleRect[9, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 90)
-            {
-                PoleRect[9, 10].Fill = Brushes.Black;
-            }
-
-            if (buffer[0] == 91)
-            {
-                PoleRect[10, 1].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 92)
-            {
-                PoleRect[10, 2].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 93)
-            {
-                PoleRect[10, 3].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 94)
-            {
-                PoleRect[10, 4].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 95)
-            {
-                PoleRect[10, 5].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 96)
-            {
-                PoleRect[10, 6].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 97)
-            {
-                PoleRect[10, 7].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 98)
-            {
-                PoleRect[10, 8].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 99)
-            {
-                PoleRect[10, 9].Fill = Brushes.Black;
-            }
-            if (buffer[0] == 100)
-            {
-                PoleRect[10, 10].Fill = Brushes.Black;
-            }
-
-            //MessageReceiver.WorkerSupportsCancellation = true;
-            //MessageReceiver.CancelAsync();
-
-        }
+        
 
         private void Kolo2()
         {
