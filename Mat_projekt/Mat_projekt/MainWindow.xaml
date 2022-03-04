@@ -16,15 +16,15 @@
             </Grid.Background>
         </Grid>
 
-        <Grid Name="mrizka2" Margin="414,56,69,43" RenderTransformOrigin="1.922,0.522">
+        <Grid Name="mrizka2" Margin="414,61,69,38" RenderTransformOrigin="1.922,0.522">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Image Name="Start" HorizontalAlignment="Left" Height="46" Margin="330,365,0,0" VerticalAlignment="Top" Width="145" MouseDown="Start_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="Start_LBL" Content="Start" HorizontalAlignment="Left" Margin="260,346,0,-5" MouseDown="Start_Click" VerticalAlignment="Center" Height="80" Width="290" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="Start" Height="46" Margin="325,370,324,0" VerticalAlignment="Top" MouseDown="Start_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="Start_LBL" Content="Start" Margin="251,353,251,-12" MouseDown="Start_Click" VerticalAlignment="Center" Height="80" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Image Name="SingleLod" HorizontalAlignment="Left" Height="30" Margin="185,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="SingleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
         <Label Name="SingleLod_LBL" Content="Jedničková loď" HorizontalAlignment="Left" Margin="185,10,0,381" MouseDown="SingleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Image Name="DoubleLod" HorizontalAlignment="Left" Height="30" Margin="340,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="DoubleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
