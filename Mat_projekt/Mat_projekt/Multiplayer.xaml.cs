@@ -218,9 +218,11 @@ namespace Mat_projekt
                 mrizka2.IsEnabled = false;
                 mrizka.IsEnabled = true;
                 PoleRect[souradniceX1, souradniceY1].Fill = Brushes.Black;
-                
 
-                
+
+
+
+
 
 
                 //test();
@@ -235,7 +237,8 @@ namespace Mat_projekt
                     mrizka2.IsEnabled = true;
                     mrizka.IsEnabled = false;
                     PoleRect2[souradniceX1, souradniceY1].Fill = Brushes.Black;
-                    
+
+
 
 
                 }
@@ -285,7 +288,7 @@ namespace Mat_projekt
                     PoleRect[1, 1].Fill = Brushes.Pink;
                     lode--;
 
-
+                    
                 }
                 else
                 {
@@ -733,7 +736,7 @@ namespace Mat_projekt
                     PoleRect2[1, 1].Fill = Brushes.Pink;
                     lode2--;
 
-
+                  
                 }
                 else
                 {
@@ -1207,6 +1210,7 @@ namespace Mat_projekt
 
                                 if (PoleRect[r, s] == PoleRect [1,1])
                                 {
+
                                     byte[] num = { 1 };
                                     sock.Send(num);
                                     
@@ -1226,6 +1230,10 @@ namespace Mat_projekt
                                     {
                                         PoleRect[r, s].Fill = Brushes.Green;
                                     }
+
+                                   
+
+
 
                                 }
                                 if (PoleRect[r, s] == PoleRect[1, 2])
@@ -3224,6 +3232,10 @@ namespace Mat_projekt
                                         PoleRect2[r, s].Fill = Brushes.Green;
                                     }
 
+
+
+                                   
+
                                 }
                                 if (PoleRect2[r, s] == PoleRect2[1, 2])
                                 {
@@ -5184,17 +5196,27 @@ namespace Mat_projekt
                     byte[] num = { Convert.ToByte(0) };
                     sock.Send(num);
 
+            if (lode == 0)
+            {
+                MessageBox.Show("Hráč 1 vyhrál");
+            }
 
+            else if (lode2 == 0)
+            {
+                MessageBox.Show("Hráč 2 vyhrál");
+            }
 
             if (tah == 1)
             {
                 Kolo();
+
                 //tah++;
 
             }
             else if (tah == 0)
             {
                 Kolo2();
+
                 //tah--;
             }
 
