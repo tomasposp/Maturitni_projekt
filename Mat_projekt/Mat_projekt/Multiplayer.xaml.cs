@@ -44,15 +44,20 @@ namespace Mat_projekt
         int lode2 = 1;
 
         int kolo = 0;
+        int koloMP1 = 0;
+        int koloMP2 = 1;
         int tah = 0;
 
-       
+        byte client_ready = 0;
+        byte host_ready = 0;
+
+        
 
         public Multiplayer(bool isHost, string ip = null)
         {
             InitializeComponent();
 
-            
+
 
             PoleRect = new Rectangle[12, 12];
             PoleRect2 = new Rectangle[12, 12];
@@ -202,7 +207,7 @@ namespace Mat_projekt
             }
 
 
-            PoleLodi[1, 1] = 2;
+            //PoleLodi[1, 1] = 2;
 
 
 
@@ -218,6 +223,11 @@ namespace Mat_projekt
                 mrizka2.IsEnabled = false;
                 mrizka.IsEnabled = true;
                 PoleRect[souradniceX1, souradniceY1].Fill = Brushes.Black;
+                btn_ready_Client.Visibility = Visibility.Hidden;
+                btn_ready_Host.Visibility = Visibility.Visible;
+                SouradniceX.Visibility = Visibility.Hidden;
+                SouradniceY.Visibility = Visibility.Hidden;
+                SendXY.Visibility = Visibility.Hidden;
 
 
 
@@ -237,7 +247,11 @@ namespace Mat_projekt
                     mrizka2.IsEnabled = true;
                     mrizka.IsEnabled = false;
                     PoleRect2[souradniceX1, souradniceY1].Fill = Brushes.Black;
-
+                    btn_ready_Client.Visibility = Visibility.Visible;
+                    btn_ready_Host.Visibility = Visibility.Hidden;
+                    SouradniceX2.Visibility = Visibility.Hidden;
+                    SouradniceY2.Visibility = Visibility.Hidden;
+                    SendXY2.Visibility = Visibility.Hidden;
 
 
 
@@ -251,6 +265,9 @@ namespace Mat_projekt
             }
             //mrizka.IsEnabled = false;
             //mrizka2.IsEnabled = false;
+
+
+            
 
         }
 
@@ -272,12 +289,35 @@ namespace Mat_projekt
         //////////////////    throw new NotImplementedException();
         //////////////////}
 
+
+
+        private void test1()
+        {
+            byte[] buffer = new byte[1];
+            sock.Receive(buffer);
+
+            client_ready = buffer[0];
+
+
+            if (host_ready == client_ready)
+            {
+                Console.WriteLine("Host: {0}, Client: {1}", client_ready, host_ready);
+                PepeLaugh.Width = 0;
+                PepeLaugh.Height = 0;
+                
+            }
+        }
+
+
         private void Kolo()
         {
             byte[] buffer = new byte[1];
             sock.Receive(buffer);
             Console.WriteLine(buffer[0]);
-            kolo++;
+            //kolo--;
+            //if (kolo == 1)
+            //{
+
 
             if (buffer[0] == 1)
             {
@@ -288,13 +328,13 @@ namespace Mat_projekt
                     PoleRect[1, 1].Fill = Brushes.Pink;
                     lode--;
 
-                    
+
                 }
                 else
                 {
-                   PoleRect[1, 1].Fill = Brushes.Green;   
+                    PoleRect[1, 1].Fill = Brushes.Green;
                 }
-                
+
             }
             if (buffer[0] == 2)
             {
@@ -311,7 +351,7 @@ namespace Mat_projekt
                 {
                     PoleRect[1, 2].Fill = Brushes.Green;
                 }
-                
+
             }
             if (buffer[0] == 3)
             {
@@ -717,7 +757,8 @@ namespace Mat_projekt
 
             //MessageReceiver.WorkerSupportsCancellation = true;
             //MessageReceiver.CancelAsync();
-
+            //}
+            //kolo=0;
         }
 
         private void Kolo2()
@@ -725,7 +766,10 @@ namespace Mat_projekt
             byte[] buffer = new byte[1];
             sock.Receive(buffer);
             Console.WriteLine(buffer[0]);
-            kolo++;
+            //kolo++;
+            //if (kolo == 0)
+            //{
+
 
             if (buffer[0] == 1)
             {
@@ -736,7 +780,7 @@ namespace Mat_projekt
                     PoleRect2[1, 1].Fill = Brushes.Pink;
                     lode2--;
 
-                  
+
                 }
                 else
                 {
@@ -1165,7 +1209,8 @@ namespace Mat_projekt
 
             //MessageReceiver.WorkerSupportsCancellation = true;
             //MessageReceiver.CancelAsync();
-
+            //}
+            // kolo=1;
         }
 
 
@@ -1197,7 +1242,7 @@ namespace Mat_projekt
                 {
                     for (int s = 0; s < PoleLodi.GetLength(1); s++)
                     {
-                        
+
 
                         if ((int)PoleRect[r, s].Tag == 4)
                         {
@@ -1206,1969 +1251,1974 @@ namespace Mat_projekt
 
                             if (PoleRect[r, s].Fill == Brushes.White)
                             {
-
-
-                                if (PoleRect[r, s] == PoleRect [1,1])
-                                {
-
-                                    byte[] num = { 1 };
-                                    sock.Send(num);
-                                    
-                                    tah = 0;
-                                    MessageReceiver.RunWorkerAsync();
-
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-
-                                   
-
-
-
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 2])
-                                {
-                                    byte[] num = { 2 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 3])
-                                {
-                                    byte[] num = { 3 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 4])
-                                {
-                                    byte[] num = { 4 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 5])
-                                {
-                                    byte[] num = { 5 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 6])
-                                {
-                                    byte[] num = { 6 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 7])
-                                {
-                                    byte[] num = { 7 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 8])
-                                {
-                                    byte[] num = { 8 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 9])
-                                {
-                                    byte[] num = { 9 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[1, 10])
-                                {
-                                    byte[] num = { 10 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//dva
-                                if (PoleRect[r, s] == PoleRect[2, 1])
-                                {
-                                    byte[] num = { 11 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 2])
-                                {
-                                    byte[] num = { 12 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 3])
-                                {
-                                    byte[] num = { 13 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 4])
-                                {
-                                    byte[] num = { 14 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 5])
-                                {
-                                    byte[] num = { 15 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 6])
-                                {
-                                    byte[] num = { 16 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 7])
-                                {
-                                    byte[] num = {17 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 8])
-                                {
-                                    byte[] num = { 18 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 9])
-                                {
-                                    byte[] num = { 19 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[2, 10])
-                                {
-                                    byte[] num = { 20 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//tri
-                                if (PoleRect[r, s] == PoleRect[3, 1])
-                                {
-                                    byte[] num = { 21 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 2])
-                                {
-                                    byte[] num = { 22 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 3])
-                                {
-                                    byte[] num = { 23 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 4])
-                                {
-                                    byte[] num = { 24 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 5])
-                                {
-                                    byte[] num = { 25 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 6])
-                                {
-                                    byte[] num = { 26 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 7])
-                                {
-                                    byte[] num = { 27 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 8])
-                                {
-                                    byte[] num = { 28 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 9])
-                                {
-                                    byte[] num = { 29 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[3, 10])
-                                {
-                                    byte[] num = { 30 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//ctyri
-                                if (PoleRect[r, s] == PoleRect[4, 1])
-                                {
-                                    byte[] num = { 31 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 2])
-                                {
-                                    byte[] num = { 32 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 3])
-                                {
-                                    byte[] num = { 33 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 4])
-                                {
-                                    byte[] num = { 34 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 5])
-                                {
-                                    byte[] num = { 35 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 6])
-                                {
-                                    byte[] num = { 36 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 7])
-                                {
-                                    byte[] num = { 37 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 8])
-                                {
-                                    byte[] num = { 38 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 9])
-                                {
-                                    byte[] num = {39 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[4, 10])
-                                {
-                                    byte[] num = { 40 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//pet
-                                if (PoleRect[r, s] == PoleRect[5, 1])
-                                {
-                                    byte[] num = { 41 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 2])
-                                {
-                                    byte[] num = { 42 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 3])
-                                {
-                                    byte[] num = { 43 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 4])
-                                {
-                                    byte[] num = { 44 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 5])
-                                {
-                                    byte[] num = { 45 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 6])
-                                {
-                                    byte[] num = { 46 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 7])
-                                {
-                                    byte[] num = { 47 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 8])
-                                {
-                                    byte[] num = { 48 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 9])
-                                {
-                                    byte[] num = { 49 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[5, 10])
-                                {
-                                    byte[] num = { 50 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//sest
-                                if (PoleRect[r, s] == PoleRect[6, 1])
-                                {
-                                    byte[] num = { 51 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 2])
-                                {
-                                    byte[] num = { 52 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 3])
-                                {
-                                    byte[] num = { 53 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 4])
-                                {
-                                    byte[] num = { 54 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 5])
-                                {
-                                    byte[] num = { 55 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 6])
-                                {
-                                    byte[] num = { 56 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 7])
-                                {
-                                    byte[] num = { 57 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 8])
-                                {
-                                    byte[] num = { 58 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 9])
-                                {
-                                    byte[] num = { 59 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[6, 10])
-                                {
-                                    byte[] num = { 60 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//sedm
-                                if (PoleRect[r, s] == PoleRect[7, 1])
-                                {
-                                    byte[] num = { 61 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 2])
-                                {
-                                    byte[] num = { 62 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 3])
-                                {
-                                    byte[] num = { 63 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 4])
-                                {
-                                    byte[] num = { 64 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 5])
-                                {
-                                    byte[] num = { 65 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 6])
-                                {
-                                    byte[] num = { 66 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 7])
-                                {
-                                    byte[] num = { 67 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 8])
-                                {
-                                    byte[] num = { 68 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 9])
-                                {
-                                    byte[] num = { 69 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[7, 10])
-                                {
-                                    byte[] num = { 70 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//osm
-                                if (PoleRect[r, s] == PoleRect[8, 1])
-                                {
-                                    byte[] num = { 71 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 2])
-                                {
-                                    byte[] num = { 72 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 3])
-                                {
-                                    byte[] num = { 73 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 4])
-                                {
-                                    byte[] num = { 74 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 5])
-                                {
-                                    byte[] num = { 75 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 6])
-                                {
-                                    byte[] num = { 76 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 7])
-                                {
-                                    byte[] num = { 77 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 8])
-                                {
-                                    byte[] num = { 78 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 9])
-                                {
-                                    byte[] num = { 79 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[8, 10])
-                                {
-                                    byte[] num = { 80 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//devět
-                                if (PoleRect[r, s] == PoleRect[9, 1])
-                                {
-                                    byte[] num = { 81 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 2])
-                                {
-                                    byte[] num = { 82 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 3])
-                                {
-                                    byte[] num = { 83 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 4])
-                                {
-                                    byte[] num = { 84 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 5])
-                                {
-                                    byte[] num = { 85 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 6])
-                                {
-                                    byte[] num = { 86 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 7])
-                                {
-                                    byte[] num = { 87 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 8])
-                                {
-                                    byte[] num = { 88 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 9])
-                                {
-                                    byte[] num = { 89 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[9, 10])
-                                {
-                                    byte[] num = { 90 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-//deset
-                                if (PoleRect[r, s] == PoleRect[10, 1])
+                                if (koloMP1 % 2 == 0)
                                 {
-                                    byte[] num = { 91 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 2])
-                                {
-                                    byte[] num = { 92 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 3])
-                                {
-                                    byte[] num = { 93 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
+                                    if (PoleRect[r, s] == PoleRect[1, 1])
                                     {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
+                                        byte[] num = { 1 };
+                                        sock.Send(num);
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 4])
-                                {
-                                    byte[] num = { 94 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
+                                        tah = 0;
+                                        MessageReceiver.RunWorkerAsync();
 
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 5])
-                                {
-                                    byte[] num = { 95 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 6])
-                                {
-                                    byte[] num = { 96 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 7])
-                                {
-                                    byte[] num = { 97 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
-                                    {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
                                     }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 8])
-                                {
-                                    byte[] num = { 98 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
+                                    if (PoleRect[r, s] == PoleRect[1, 2])
                                     {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
+                                        byte[] num = { 2 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
                                     }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 9])
-                                {
-                                    byte[] num = { 99 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    if ((int)PoleLodi[r, s] == 2)
+                                    if (PoleRect[r, s] == PoleRect[1, 3])
                                     {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
+                                        byte[] num = { 3 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
                                     }
-                                }
-                                if (PoleRect[r, s] == PoleRect[10, 10])
-                                {
-                                    byte[] num = { 100 };
-                                    sock.Send(num);
-                                    tah = 0;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi[r, s] == 2)
+                                    if (PoleRect[r, s] == PoleRect[1, 4])
                                     {
-                                        PoleRect[r, s].Tag = 9;
-                                        PoleLodi[r, s] = 9;
-                                        PoleRect[r, s].Fill = Brushes.Pink;
-                                        lode--;
+                                        byte[] num = { 4 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
 
 
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
                                     }
-                                    else
+                                    if (PoleRect[r, s] == PoleRect[1, 5])
                                     {
-                                        PoleRect[r, s].Fill = Brushes.Green;
-                                    }
+                                        byte[] num = { 5 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[1, 6])
+                                    {
+                                        byte[] num = { 6 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[1, 7])
+                                    {
+                                        byte[] num = { 7 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[1, 8])
+                                    {
+                                        byte[] num = { 8 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[1, 9])
+                                    {
+                                        byte[] num = { 9 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[1, 10])
+                                    {
+                                        byte[] num = { 10 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //dva
+                                    if (PoleRect[r, s] == PoleRect[2, 1])
+                                    {
+                                        byte[] num = { 11 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 2])
+                                    {
+                                        byte[] num = { 12 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 3])
+                                    {
+                                        byte[] num = { 13 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 4])
+                                    {
+                                        byte[] num = { 14 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 5])
+                                    {
+                                        byte[] num = { 15 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 6])
+                                    {
+                                        byte[] num = { 16 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 7])
+                                    {
+                                        byte[] num = { 17 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 8])
+                                    {
+                                        byte[] num = { 18 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 9])
+                                    {
+                                        byte[] num = { 19 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[2, 10])
+                                    {
+                                        byte[] num = { 20 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //tri
+                                    if (PoleRect[r, s] == PoleRect[3, 1])
+                                    {
+                                        byte[] num = { 21 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 2])
+                                    {
+                                        byte[] num = { 22 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 3])
+                                    {
+                                        byte[] num = { 23 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 4])
+                                    {
+                                        byte[] num = { 24 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 5])
+                                    {
+                                        byte[] num = { 25 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 6])
+                                    {
+                                        byte[] num = { 26 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 7])
+                                    {
+                                        byte[] num = { 27 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 8])
+                                    {
+                                        byte[] num = { 28 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 9])
+                                    {
+                                        byte[] num = { 29 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[3, 10])
+                                    {
+                                        byte[] num = { 30 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //ctyri
+                                    if (PoleRect[r, s] == PoleRect[4, 1])
+                                    {
+                                        byte[] num = { 31 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 2])
+                                    {
+                                        byte[] num = { 32 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 3])
+                                    {
+                                        byte[] num = { 33 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 4])
+                                    {
+                                        byte[] num = { 34 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 5])
+                                    {
+                                        byte[] num = { 35 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 6])
+                                    {
+                                        byte[] num = { 36 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 7])
+                                    {
+                                        byte[] num = { 37 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 8])
+                                    {
+                                        byte[] num = { 38 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 9])
+                                    {
+                                        byte[] num = { 39 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[4, 10])
+                                    {
+                                        byte[] num = { 40 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //pet
+                                    if (PoleRect[r, s] == PoleRect[5, 1])
+                                    {
+                                        byte[] num = { 41 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 2])
+                                    {
+                                        byte[] num = { 42 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 3])
+                                    {
+                                        byte[] num = { 43 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 4])
+                                    {
+                                        byte[] num = { 44 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 5])
+                                    {
+                                        byte[] num = { 45 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 6])
+                                    {
+                                        byte[] num = { 46 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 7])
+                                    {
+                                        byte[] num = { 47 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 8])
+                                    {
+                                        byte[] num = { 48 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 9])
+                                    {
+                                        byte[] num = { 49 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[5, 10])
+                                    {
+                                        byte[] num = { 50 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //sest
+                                    if (PoleRect[r, s] == PoleRect[6, 1])
+                                    {
+                                        byte[] num = { 51 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 2])
+                                    {
+                                        byte[] num = { 52 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 3])
+                                    {
+                                        byte[] num = { 53 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 4])
+                                    {
+                                        byte[] num = { 54 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 5])
+                                    {
+                                        byte[] num = { 55 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 6])
+                                    {
+                                        byte[] num = { 56 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 7])
+                                    {
+                                        byte[] num = { 57 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 8])
+                                    {
+                                        byte[] num = { 58 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 9])
+                                    {
+                                        byte[] num = { 59 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[6, 10])
+                                    {
+                                        byte[] num = { 60 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //sedm
+                                    if (PoleRect[r, s] == PoleRect[7, 1])
+                                    {
+                                        byte[] num = { 61 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 2])
+                                    {
+                                        byte[] num = { 62 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 3])
+                                    {
+                                        byte[] num = { 63 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 4])
+                                    {
+                                        byte[] num = { 64 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 5])
+                                    {
+                                        byte[] num = { 65 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 6])
+                                    {
+                                        byte[] num = { 66 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 7])
+                                    {
+                                        byte[] num = { 67 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 8])
+                                    {
+                                        byte[] num = { 68 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 9])
+                                    {
+                                        byte[] num = { 69 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[7, 10])
+                                    {
+                                        byte[] num = { 70 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //osm
+                                    if (PoleRect[r, s] == PoleRect[8, 1])
+                                    {
+                                        byte[] num = { 71 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 2])
+                                    {
+                                        byte[] num = { 72 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 3])
+                                    {
+                                        byte[] num = { 73 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 4])
+                                    {
+                                        byte[] num = { 74 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 5])
+                                    {
+                                        byte[] num = { 75 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 6])
+                                    {
+                                        byte[] num = { 76 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 7])
+                                    {
+                                        byte[] num = { 77 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 8])
+                                    {
+                                        byte[] num = { 78 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 9])
+                                    {
+                                        byte[] num = { 79 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[8, 10])
+                                    {
+                                        byte[] num = { 80 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //devět
+                                    if (PoleRect[r, s] == PoleRect[9, 1])
+                                    {
+                                        byte[] num = { 81 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 2])
+                                    {
+                                        byte[] num = { 82 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 3])
+                                    {
+                                        byte[] num = { 83 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 4])
+                                    {
+                                        byte[] num = { 84 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 5])
+                                    {
+                                        byte[] num = { 85 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 6])
+                                    {
+                                        byte[] num = { 86 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 7])
+                                    {
+                                        byte[] num = { 87 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 8])
+                                    {
+                                        byte[] num = { 88 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 9])
+                                    {
+                                        byte[] num = { 89 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[9, 10])
+                                    {
+                                        byte[] num = { 90 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //deset
+                                    if (PoleRect[r, s] == PoleRect[10, 1])
+                                    {
+                                        byte[] num = { 91 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 2])
+                                    {
+                                        byte[] num = { 92 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 3])
+                                    {
+                                        byte[] num = { 93 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 4])
+                                    {
+                                        byte[] num = { 94 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 5])
+                                    {
+                                        byte[] num = { 95 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 6])
+                                    {
+                                        byte[] num = { 96 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 7])
+                                    {
+                                        byte[] num = { 97 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 8])
+                                    {
+                                        byte[] num = { 98 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 9])
+                                    {
+                                        byte[] num = { 99 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect[r, s] == PoleRect[10, 10])
+                                    {
+                                        byte[] num = { 100 };
+                                        sock.Send(num);
+                                        tah = 0;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi[r, s] == 2)
+                                        {
+                                            PoleRect[r, s].Tag = 9;
+                                            PoleLodi[r, s] = 9;
+                                            PoleRect[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    kolo = 0;
+                                    Console.WriteLine("dadadadad {0}", kolo);
                                 }
-
 
                             }
-
+                            koloMP1++;
 
                         }
 
@@ -3207,1970 +3257,1975 @@ namespace Mat_projekt
 
                             if (PoleRect2[r, s].Fill == Brushes.White)
                             {
-
-
-                                if (PoleRect2[r, s] == PoleRect2[1, 1])
-                                {
-                                    byte[] num = { 1 };
-                                    sock.Send(num);
-                                    //Console.WriteLine(num[0]);
-                                    //PoleRect2[1, 1].Fill = Brushes.Red;
-                                    MessageReceiver.RunWorkerAsync();
-                                    tah = 1;
-
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-
-
-
-                                   
-
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 2])
-                                {
-                                    byte[] num = { 2 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 3])
-                                {
-                                    byte[] num = { 3 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 4])
-                                {
-                                    byte[] num = { 4 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 5])
-                                {
-                                    byte[] num = { 5 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 6])
-                                {
-                                    byte[] num = { 6 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 7])
-                                {
-                                    byte[] num = { 7 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 8])
-                                {
-                                    byte[] num = { 8 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 9])
-                                {
-                                    byte[] num = { 9 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[1, 10])
-                                {
-                                    byte[] num = { 10 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //dva
-                                if (PoleRect2[r, s] == PoleRect2[2, 1])
-                                {
-                                    byte[] num = { 11 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 2])
-                                {
-                                    byte[] num = { 12 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 3])
-                                {
-                                    byte[] num = { 13 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 4])
-                                {
-                                    byte[] num = { 14 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 5])
-                                {
-                                    byte[] num = { 15 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 6])
-                                {
-                                    byte[] num = { 16 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 7])
-                                {
-                                    byte[] num = { 17 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 8])
-                                {
-                                    byte[] num = { 18 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 9])
-                                {
-                                    byte[] num = { 19 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[2, 10])
-                                {
-                                    byte[] num = { 20 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //tri
-                                if (PoleRect2[r, s] == PoleRect2[3, 1])
-                                {
-                                    byte[] num = { 21 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 2])
-                                {
-                                    byte[] num = { 22 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 3])
-                                {
-                                    byte[] num = { 23 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 4])
-                                {
-                                    byte[] num = { 24 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 5])
-                                {
-                                    byte[] num = { 25 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 6])
-                                {
-                                    byte[] num = { 26 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 7])
-                                {
-                                    byte[] num = { 27 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 8])
-                                {
-                                    byte[] num = { 28 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 9])
-                                {
-                                    byte[] num = { 29 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[3, 10])
-                                {
-                                    byte[] num = { 30 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //ctyri
-                                if (PoleRect2[r, s] == PoleRect2[4, 1])
-                                {
-                                    byte[] num = { 31 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 2])
-                                {
-                                    byte[] num = { 32 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 3])
-                                {
-                                    byte[] num = { 33 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 4])
-                                {
-                                    byte[] num = { 34 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 5])
-                                {
-                                    byte[] num = { 35 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 6])
-                                {
-                                    byte[] num = { 36 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 7])
-                                {
-                                    byte[] num = { 37 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 8])
-                                {
-                                    byte[] num = { 38 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 9])
-                                {
-                                    byte[] num = { 39 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[4, 10])
-                                {
-                                    byte[] num = { 40 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //pet
-                                if (PoleRect2[r, s] == PoleRect2[5, 1])
-                                {
-                                    byte[] num = { 41 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 2])
-                                {
-                                    byte[] num = { 42 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 3])
-                                {
-                                    byte[] num = { 43 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 4])
-                                {
-                                    byte[] num = { 44 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 5])
-                                {
-                                    byte[] num = { 45 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 6])
-                                {
-                                    byte[] num = { 46 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 7])
-                                {
-                                    byte[] num = { 47 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 8])
-                                {
-                                    byte[] num = { 48 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 9])
-                                {
-                                    byte[] num = { 49 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[5, 10])
-                                {
-                                    byte[] num = { 50 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //sest
-                                if (PoleRect2[r, s] == PoleRect2[6, 1])
-                                {
-                                    byte[] num = { 51 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 2])
-                                {
-                                    byte[] num = { 52 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 3])
-                                {
-                                    byte[] num = { 53 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 4])
-                                {
-                                    byte[] num = { 54 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 5])
-                                {
-                                    byte[] num = { 55 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 6])
-                                {
-                                    byte[] num = { 56 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 7])
-                                {
-                                    byte[] num = { 57 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 8])
-                                {
-                                    byte[] num = { 58 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 9])
-                                {
-                                    byte[] num = { 59 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[6, 10])
-                                {
-                                    byte[] num = { 60 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //sedm
-                                if (PoleRect2[r, s] == PoleRect2[7, 1])
-                                {
-                                    byte[] num = { 61 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 2])
-                                {
-                                    byte[] num = { 62 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 3])
-                                {
-                                    byte[] num = { 63 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 4])
-                                {
-                                    byte[] num = { 64 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 5])
-                                {
-                                    byte[] num = { 65 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 6])
-                                {
-                                    byte[] num = { 66 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 7])
-                                {
-                                    byte[] num = { 67 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 8])
-                                {
-                                    byte[] num = { 68 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 9])
-                                {
-                                    byte[] num = { 69 };
-                                    sock.Send(num); 
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[7, 10])
-                                {
-                                    byte[] num = { 70 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //osm
-                                if (PoleRect2[r, s] == PoleRect2[8, 1])
-                                {
-                                    byte[] num = { 71 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 2])
-                                {
-                                    byte[] num = { 72 };
-                                    sock.Send(num);
-                                    Console.WriteLine(num[0]);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 3])
-                                {
-                                    byte[] num = { 73 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 4])
-                                {
-                                    byte[] num = { 74 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 5])
-                                {
-                                    byte[] num = { 75 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 6])
-                                {
-                                    byte[] num = { 76 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 7])
-                                {
-                                    byte[] num = { 77 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 8])
-                                {
-                                    byte[] num = { 78 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 9])
-                                {
-                                    byte[] num = { 79 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[8, 10])
-                                {
-                                    byte[] num = { 80 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //devět
-                                if (PoleRect2[r, s] == PoleRect2[9, 1])
-                                {
-                                    byte[] num = { 81 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 2])
-                                {
-                                    byte[] num = { 82 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 3])
-                                {
-                                    byte[] num = { 83 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 4])
-                                {
-                                    byte[] num = { 84 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 5])
-                                {
-                                    byte[] num = { 85 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 6])
-                                {
-                                    byte[] num = { 86 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 7])
-                                {
-                                    byte[] num = { 87 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 8])
-                                {
-                                    byte[] num = { 88 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 9])
-                                {
-                                    byte[] num = { 89 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[9, 10])
-                                {
-                                    byte[] num = { 90 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                //deset
-                                if (PoleRect2[r, s] == PoleRect2[10, 1])
-                                {
-                                    byte[] num = { 91 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 2])
-                                {
-                                    byte[] num = { 92 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
-
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 3])
+                                if (koloMP2 % 2 == 1)
                                 {
-                                    byte[] num = { 93 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 4])
-                                {
-                                    byte[] num = { 94 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 5])
-                                {
-                                    byte[] num = { 95 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
+                                    if (PoleRect2[r, s] == PoleRect2[1, 1])
                                     {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
+                                        byte[] num = { 1 };
+                                        sock.Send(num);
+                                        //Console.WriteLine(num[0]);
+                                        //PoleRect2[1, 1].Fill = Brushes.Red;
+                                        MessageReceiver.RunWorkerAsync();
+                                        tah = 1;
 
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 6])
-                                {
-                                    byte[] num = { 96 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 7])
-                                {
-                                    byte[] num = { 97 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 8])
-                                {
-                                    byte[] num = { 98 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
-                                    {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
                                     }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 9])
-                                {
-                                    byte[] num = { 99 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    if ((int)PoleLodi2[r, s] == 2)
+                                    if (PoleRect2[r, s] == PoleRect2[1, 2])
                                     {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
+                                        byte[] num = { 2 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
 
 
-                                    }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
                                     }
-                                }
-                                if (PoleRect2[r, s] == PoleRect2[10, 10])
-                                {
-                                    byte[] num = { 100 };
-                                    sock.Send(num);
-                                    tah = 1;
-                                    Console.WriteLine(num[0]);
-                                    if ((int)PoleLodi2[r, s] == 2)
+                                    if (PoleRect2[r, s] == PoleRect2[1, 3])
                                     {
-                                        PoleRect2[r, s].Tag = 9;
-                                        PoleLodi2[r, s] = 9;
-                                        PoleRect2[r, s].Fill = Brushes.Pink;
-                                        lode--;
-
+                                        byte[] num = { 3 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
 
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
                                     }
-                                    else
-                                    {
-                                        PoleRect2[r, s].Fill = Brushes.Green;
-                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[1, 4])
+                                    {
+                                        byte[] num = { 4 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[1, 5])
+                                    {
+                                        byte[] num = { 5 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[1, 6])
+                                    {
+                                        byte[] num = { 6 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[1, 7])
+                                    {
+                                        byte[] num = { 7 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[1, 8])
+                                    {
+                                        byte[] num = { 8 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[1, 9])
+                                    {
+                                        byte[] num = { 9 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[1, 10])
+                                    {
+                                        byte[] num = { 10 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //dva
+                                    if (PoleRect2[r, s] == PoleRect2[2, 1])
+                                    {
+                                        byte[] num = { 11 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 2])
+                                    {
+                                        byte[] num = { 12 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 3])
+                                    {
+                                        byte[] num = { 13 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 4])
+                                    {
+                                        byte[] num = { 14 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 5])
+                                    {
+                                        byte[] num = { 15 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 6])
+                                    {
+                                        byte[] num = { 16 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 7])
+                                    {
+                                        byte[] num = { 17 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 8])
+                                    {
+                                        byte[] num = { 18 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 9])
+                                    {
+                                        byte[] num = { 19 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[2, 10])
+                                    {
+                                        byte[] num = { 20 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //tri
+                                    if (PoleRect2[r, s] == PoleRect2[3, 1])
+                                    {
+                                        byte[] num = { 21 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 2])
+                                    {
+                                        byte[] num = { 22 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 3])
+                                    {
+                                        byte[] num = { 23 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 4])
+                                    {
+                                        byte[] num = { 24 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 5])
+                                    {
+                                        byte[] num = { 25 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 6])
+                                    {
+                                        byte[] num = { 26 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 7])
+                                    {
+                                        byte[] num = { 27 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 8])
+                                    {
+                                        byte[] num = { 28 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 9])
+                                    {
+                                        byte[] num = { 29 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[3, 10])
+                                    {
+                                        byte[] num = { 30 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //ctyri
+                                    if (PoleRect2[r, s] == PoleRect2[4, 1])
+                                    {
+                                        byte[] num = { 31 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 2])
+                                    {
+                                        byte[] num = { 32 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 3])
+                                    {
+                                        byte[] num = { 33 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 4])
+                                    {
+                                        byte[] num = { 34 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 5])
+                                    {
+                                        byte[] num = { 35 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 6])
+                                    {
+                                        byte[] num = { 36 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 7])
+                                    {
+                                        byte[] num = { 37 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 8])
+                                    {
+                                        byte[] num = { 38 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 9])
+                                    {
+                                        byte[] num = { 39 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[4, 10])
+                                    {
+                                        byte[] num = { 40 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //pet
+                                    if (PoleRect2[r, s] == PoleRect2[5, 1])
+                                    {
+                                        byte[] num = { 41 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 2])
+                                    {
+                                        byte[] num = { 42 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 3])
+                                    {
+                                        byte[] num = { 43 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 4])
+                                    {
+                                        byte[] num = { 44 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 5])
+                                    {
+                                        byte[] num = { 45 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 6])
+                                    {
+                                        byte[] num = { 46 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 7])
+                                    {
+                                        byte[] num = { 47 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 8])
+                                    {
+                                        byte[] num = { 48 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 9])
+                                    {
+                                        byte[] num = { 49 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[5, 10])
+                                    {
+                                        byte[] num = { 50 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //sest
+                                    if (PoleRect2[r, s] == PoleRect2[6, 1])
+                                    {
+                                        byte[] num = { 51 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 2])
+                                    {
+                                        byte[] num = { 52 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 3])
+                                    {
+                                        byte[] num = { 53 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 4])
+                                    {
+                                        byte[] num = { 54 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 5])
+                                    {
+                                        byte[] num = { 55 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 6])
+                                    {
+                                        byte[] num = { 56 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 7])
+                                    {
+                                        byte[] num = { 57 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 8])
+                                    {
+                                        byte[] num = { 58 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 9])
+                                    {
+                                        byte[] num = { 59 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[6, 10])
+                                    {
+                                        byte[] num = { 60 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //sedm
+                                    if (PoleRect2[r, s] == PoleRect2[7, 1])
+                                    {
+                                        byte[] num = { 61 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 2])
+                                    {
+                                        byte[] num = { 62 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 3])
+                                    {
+                                        byte[] num = { 63 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 4])
+                                    {
+                                        byte[] num = { 64 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 5])
+                                    {
+                                        byte[] num = { 65 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 6])
+                                    {
+                                        byte[] num = { 66 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 7])
+                                    {
+                                        byte[] num = { 67 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 8])
+                                    {
+                                        byte[] num = { 68 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 9])
+                                    {
+                                        byte[] num = { 69 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[7, 10])
+                                    {
+                                        byte[] num = { 70 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //osm
+                                    if (PoleRect2[r, s] == PoleRect2[8, 1])
+                                    {
+                                        byte[] num = { 71 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 2])
+                                    {
+                                        byte[] num = { 72 };
+                                        sock.Send(num);
+                                        Console.WriteLine(num[0]);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 3])
+                                    {
+                                        byte[] num = { 73 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 4])
+                                    {
+                                        byte[] num = { 74 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 5])
+                                    {
+                                        byte[] num = { 75 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 6])
+                                    {
+                                        byte[] num = { 76 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 7])
+                                    {
+                                        byte[] num = { 77 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 8])
+                                    {
+                                        byte[] num = { 78 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 9])
+                                    {
+                                        byte[] num = { 79 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[8, 10])
+                                    {
+                                        byte[] num = { 80 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //devět
+                                    if (PoleRect2[r, s] == PoleRect2[9, 1])
+                                    {
+                                        byte[] num = { 81 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 2])
+                                    {
+                                        byte[] num = { 82 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 3])
+                                    {
+                                        byte[] num = { 83 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 4])
+                                    {
+                                        byte[] num = { 84 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 5])
+                                    {
+                                        byte[] num = { 85 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 6])
+                                    {
+                                        byte[] num = { 86 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 7])
+                                    {
+                                        byte[] num = { 87 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 8])
+                                    {
+                                        byte[] num = { 88 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 9])
+                                    {
+                                        byte[] num = { 89 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[9, 10])
+                                    {
+                                        byte[] num = { 90 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    //deset
+                                    if (PoleRect2[r, s] == PoleRect2[10, 1])
+                                    {
+                                        byte[] num = { 91 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 2])
+                                    {
+                                        byte[] num = { 92 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 3])
+                                    {
+                                        byte[] num = { 93 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 4])
+                                    {
+                                        byte[] num = { 94 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 5])
+                                    {
+                                        byte[] num = { 95 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 6])
+                                    {
+                                        byte[] num = { 96 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 7])
+                                    {
+                                        byte[] num = { 97 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 8])
+                                    {
+                                        byte[] num = { 98 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 9])
+                                    {
+                                        byte[] num = { 99 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    if (PoleRect2[r, s] == PoleRect2[10, 10])
+                                    {
+                                        byte[] num = { 100 };
+                                        sock.Send(num);
+                                        tah = 1;
+                                        Console.WriteLine(num[0]);
+                                        if ((int)PoleLodi2[r, s] == 2)
+                                        {
+                                            PoleRect2[r, s].Tag = 9;
+                                            PoleLodi2[r, s] = 9;
+                                            PoleRect2[r, s].Fill = Brushes.Pink;
+                                            lode--;
+
+
+                                        }
+                                        else
+                                        {
+                                            PoleRect2[r, s].Fill = Brushes.Green;
+                                        }
+                                    }
+                                    kolo = 1;
+                                    Console.WriteLine("dadadadad {0}", kolo);
                                 }
-
 
                             }
 
-
+                            koloMP2++;
                         }
 
                     }
@@ -5180,11 +5235,11 @@ namespace Mat_projekt
 
 
 
-                }
+            }
 
 
 
-            
+
         }
 
 
@@ -5193,8 +5248,8 @@ namespace Mat_projekt
         void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
 
-                    byte[] num = { Convert.ToByte(0) };
-                    sock.Send(num);
+            byte[] num = { Convert.ToByte(0) };
+            sock.Send(num);
 
             if (lode == 0)
             {
@@ -5220,9 +5275,9 @@ namespace Mat_projekt
                 //tah--;
             }
 
-               
-            
-                    
+
+
+
             //    }
             //}
         }
@@ -5236,7 +5291,7 @@ namespace Mat_projekt
 
         public bool IsDisposed { get; }
 
-        
+
 
         //private void Kolo2()
         //{
@@ -5251,13 +5306,50 @@ namespace Mat_projekt
         //}
 
         private void mrizka2_MouseDown(object sender, MouseButtonEventArgs e)
-        {  
+        {
             //Kolo2();
         }
 
         private void mrizka_MouseDown_1(object sender, MouseButtonEventArgs e)
         {
-           //Kolo();
+            //Kolo();
+        }
+
+        private void btn_ready_Host_Click(object sender, RoutedEventArgs e)
+        {
+
+            host_ready = 1;
+            test1();
+        }
+        private void btn_ready_Client_Click(object sender, RoutedEventArgs e)
+        {
+            byte[] ready = new byte[1];
+            ready[0] = Convert.ToByte(1);
+
+            sock.Send(ready);
+            test1();
+        }
+
+        private void SendXY_Click(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToInt32(SouradniceX.Text) > 0 && Convert.ToInt32(SouradniceX.Text) < 11 && Convert.ToInt32(SouradniceY.Text) > 0 && Convert.ToInt32(SouradniceY.Text) < 11)
+            {
+            PoleLodi[Convert.ToInt32(SouradniceX.Text), Convert.ToInt32(SouradniceY.Text)] = 2;
+            PoleRect[Convert.ToInt32(SouradniceX.Text), Convert.ToInt32(SouradniceY.Text)].Fill = Brushes.Red;
+            }
+
+
+
+
+        }
+
+        private void SendXY_Click2(object sender, RoutedEventArgs e)
+        {
+            if (Convert.ToInt32(SouradniceX2.Text) > 0 && Convert.ToInt32(SouradniceX2.Text) < 11 && Convert.ToInt32(SouradniceY2.Text) > 0 && Convert.ToInt32(SouradniceY2.Text) < 11)
+            {
+                PoleLodi2[Convert.ToInt32(SouradniceX2.Text), Convert.ToInt32(SouradniceY2.Text)] = 2;
+            PoleRect2[Convert.ToInt32(SouradniceX2.Text), Convert.ToInt32(SouradniceY2.Text)].Fill = Brushes.Red;
+            }
         }
     }
 }
