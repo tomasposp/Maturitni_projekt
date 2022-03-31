@@ -224,10 +224,13 @@ namespace Mat_projekt
                 mrizka.IsEnabled = true;
                 PoleRect[souradniceX1, souradniceY1].Fill = Brushes.Black;
                 btn_ready_Client.Visibility = Visibility.Hidden;
+                btn_ready_Client_LBL.Visibility = Visibility.Hidden;
                 btn_ready_Host.Visibility = Visibility.Visible;
+                btn_ready_Host_LBL.Visibility = Visibility.Visible;
                 SouradniceX.Visibility = Visibility.Hidden;
                 SouradniceY.Visibility = Visibility.Hidden;
                 SendXY.Visibility = Visibility.Hidden;
+                SendXY_LBL.Visibility = Visibility.Hidden;
 
 
 
@@ -248,10 +251,13 @@ namespace Mat_projekt
                     mrizka.IsEnabled = false;
                     PoleRect2[souradniceX1, souradniceY1].Fill = Brushes.Black;
                     btn_ready_Client.Visibility = Visibility.Visible;
+                    btn_ready_Client_LBL.Visibility = Visibility.Visible;
                     btn_ready_Host.Visibility = Visibility.Hidden;
+                    btn_ready_Host_LBL.Visibility = Visibility.Hidden;
                     SouradniceX2.Visibility = Visibility.Hidden;
                     SouradniceY2.Visibility = Visibility.Hidden;
                     SendXY2.Visibility = Visibility.Hidden;
+                    SendXY_LBL2.Visibility = Visibility.Hidden;
 
 
 
@@ -276,9 +282,9 @@ namespace Mat_projekt
 
             //return;
 
-            Lbl.Content = "Hraje nepřítel";
-            Kolo();
-            Lbl.Content = "Tvoje kolo";
+            //Lbl.Content = "Hraje nepřítel";
+            //Kolo();
+            //Lbl.Content = "Tvoje kolo";
 
 
 

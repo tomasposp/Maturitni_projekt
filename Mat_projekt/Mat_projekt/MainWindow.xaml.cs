@@ -918,10 +918,7 @@ namespace Mat_projekt
                                                 PoleLodi2[r + 1, s] = 6;
                                                 PoleRect2[r - 1, s].Tag = 6;
                                                 PoleLodi2[r - 1, s] = 6;
-                                                PoleRect2[r - 1, s-1].Tag = 6;
-                                                PoleLodi2[r - 1, s-1] = 6;
-                                                PoleRect2[r + 1, s -1].Tag = 6;
-                                                PoleLodi2[r + 1, s-1] = 6;
+
 
                                                 Uri lod;
                                                 Uri lod1;
@@ -932,8 +929,6 @@ namespace Mat_projekt
                                                 PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod2));
                                                 PoleRect2[r - 1, s].Fill = new ImageBrush(new BitmapImage(lod));
                                                 PoleRect2[r + 1, s].Fill = new ImageBrush(new BitmapImage(lod1));
-                                                PoleRect2[r + 1, s+1].Fill = Brushes.Brown;
-                                                PoleRect2[r + 1, s-1].Fill = Brushes.Brown;
                                                 //PoleRect2[r + 1, s].Fill = Brushes.Brown;
                                                 //PoleRect2[r - 1, s].Fill = Brushes.Brown;
                                                 //PoleRect2[r, s].Fill = Brushes.Brown;

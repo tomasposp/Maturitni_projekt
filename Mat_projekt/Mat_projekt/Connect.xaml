@@ -8,11 +8,13 @@
         Title="Connect" Height="450" Width="800">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Button Name="connect" Content="Connect" HorizontalAlignment="Left" Height="35" Margin="420,100,0,0" VerticalAlignment="Top" Width="110" Click="Button_Click"/>
-        <Button Name="CreateServer" Content="Create server" HorizontalAlignment="Left" Margin="170,195,0,0" VerticalAlignment="Top" Width="525" Height="105" Click="Button_Click_1"/>
 
         <TextBox Name="TextIP" HorizontalAlignment="Left" Height="23" Margin="205,109,0,0" TextWrapping="Wrap" Text="localhost" VerticalAlignment="Top" Width="120"/>
 
+        <Image Name="ConnectImg" HorizontalAlignment="Left" Height="30" Margin="420,102,0,0" VerticalAlignment="Top" Width="105" MouseDown="Button_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="Connect_Label" Content="Connect" HorizontalAlignment="Left" Margin="420,104,0,285" MouseDown="Button_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="Server" HorizontalAlignment="Left" Height="105" Margin="170,195,0,0" VerticalAlignment="Top" Width="535" MouseDown="Button_Click_1" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="Server_LBL" Content="Vytvořit server" HorizontalAlignment="Left" Margin="190,195,0,119" MouseDown="Button_Click_1" VerticalAlignment="Center" Height="105" Width="495" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
 </Window>
