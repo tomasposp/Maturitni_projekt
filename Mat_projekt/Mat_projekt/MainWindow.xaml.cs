@@ -782,8 +782,8 @@ namespace Mat_projekt
                                                     PoleLodi2[r - 1, s] = 5;
                                                     Uri lod;
                                                     Uri lod1;
-                                                    lod = new Uri("pack://application:,,,/Pictures/LodPredek.jpg");
-                                                    lod1 = new Uri("pack://application:,,,/Pictures/LodZada.jpg");
+                                                    lod = new Uri("pack://application:,,,/Pictures/LodPredek_nahoru.jpg");
+                                                    lod1 = new Uri("pack://application:,,,/Pictures/LodZada_nahoru.jpg");
                                                     PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod1));
                                                     PoleRect2[r - 1, s].Fill = new ImageBrush(new BitmapImage(lod));
 
