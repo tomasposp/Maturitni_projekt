@@ -27,6 +27,8 @@ namespace Mat_projekt
         private void Pocitac_Click(object sender, RoutedEventArgs e)
         {
             VyberObtiznostiPocitace win = new VyberObtiznostiPocitace();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }
@@ -34,6 +36,8 @@ namespace Mat_projekt
         private void NabojovyMode_Click(object sender, RoutedEventArgs e)
         {
             NabojovyMode win = new NabojovyMode();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }
@@ -41,6 +45,8 @@ namespace Mat_projekt
         private void Back_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Window1 win = new Window1();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }

@@ -64,6 +64,7 @@
     <Compile Include="Connect.xaml.cs">
       <DependentUpon>Connect.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Lode.cs" />
     <Compile Include="Multiplayer.xaml.cs">
       <DependentUpon>Multiplayer.xaml</DependentUpon>
     </Compile>
@@ -178,6 +179,18 @@
     <Resource Include="Pictures\LodPredek_nahoru.jpg" />
     <Resource Include="Pictures\LodStred_nahoru.jpg" />
     <Resource Include="Pictures\LodZada_Nahoru.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Vyhra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Prohra.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\EndingScore.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Pictures\Potopena.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

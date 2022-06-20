@@ -28,6 +28,8 @@ namespace Mat_projekt
         {
             Class1.Easy = true;
             MainWindow win = new MainWindow();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }
@@ -36,6 +38,8 @@ namespace Mat_projekt
         {
             Class1.Medium = true;
             MainWindow win = new MainWindow();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }
@@ -43,6 +47,8 @@ namespace Mat_projekt
         private void Back_MouseDown(object sender, MouseButtonEventArgs e)
         {
             SingleVyber win = new SingleVyber();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }

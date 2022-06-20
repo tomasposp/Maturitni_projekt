@@ -40,8 +40,10 @@ namespace Mat_projekt
         int indy;
         int indy2;
 
-        int lode = 1;
-        int lode2 = 1;
+        int lode = 3;
+        int lode2 = 3;
+        int testlode1 = 0;
+        int testlode2 = 0;
 
         int kolo = 0;
         int koloMP1 = 0;
@@ -310,7 +312,8 @@ namespace Mat_projekt
                 Console.WriteLine("Host: {0}, Client: {1}", client_ready, host_ready);
                 PepeLaugh.Width = 0;
                 PepeLaugh.Height = 0;
-                
+
+
             }
         }
 
@@ -765,6 +768,8 @@ namespace Mat_projekt
             //MessageReceiver.CancelAsync();
             //}
             //kolo=0;
+
+
         }
 
         private void Kolo2()
@@ -801,7 +806,7 @@ namespace Mat_projekt
                     PoleRect2[1, 2].Tag = 9;
                     PoleLodi2[1, 2] = 9;
                     PoleRect2[1, 2].Fill = Brushes.Pink;
-                    lode--;
+                    lode2--;
 
 
                 }
@@ -1217,6 +1222,8 @@ namespace Mat_projekt
             //MessageReceiver.CancelAsync();
             //}
             // kolo=1;
+
+
         }
 
 
@@ -1233,7 +1240,7 @@ namespace Mat_projekt
                         if (PoleLodi[r, s] == 1) PoleRect[r, s].Tag = 1;
                         else if (PoleLodi[r, s] == 0) PoleRect[r, s].Tag = 0;
                         else if (PoleLodi[r, s] == 2) PoleRect[r, s].Tag = 2;
-                        else if (PoleLodi[r, s] == 2) lode++;
+                        //else if (PoleLodi[r, s] == 2) lode++;
                         else if ((int)PoleRect[r, s].Tag == 3) PoleLodi[r, s] = 3;
 
 
@@ -1278,7 +1285,15 @@ namespace Mat_projekt
                                             PoleRect[r, s].Fill = Brushes.Pink;
                                             lode--;
 
+                                            if (lode == 0)
+                                            {
+                                                MessageBox.Show("Hráč 1 vyhrál");
+                                            }
 
+                                            else if (lode2 == 0)
+                                            {
+                                                MessageBox.Show("Hráč 2 vyhrál");
+                                            }
                                         }
                                         else
                                         {
@@ -1303,6 +1318,15 @@ namespace Mat_projekt
                                             PoleRect[r, s].Fill = Brushes.Pink;
                                             lode--;
 
+                                            if (lode == 0)
+                                            {
+                                                MessageBox.Show("Hráč 1 vyhrál");
+                                            }
+
+                                            else if (lode2 == 0)
+                                            {
+                                                MessageBox.Show("Hráč 2 vyhrál");
+                                            }
 
                                         }
                                         else
@@ -1322,6 +1346,15 @@ namespace Mat_projekt
                                             PoleRect[r, s].Fill = Brushes.Pink;
                                             lode--;
 
+                                            if (lode == 0)
+                                            {
+                                                MessageBox.Show("Hráč 1 vyhrál");
+                                            }
+
+                                            else if (lode2 == 0)
+                                            {
+                                                MessageBox.Show("Hráč 2 vyhrál");
+                                            }
 
                                         }
                                         else
@@ -5267,6 +5300,7 @@ namespace Mat_projekt
                 MessageBox.Show("Hráč 2 vyhrál");
             }
 
+
             if (tah == 1)
             {
                 Kolo();
@@ -5281,7 +5315,17 @@ namespace Mat_projekt
                 //tah--;
             }
 
+            if (testlode1 == 3)
+            {
+                btn_ready_Client.IsEnabled = true;
+                btn_ready_Client_LBL.IsEnabled = true;
+            }
 
+            if (testlode2 == 3)
+            {
+                btn_ready_Host.IsEnabled = true;
+                btn_ready_Host_LBL.IsEnabled = true;
+            }
 
 
             //    }
@@ -5327,6 +5371,7 @@ namespace Mat_projekt
             host_ready = 1;
             test1();
         }
+
         private void btn_ready_Client_Click(object sender, RoutedEventArgs e)
         {
             byte[] ready = new byte[1];
@@ -5342,6 +5387,8 @@ namespace Mat_projekt
             {
             PoleLodi[Convert.ToInt32(SouradniceX.Text), Convert.ToInt32(SouradniceY.Text)] = 2;
             PoleRect[Convert.ToInt32(SouradniceX.Text), Convert.ToInt32(SouradniceY.Text)].Fill = Brushes.Red;
+
+                testlode1++;
             }
 
 
@@ -5355,6 +5402,8 @@ namespace Mat_projekt
             {
                 PoleLodi2[Convert.ToInt32(SouradniceX2.Text), Convert.ToInt32(SouradniceY2.Text)] = 2;
             PoleRect2[Convert.ToInt32(SouradniceX2.Text), Convert.ToInt32(SouradniceY2.Text)].Fill = Brushes.Red;
+
+                testlode2++;
             }
         }
     }

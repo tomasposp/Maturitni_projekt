@@ -28,6 +28,8 @@ namespace Mat_projekt
         {
             
             SingleVyber win = new SingleVyber();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }
@@ -35,6 +37,8 @@ namespace Mat_projekt
         private void MultiPlayer_Click(object sender, RoutedEventArgs e)
         {
             Connect win = new Connect();
+            win.Top = this.Top;
+            win.Left = this.Left;
             win.Show();
             this.Close();
         }

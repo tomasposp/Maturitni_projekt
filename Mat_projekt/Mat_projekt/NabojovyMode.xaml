@@ -15,8 +15,34 @@
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Label Name="Naboje" Content="20" HorizontalAlignment="Center" Height="30" Margin="345,25,324,366" VerticalAlignment="Center" Width="125"/>
-        
+        <Label Name="Naboje" HorizontalAlignment="Center" Height="30" Margin="345,25,324,366" VerticalAlignment="Center" Width="125"/>
+
+        <Image Name="MainMenu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="MainMenu_Click" Source="Pictures/long.png" Stretch="Fill" Panel.ZIndex="999"/>
+        <Label Name="Main_Menu" Content="Hlavní Menu" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="MainMenu_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Panel.ZIndex="999"/>
+        <Label Name="ScoreLBL" Content="Skóre:" HorizontalAlignment="Left" Height="30" Margin="525,10,0,0" VerticalAlignment="Top" Width="130"/>
+        <Image Name="RadarImg" HorizontalAlignment="Left" Height="26" Margin="95,70,0,0" VerticalAlignment="Top" Width="80" MouseDown="RadarBtn_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="RadarLbl" Content="Radar (300)" HorizontalAlignment="Left" Height="26" Margin="95,70,0,325" VerticalAlignment="Center" Width="90" MouseDown="RadarBtn_Click"/>
+        <Image Name="AirstrikeImg" HorizontalAlignment="Left" Height="26" Margin="95,110,0,0" VerticalAlignment="Top" Width="80" MouseDown="AirstrikeBtn_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="AirstrikeLbl" Content="Airstrike (400)" HorizontalAlignment="Left" Height="26" Margin="95,110,0,285" VerticalAlignment="Center" Width="90" MouseDown="AirstrikeBtn_Click"/>
+        <Image Name="NabojeImg" HorizontalAlignment="Left" Height="26" Margin="95,150,0,0" VerticalAlignment="Top" Width="80" MouseDown="NabojeBtn_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="NabojeLbl" Content="Náboje (500)" HorizontalAlignment="Left" Height="26" Margin="95,150,0,245" VerticalAlignment="Center" Width="90" MouseDown="NabojeBtn_Click"/>
+
+        <Grid Name="FinalniScoreGrid" Opacity="0" Visibility="Hidden">
+            <Image Name="FinalniScoreImg" Source="/Pictures/EndingScore.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+             
+
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.071"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.628"/>
+
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Label Name="FinalniScoreLBL" Content="" HorizontalAlignment="Center" Height="30" Margin="150,0,0,0" VerticalAlignment="Center" Width="600" FontFamily="Stencil" FontSize="20"/>
+        </Grid>
 
 
     </Grid>

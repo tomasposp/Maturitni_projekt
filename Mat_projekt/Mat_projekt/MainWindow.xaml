@@ -8,7 +8,7 @@
         Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Grid Name="mrizka" Margin="69,61,414,38">
+        <Grid Name="mrizka" Margin="90,63,404,51">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
@@ -16,7 +16,7 @@
             </Grid.Background>
         </Grid>
 
-        <Grid Name="mrizka2" Margin="414,61,69,38" RenderTransformOrigin="1.922,0.522">
+        <Grid Name="mrizka2" Margin="244,61,239,38" RenderTransformOrigin="1.922,0.522">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
@@ -24,7 +24,7 @@
             </Grid.Background>
         </Grid>
         <Image Name="Start" Height="46" Margin="325,370,324,0" VerticalAlignment="Top" MouseDown="Start_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="Start_LBL" Content="Start" Margin="251,353,251,-12" MouseDown="Start_Click" VerticalAlignment="Center" Height="80" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="Start_LBL" Content="Začít" Margin="251,353,251,-12" MouseDown="Start_Click" VerticalAlignment="Center" Height="80" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Image Name="SingleLod" HorizontalAlignment="Left" Height="30" Margin="185,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="SingleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
         <Label Name="SingleLod_LBL" Content="Jedničková loď" HorizontalAlignment="Left" Margin="185,10,0,381" MouseDown="SingleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Image Name="DoubleLod" HorizontalAlignment="Left" Height="30" Margin="340,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="DoubleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
@@ -32,20 +32,20 @@
         <Image Name="TripleLod" HorizontalAlignment="Left" Height="30" Margin="500,10,0,0" VerticalAlignment="Top" Width="105" MouseDown="TripleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
         <Label Name="TripleLod_LBL" Content="Trojková loď" HorizontalAlignment="Left" Margin="500,10,0,381" MouseDown="TripleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Image Name="Delete" HorizontalAlignment="Left" Height="26" Margin="50,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="Delete_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="Delete_LBL" Content="Delete" HorizontalAlignment="Left" Margin="50,383,0,14" MouseDown="Delete_Click" VerticalAlignment="Center" Height="24" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Image Name="MainMenu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="MainMenu_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="Main_Menu" Content="Main Menu" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="MainMenu_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="Delete_LBL" Content="Vymazat" HorizontalAlignment="Left" Margin="50,383,0,14" MouseDown="Delete_Click" VerticalAlignment="Center" Height="24" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="MainMenu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="MainMenu_Click" Source="Pictures/long.png" Stretch="Fill" Panel.ZIndex="998"/>
+        <Label Name="Main_Menu" Content="Hlavní Menu" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="MainMenu_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Panel.ZIndex="998"/>
         <Label Name="JednickovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="0,90,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Visibility="Hidden"/>
         <Label Name="DvojkovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="0,150,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Visibility="Hidden"/>
         <Label Name="TrojkovalodHrac" Content="0" HorizontalAlignment="Left" Height="30" Margin="0,210,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" Visibility="Hidden"/>
-        <Label Name="JednickovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="725,90,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label Name="DvojkovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="725,150,0,0" VerticalAlignment="Top" Width="55"/>
-        <Label Name="TrojkovalodPC" Content="0" HorizontalAlignment="Left" Height="30" Margin="725,210,0,0" VerticalAlignment="Top" Width="55"/>
-        <Image Name="JednickovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="745,90,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
+        <Label Name="JednickovalodPC" Content="0/5" HorizontalAlignment="Left" Height="30" Margin="725,90,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Name="DvojkovalodPC" Content="0/3" HorizontalAlignment="Left" Height="30" Margin="725,139,0,0" VerticalAlignment="Top" Width="55"/>
+        <Label Name="TrojkovalodPC" Content="0/1" HorizontalAlignment="Left" Height="30" Margin="725,192,0,0" VerticalAlignment="Top" Width="55"/>
+        <Image Name="JednickovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="750,94,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
         <Image Name="JednickovaLodPoStartu" HorizontalAlignment="Left" Height="26" Margin="14,90,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308" Visibility="Hidden"/>
-        <Image Name="DvojkovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="739,150,0,0" VerticalAlignment="Top" Width="55"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
+        <Image Name="DvojkovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="739,154,0,0" VerticalAlignment="Top" Width="55"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
         <Image Name="DvojkovaLodPoStartu" HorizontalAlignment="Left" Height="26" Margin="14,154,0,0" VerticalAlignment="Top" Width="55"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308" Visibility="Hidden"/>
-        <Image Name="TrojkovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="725,229,0,0" VerticalAlignment="Top" Width="69"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
+        <Image Name="TrojkovaLodPredStartem" HorizontalAlignment="Left" Height="26" Margin="725,214,0,0" VerticalAlignment="Top" Width="69"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
         <Image Name="TrojkovaLodPoStartu" HorizontalAlignment="Right" Height="26" Margin="0,229,725,0" VerticalAlignment="Top" Width="69"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308" Visibility="Hidden"/>
         <Grid x:Name="Napoveda_Grid" Background="Black" Opacity="0.8" Visibility="Hidden"></Grid>
         <Image Name="Napoveda" HorizontalAlignment="Left" Height="25" Margin="700,10,0,0" VerticalAlignment="Top" Width="84" MouseDown="Napoveda_Click" Source="Pictures/long.png" Stretch="Fill"/>
@@ -111,8 +111,57 @@
         <Label Name="Delete_LBL1" Content="Pokud je toto tlačítko aktivní, můžete odstranit" HorizontalAlignment="Left" Margin="14,315,0,0" VerticalAlignment="Top" Foreground="Red" Height="26" Width="256" Visibility="Hidden"/>
         <Label Name="Delete_LBL2" Content="špatně položenou loď z nepřítelova pole" HorizontalAlignment="Left" Margin="14,328,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="230" Visibility="Hidden"/>
 
+        <Grid Name="VyhraGrid" Opacity="0" Visibility="Hidden">
+        <Image Name="VyhraIMG" Source="/Pictures/Vyhra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+
+            
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform AngleY="0.071"/>
+                    <RotateTransform/>
+                    <TranslateTransform Y="0.628"/>
+                    
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+            
+        </Grid>
+        <Grid Name="ProhraGrid" Opacity="0" Visibility="Hidden">
+            <Image Name="ProhraIMG" Source="/Pictures/Prohra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+
+
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.071"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.628"/>
+
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
         <Label Name="HracovoPole" Content="Vaše pole" HorizontalAlignment="Left" Margin="540,192,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="65" Visibility="Hidden"/>
         <Label Name="PoleNepritele" Content="Nepřítelovo pole" HorizontalAlignment="Left" Margin="167,192,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="103" Visibility="Hidden"/>
 
+        <Grid Name="PotopenaLodGrid" Opacity="0" Visibility="Hidden" Panel.ZIndex="999">
+            <Image Name="PotopenaLodImg" Source="/Pictures/Potopena.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+
+
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.071"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.628"/>
+
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+            <Image Name="PokracovaniImg" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="Pokracovani_Click" Source="Pictures/long.png" Stretch="Fill"/>
+            <Label Name="PokracovaniLbl" Content="Pokračovat" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="Pokracovani_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        </Grid>
+        
     </Grid>
 </Window>

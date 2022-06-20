@@ -5,13 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Window1" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual">
     <Grid>
         <Image Source="Pictures/background1.png" Stretch="Fill"/>
         <Image Name="SinglePlayer" HorizontalAlignment="Left" Height="90" Margin="245,150,0,0" VerticalAlignment="Top" Width="310" MouseDown="SinglePlayer_Click" Source="Pictures/long.png"/>
-        <Label Name="SinglePlayer_LBL" Content="Singleplayer" HorizontalAlignment="Left" Margin="225,140,0,186" MouseDown="SinglePlayer_Click" VerticalAlignment="Center" Height="95" Width="355" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="SinglePlayer_LBL" Content="Hra jednoho hráče" HorizontalAlignment="Left" Margin="225,140,0,186" MouseDown="SinglePlayer_Click" VerticalAlignment="Center" Height="95" Width="355" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Image Name="MultiPlayer" HorizontalAlignment="Left" Height="90" Margin="245,270,0,0" VerticalAlignment="Top" Width="310" MouseDown="MultiPlayer_Click" Source="Pictures/long.png"/>
-        <Label Name="MiltiPlayer_LBL" Content="Multiplayer" HorizontalAlignment="Left" Margin="225,270,0,66" MouseDown="MultiPlayer_Click" VerticalAlignment="Center" Height="85" Width="355" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="MiltiPlayer_LBL" Content="Hra více hráčů" HorizontalAlignment="Left" Margin="225,270,0,66" MouseDown="MultiPlayer_Click" VerticalAlignment="Center" Height="85" Width="355" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <Label Name="Název" Content="Lodě" HorizontalAlignment="Left" Margin="225,30,0,306" VerticalAlignment="Center" Height="85" Width="355" FontSize="48" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
     </Grid>
