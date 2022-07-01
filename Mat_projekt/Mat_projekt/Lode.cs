@@ -1,15 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
+using System.Xml.Serialization;
 
 namespace Mat_projekt
 {
     
-    public class Lode
+    public static class Lode
     {
 
 
@@ -223,7 +226,34 @@ namespace Mat_projekt
             mode.score = mode.score + 100;
 
         }
-        
-        
+
+        public static T DeserializeXml<T>(this string toDeserialize)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            using (StringReader textReader = new StringReader(toDeserialize))
+            {
+                return (T)xmlSerializer.Deserialize(textReader);
+            }
+        }
+
+        public static string SerializeXml<T>(this T toSerialize)
+        {
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            using (StringWriter textWriter = new StringWriter())
+            {
+                xmlSerializer.Serialize(textWriter, toSerialize);
+                return textWriter.ToString();
+            }
+        }
+        [Serializable()]
+        public class PoleDat<T>
+        {
+            public T[] Data = new T[12];
+        }
+        public class Data
+        {
+            public Rectangle[] PoleRect = new Rectangle[12];
+        }
+
     }
 }

@@ -88,8 +88,6 @@ namespace Mat_projekt
             PoleRect2 = new Rectangle[12, 12];
 
             VytvoreniPanelu(PoleRect);
-
-
             for (int i = 0; i < pole.PoleLodi.GetLength(0); i++)
             {
                 for (int y = 0; y < pole.PoleLodi.GetLength(1); y++)
@@ -103,7 +101,7 @@ namespace Mat_projekt
                         pole.PoleLodi[i, y] = 1;
                     }
                     else pole.PoleLodi[i, y] = 0;
-                    // Console.Write(pole.PoleLodi[i, y]);
+                    
 
 
                     if (pole.PoleLodi[i, y] == 1)

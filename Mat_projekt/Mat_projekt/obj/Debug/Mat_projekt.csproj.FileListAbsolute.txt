@@ -90,3 +90,5 @@ C:\Users\Tom\Desktop\Maturitni_projekt-main1\Mat_projekt\Mat_projekt\obj\Debug\M
 C:\Users\Tom\Desktop\Maturitni_projekt-main1\Mat_projekt\Mat_projekt\obj\Debug\Mat_projekt.exe
 C:\Users\Tom\Desktop\Maturitni_projekt-main1\Mat_projekt\Mat_projekt\obj\Debug\Mat_projekt.pdb
 C:\Users\Tom\Desktop\Maturitni_projekt-main1\Mat_projekt\Mat_projekt\obj\Debug\Mat_projekt.csproj.AssemblyReference.cache
+C:\Users\Tom\Desktop\Maturitni_projekt-main1\Mat_projekt\Mat_projekt\bin\Debug\SimpleTCP.dll
+C:\Users\Tom\Desktop\Maturitni_projekt-main1\Mat_projekt\Mat_projekt\obj\Debug\Mat_projekt.csproj.CopyComplete

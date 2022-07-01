@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="Multiplayer" Height="450" Width="800" MouseLeftButtonDown="Window_MouseLeftButtonDown" ResizeMode="NoResize">
-    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        Title="Multiplayer" Height="450" Width="800" ResizeMode="NoResize">
+    <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Grid Name="mrizka" Margin="69,61,414,38" MouseDown="mrizka_MouseDown_1">
+        <Grid Name="mrizka" Margin="69,61,414,38" MouseDown="mrizka_MouseDown">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
@@ -24,11 +24,11 @@
             </Grid.Background>
         </Grid>
 
-        <Image Name="btn_ready_Host" HorizontalAlignment="Left" Height="38" Margin="465,10,0,0" VerticalAlignment="Top" Width="143" MouseDown="btn_ready_Host_Click" Source="Pictures/long.png" Stretch="Fill" IsEnabled="False"/>
-        <Label Name="btn_ready_Host_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="475,10,0,369" MouseDown="btn_ready_Host_Click" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <Image Name="btn_ready_Host" HorizontalAlignment="Left" Height="38" Margin="465,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill" IsEnabled="False"/>
+        <Label Name="btn_ready_Host_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="475,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False"/>
 
-        <Image Name="btn_ready_Client" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" MouseDown="btn_ready_Client_Click" Source="Pictures/long.png" Stretch="Fill" IsEnabled="False"/>
-        <Label Name="btn_ready_Client_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="630,10,0,369" MouseDown="btn_ready_Client_Click" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False"/>
+        <Image Name="btn_ready_Client" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill" IsEnabled="False"/>
+        <Label Name="btn_ready_Client_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="630,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False"/>
 
 
 
@@ -36,12 +36,12 @@
         <TextBox Name="SouradniceY" HorizontalAlignment="Left" Height="14" Margin="115,22,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="40"/>
         <TextBox Name ="SouradniceX2" HorizontalAlignment="Left" Height="14" Margin="55,22,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="40"/>
         <TextBox Name="SouradniceY2" HorizontalAlignment="Left" Height="14" Margin="115,22,0,0" TextWrapping="Wrap" Text="Y" VerticalAlignment="Top" Width="40"/>
-        <Image Name="SendXY" HorizontalAlignment="Left" Height="35" Margin="160,13,0,0" VerticalAlignment="Top" Width="90" MouseDown="SendXY_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="SendXY_LBL" Content="Vložit loď" HorizontalAlignment="Left" Margin="145,10,0,369" MouseDown="SendXY_Click" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="SendXY" HorizontalAlignment="Left" Height="35" Margin="160,13,0,0" VerticalAlignment="Top" Width="90" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="SendXY_LBL" Content="Vložit loď" HorizontalAlignment="Left" Margin="145,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
 
-        <Image Name="SendXY2" HorizontalAlignment="Left" Height="35" Margin="160,13,0,0" VerticalAlignment="Top" Width="90" MouseDown="SendXY_Click2" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="SendXY_LBL2" Content="Vložit loď" HorizontalAlignment="Left" Margin="145,10,0,369" MouseDown="SendXY_Click2" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <Rectangle Name="PepeLaugh" Fill="Transparent" HorizontalAlignment="Left" Height="338" Margin="25,56,0,0"  VerticalAlignment="Top" Width="740"/>
+        <Image Name="SendXY2" HorizontalAlignment="Left" Height="35" Margin="160,13,0,0" VerticalAlignment="Top" Width="90" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="SendXY_LBL2" Content="Vložit loď" HorizontalAlignment="Left" Margin="145,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Rectangle Name="PepeLaugh" Fill="Gray" HorizontalAlignment="Left" Height="319" Margin="414,59,0,0"  VerticalAlignment="Top" Width="311" Visibility="Hidden"/>
 
 
 
