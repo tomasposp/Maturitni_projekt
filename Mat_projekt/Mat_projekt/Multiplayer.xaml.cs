@@ -45,6 +45,9 @@ namespace Mat_projekt
         {
 
             InitializeComponent();
+
+           
+
             DispatcherTimer timer = new DispatcherTimer();
             timer.Interval = new TimeSpan(0,0,0,0,100);
             timer.Tick += Timer_Tick;
@@ -146,6 +149,7 @@ namespace Mat_projekt
 
                 }
             }
+            pole.PoleLodi[1, 1] = 2;
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -161,6 +165,12 @@ namespace Mat_projekt
                             Uri miss;
                             miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
                             PoleRect[i, y].Fill = new ImageBrush(new BitmapImage(miss));
+                        }
+                        if (pole.PoleLodi[i, y] == 9)
+                        {
+                            Uri hit;
+                            hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                            PoleRect[i, y].Fill = new ImageBrush(new BitmapImage(hit));
                         }
 
                     }
@@ -179,6 +189,12 @@ namespace Mat_projekt
                             Uri miss;
                             miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
                             PoleRect2[i, y].Fill = new ImageBrush(new BitmapImage(miss));
+                        }
+                        if (pole.PoleLodi[i, y] == 9)
+                        {
+                            Uri hit;
+                            hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                            PoleRect[i, y].Fill = new ImageBrush(new BitmapImage(hit));
                         }
 
                     }
@@ -235,7 +251,7 @@ namespace Mat_projekt
 
                                 }
 
-                                if ((int)PoleRect[r, s].Tag == 2)
+                                if (pole.PoleLodi[r, s]== 2)
                                 {
                                     PoleRect[r, s].Tag = 9;
                                     pole.PoleLodi[r, s] = 9;
@@ -318,7 +334,7 @@ namespace Mat_projekt
 
 
 
-                                if ((int)PoleRect[r, s].Tag == 2)
+                                if (pole.PoleLodi[r, s]== 2)
                                 {
                                     PoleRect[r, s].Tag = 9;
                                     pole.PoleLodi[r, s] = 9;
@@ -557,7 +573,7 @@ namespace Mat_projekt
 
                                 }
 
-                                if ((int)PoleRect2[r, s].Tag == 2)
+                                if (pole.PoleLodi2[r, s] == 2)
                                 {
                                     PoleRect2[r, s].Tag = 9;
                                     pole.PoleLodi2[r, s] = 9;
@@ -610,6 +626,8 @@ namespace Mat_projekt
 
                                     }
                                 }
+
+
                             }
                             else if (pole.PoleLodi2[r, s] == 2 || pole.PoleLodi2[r, s] == 5 || pole.PoleLodi2[r, s] == 6)
                             {
@@ -640,7 +658,7 @@ namespace Mat_projekt
 
 
 
-                                if ((int)PoleRect2[r, s].Tag == 2)
+                                if (pole.PoleLodi2[r, s] == 2)
                                 {
                                     PoleRect2[r, s].Tag = 9;
                                     pole.PoleLodi2[r, s] = 9;
