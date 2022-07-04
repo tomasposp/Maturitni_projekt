@@ -24,12 +24,13 @@
             </Grid.Background>
         </Grid>
 
-        <Image Name="btn_ready_Host" HorizontalAlignment="Left" Height="38" Margin="465,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill" IsEnabled="False"/>
-        <Label Name="btn_ready_Host_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="475,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False"/>
-
-        <Image Name="btn_ready_Client" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill" IsEnabled="False"/>
-        <Label Name="btn_ready_Client_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="630,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsEnabled="False"/>
-
+        <Image Name="btn_ready_Host" HorizontalAlignment="Left" Height="38" Margin="465,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="btn_ready_Host_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="475,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="btn_ready_Host_LBL_MouseDown"/>
+        <Image Name="btn_ready_Host_rdy" HorizontalAlignment="Left" Height="38" Margin="465,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long_hover.png" Stretch="Fill" Panel.ZIndex="20" Visibility="Hidden"/>
+        
+        <Image Name="btn_ready_Client" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="btn_ready_Client_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="630,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="btn_ready_Client_LBL_MouseDown"/>
+        <Image Name="btn_ready_Client_rdy" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long_hover.png" Stretch="Fill" Panel.ZIndex="20" Visibility="Hidden"/>
 
 
         <TextBox Name ="SouradniceX" HorizontalAlignment="Left" Height="14" Margin="55,22,0,0" TextWrapping="Wrap" Text="X" VerticalAlignment="Top" Width="40"/>

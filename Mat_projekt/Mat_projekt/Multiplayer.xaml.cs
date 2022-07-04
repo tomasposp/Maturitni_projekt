@@ -35,7 +35,9 @@ namespace Mat_projekt
         int indy;
         bool isHost;
         bool hrajes;
-        
+        bool readyHost = false;
+        bool readyClient = false;
+
 
         SimpleTcpServer server;
         SimpleTcpClient client;
@@ -46,10 +48,10 @@ namespace Mat_projekt
 
             InitializeComponent();
 
-           
+
 
             DispatcherTimer timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0,0,0,0,100);
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 100);
             timer.Tick += Timer_Tick;
             timer.Start();
 
@@ -155,12 +157,12 @@ namespace Mat_projekt
         private void Timer_Tick(object sender, EventArgs e)
         {
             if (!isHost)
-            { 
+            {
                 for (int i = 0; i < pole.PoleLodi.GetLength(0); i++)
                 {
                     for (int y = 0; y < pole.PoleLodi.GetLength(1); y++)
                     {
-                        if (pole.PoleLodi[i,y] == 4 || pole.PoleLodi[i, y] == 3)
+                        if (pole.PoleLodi[i, y] == 4 || pole.PoleLodi[i, y] == 3)
                         {
                             Uri miss;
                             miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
@@ -201,10 +203,24 @@ namespace Mat_projekt
 
                 }
             }
+
+            if (readyClient)
+            {
+                btn_ready_Client_rdy.Visibility = Visibility.Visible;
+            }
+            if (readyHost)
+            {
+                btn_ready_Host_rdy.Visibility = Visibility.Visible;
+            }
+
         }
 
         private void Multiplayer_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (readyHost == true && readyClient == true)
+            {
+
+            
             if (sender is Rectangle Rec && hrajes == true)
             {
 
@@ -387,7 +403,7 @@ namespace Mat_projekt
 
             if (isHost)
             {
-                int[] tmp = new int[12 * 12];
+                int[] tmp = new int[12 * 12 +1];
                 int poradi = 0;
                 for (int i = 0; i < 12; i++)
                     for (int n = 0; n < 12; n++)
@@ -396,6 +412,7 @@ namespace Mat_projekt
                     }
                 server.Broadcast(Lode.SerializeXml<int[]>(tmp));
                 
+            }
             }
 
         }
@@ -421,7 +438,10 @@ namespace Mat_projekt
                 }
                
             }
-            
+            if (tmp[poradi++] == 1)
+            {
+                readyHost = true;
+            }
 
 
         }
@@ -444,8 +464,14 @@ namespace Mat_projekt
                 
 
                 }
-               
+
             }
+            if (tmp[poradi++] == 1)
+            {
+                readyClient = true;
+            }
+
+
         }
 
         private void VytvoreniPanelu(Rectangle[,] pole)
@@ -528,6 +554,10 @@ namespace Mat_projekt
 
         private void mrizka2_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            if (readyClient == true && readyHost == true)
+            {
+
+            
 
             if (sender is Rectangle Rec && hrajes == true)
             {
@@ -709,7 +739,7 @@ namespace Mat_projekt
 
             }
 
-            int[] tmp = new int[12 * 12];
+            int[] tmp = new int[12 * 12 + 1];
             int poradi = 0;
             for (int i = 0; i < 12; i++)
                 for (int n = 0; n < 12; n++)
@@ -717,9 +747,38 @@ namespace Mat_projekt
                     tmp[poradi++] = pole.PoleLodi2[i, n];
                 }
             client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp),new TimeSpan(0));
-            
+            }
         }
 
+        private void btn_ready_Host_LBL_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            int[] tmp = new int[12 * 12 + 1];
+            int poradi = 0;
+            for (int i = 0; i < 12; i++)
+                for (int n = 0; n < 12; n++)
+                {
+                    tmp[poradi++] = pole.PoleLodi[i, n];
+                }
+            tmp[poradi++] = 1;
+            server.Broadcast(Lode.SerializeXml<int[]>(tmp));
+
+            readyHost = true;
+        }
+
+        private void btn_ready_Client_LBL_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+
+            int[] tmp = new int[12 * 12 + 1];
+            int poradi = 0;
+            for (int i = 0; i < 12; i++)
+                for (int n = 0; n < 12; n++)
+                {
+                    tmp[poradi++] = pole.PoleLodi2[i, n];
+                }
+            tmp[poradi++] = 1;
+            client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp), new TimeSpan(0));
+            readyClient = true;
+        }
     }
 
 
