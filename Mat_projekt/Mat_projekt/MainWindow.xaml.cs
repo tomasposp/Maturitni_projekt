@@ -505,7 +505,7 @@ namespace Mat_projekt
 
                     for (int r = 0; r < pole.PoleLodi2.GetLength(0); r++)
                     {
-                        Console.WriteLine();
+                        
                         for (int s = 0; s < pole.PoleLodi2.GetLength(1); s++)
                         {
 

@@ -151,7 +151,7 @@ namespace Mat_projekt
 
                 }
             }
-            pole.PoleLodi[1, 1] = 2;
+
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -178,6 +178,8 @@ namespace Mat_projekt
                     }
 
                 }
+                btn_ready_Host_LBL.IsEnabled = false;
+
             }
 
             if (isHost)
@@ -192,16 +194,18 @@ namespace Mat_projekt
                             miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
                             PoleRect2[i, y].Fill = new ImageBrush(new BitmapImage(miss));
                         }
-                        if (pole.PoleLodi[i, y] == 9)
+                        if (pole.PoleLodi2[i, y] == 9)
                         {
                             Uri hit;
                             hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                            PoleRect[i, y].Fill = new ImageBrush(new BitmapImage(hit));
+                            PoleRect2[i, y].Fill = new ImageBrush(new BitmapImage(hit));
                         }
 
                     }
 
                 }
+
+                btn_ready_Client_LBL.IsEnabled = false;
             }
 
             if (readyClient)
@@ -220,199 +224,272 @@ namespace Mat_projekt
             if (readyHost == true && readyClient == true)
             {
 
-            
-            if (sender is Rectangle Rec && hrajes == true)
-            {
 
-                hrajes = false;
-
-                for (int r = 0; r < PoleRect.GetLength(0); r++)
+                if (sender is Rectangle Rec && hrajes == true)
                 {
-                    for (int s = 0; s < PoleRect.GetLength(1); s++)
+
+                    hrajes = false;
+
+                    for (int r = 0; r < PoleRect.GetLength(0); r++)
                     {
-                        if (pole.PoleLodi[r, s] == 1) PoleRect[r, s].Tag = 1;
-                        else if (pole.PoleLodi[r, s] == 0) PoleRect[r, s].Tag = 0;
-                        else if (pole.PoleLodi[r, s] == 2) PoleRect[r, s].Tag = 2;
-                        else if (pole.PoleLodi[r, s] == 2) lode++;
-                        else if ((int)PoleRect[r, s].Tag == 3) pole.PoleLodi[r, s] = 3;
-
-
-                    }
-
-                }
-
-
-                Rec.Tag = 4;
-
-
-                for (int r = 0; r < pole.PoleLodi.GetLength(0); r++)
-                {
-                    for (int s = 0; s < pole.PoleLodi.GetLength(1); s++)
-                    {
-
-                        if ((int)PoleRect[r, s].Tag == 4)
+                        for (int s = 0; s < PoleRect.GetLength(1); s++)
                         {
-                            if (PoleRect[r, s].Fill == Brushes.White)
-                            {
-
-
-                                if ((int)PoleRect[r, s].Tag == 3)
-                                {
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect[r, s].Tag = 3;
-                                    pole.PoleLodi[r, s] = 3;
-                                    r--;
-
-                                }
-
-                                if (pole.PoleLodi[r, s]== 2)
-                                {
-                                    PoleRect[r, s].Tag = 9;
-                                    pole.PoleLodi[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                }
-
-
-                                if (pole.PoleLodi[r, s] == 9)
-                                {
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect[r, s].Tag = 9;
-                                    pole.PoleLodi[r, s] = 9;
-                                }
-
-                                if (pole.PoleLodi[r, s] == 1)
-                                {
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect[r, s].Tag = 1;
-                                    pole.PoleLodi[r, s] = 1;
-
-                                    s--;
-
-
-                                }
-
-                                else if ((int)PoleRect[r, s].Tag == 4)
-                                {
-
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect[r, s].Tag = 4;
-                                    pole.PoleLodi[r, s] = 4;
-
-
-
-
-                                    if (PoleRect[r, s].Fill == Brushes.White)
-                                    {
-                                        Uri miss;
-                                        miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
-                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(miss));
-
-
-                                    }
-                                }
-                            }
-                            else if (pole.PoleLodi[r, s] == 2 || pole.PoleLodi[r, s] == 5 || pole.PoleLodi[r, s] == 6)
-                            {
-
-                                indx = r;
-                                indy = s;
-
-                                if (pole.PoleLodi[r, s] == 2)
-                                {
-                                    PoleRect[r, s].Tag = 2;
-                                    pole.PoleLodi[r, s] = 2;
-
-
-                                }
-                                else if (pole.PoleLodi[r, s] == 5)
-                                {
-                                    PoleRect[r, s].Tag = 5;
-                                    pole.PoleLodi[r, s] = 5;
-
-                                }
-                                else if (pole.PoleLodi[r, s] == 6)
-                                {
-                                    PoleRect[r, s].Tag = 6;
-                                    pole.PoleLodi[r, s] = 6;
-
-                                }
-
-
-
-
-                                if (pole.PoleLodi[r, s]== 2)
-                                {
-                                    PoleRect[r, s].Tag = 9;
-                                    pole.PoleLodi[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                    lode--;
-
-
-                                }
-
-                                else if ((int)PoleRect[r, s].Tag == 5)
-                                {
-                                    PoleRect[r, s].Tag = 9;
-                                    pole.PoleLodi[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                    lode--;
-
-                                }
-
-
-                                else if ((int)PoleRect[r, s].Tag == 6)
-                                {
-                                    PoleRect[r, s].Tag = 9;
-                                    pole.PoleLodi[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                    lode--;
-
-                                }
-
-                            }
+                            if (pole.PoleLodi[r, s] == 1) PoleRect[r, s].Tag = 1;
+                            else if (pole.PoleLodi[r, s] == 0) PoleRect[r, s].Tag = 0;
+                            else if (pole.PoleLodi[r, s] == 2) PoleRect[r, s].Tag = 2;
+                            else if (pole.PoleLodi[r, s] == 2) lode++;
+                            else if ((int)PoleRect[r, s].Tag == 3) pole.PoleLodi[r, s] = 3;
 
 
                         }
 
                     }
-                    
 
-                    PoleRect[indx, indy].Tag = 3;
+
+                    Rec.Tag = 4;
+
+
+                    for (int r = 0; r < pole.PoleLodi.GetLength(0); r++)
+                    {
+                        for (int s = 0; s < pole.PoleLodi.GetLength(1); s++)
+                        {
+
+                            if ((int)PoleRect[r, s].Tag == 4)
+                            {
+                                if (PoleRect[r, s].Fill == Brushes.White)
+                                {
+
+
+                                    if ((int)PoleRect[r, s].Tag == 3)
+                                    {
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect[r, s].Tag = 3;
+                                        pole.PoleLodi[r, s] = 3;
+                                        r--;
+
+                                    }
+
+                                    if (pole.PoleLodi[r, s] == 2)
+                                    {
+                                        PoleRect[r, s].Tag = 9;
+                                        pole.PoleLodi[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                    }
+
+
+                                    if (pole.PoleLodi[r, s] == 9)
+                                    {
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect[r, s].Tag = 9;
+                                        pole.PoleLodi[r, s] = 9;
+                                    }
+
+                                    if (pole.PoleLodi[r, s] == 1)
+                                    {
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect[r, s].Tag = 1;
+                                        pole.PoleLodi[r, s] = 1;
+
+                                        s--;
+
+
+                                    }
+
+                                    else if ((int)PoleRect[r, s].Tag == 4)
+                                    {
+
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect[r, s].Tag = 4;
+                                        pole.PoleLodi[r, s] = 4;
+
+
+
+
+                                        if (PoleRect[r, s].Fill == Brushes.White)
+                                        {
+                                            Uri miss;
+                                            miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
+                                            PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(miss));
+
+
+                                        }
+                                    }
+                                }
+                                else if (pole.PoleLodi[r, s] == 2 || pole.PoleLodi[r, s] == 5 || pole.PoleLodi[r, s] == 6)
+                                {
+
+                                    indx = r;
+                                    indy = s;
+
+                                    if (pole.PoleLodi[r, s] == 2)
+                                    {
+                                        PoleRect[r, s].Tag = 2;
+                                        pole.PoleLodi[r, s] = 2;
+
+
+                                    }
+                                    else if (pole.PoleLodi[r, s] == 5)
+                                    {
+                                        PoleRect[r, s].Tag = 5;
+                                        pole.PoleLodi[r, s] = 5;
+
+                                    }
+                                    else if (pole.PoleLodi[r, s] == 6)
+                                    {
+                                        PoleRect[r, s].Tag = 6;
+                                        pole.PoleLodi[r, s] = 6;
+
+                                    }
+
+
+                                    if (pole.PoleLodi[r, s] == 2)
+                                    {
+                                        PoleRect[r, s].Tag = 9;
+                                        pole.PoleLodi[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        lode--;
+
+
+                                    }
+
+                                    else if ((int)PoleRect[r, s].Tag == 5)
+                                    {
+                                        PoleRect[r, s].Tag = 9;
+                                        pole.PoleLodi[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        lode--;
+
+                                    }
+
+
+                                    else if ((int)PoleRect[r, s].Tag == 6)
+                                    {
+                                        PoleRect[r, s].Tag = 9;
+                                        pole.PoleLodi[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        lode--;
+
+                                    }
+
+                                }
+
+
+                            }
+
+                        }
+
+
+                        PoleRect[indx, indy].Tag = 3;
+
+
+                    }
 
 
                 }
 
-
-            }
-
-            if (isHost)
-            {
-                int[] tmp = new int[12 * 12 +1];
-                int poradi = 0;
-                for (int i = 0; i < 12; i++)
-                    for (int n = 0; n < 12; n++)
+                if (isHost)
+                {
+                    int[] tmp = new int[12 * 12 + 12 * 12 + 1];
+                    int poradi = 0;
+                    for (int i = 0; i < 12; i++)
                     {
-                        tmp[poradi++] = pole.PoleLodi[i, n];
+                        for (int n = 0; n < 12; n++)
+                        {
+                            tmp[poradi++] = pole.PoleLodi[i, n];
+                            Console.Write(pole.PoleLodi[i, n]);
+                        }
+                        Console.WriteLine();
                     }
-                server.Broadcast(Lode.SerializeXml<int[]>(tmp));
-                
+                    for (int i = 0; i < 12; i++)
+                    {
+                        for (int n = 0; n < 12; n++)
+                        {
+                            tmp[poradi++] = pole.PoleLodi2[i, n];
+                        }
+                    }
+                    server.Broadcast(Lode.SerializeXml<int[]>(tmp));
+
+                }
             }
+
+
+            else if (!isHost)
+            {
+
+                if (sender is Rectangle Rec)
+                {
+                    for (int r = 0; r < PoleRect.GetLength(0); r++)
+                    {
+                        for (int s = 0; s < PoleRect.GetLength(1); s++)
+                        {
+                            if (pole.PoleLodi[r, s] == 1) PoleRect[r, s].Tag = 1;
+                            else if (pole.PoleLodi[r, s] == 0) PoleRect[r, s].Tag = 0;
+                            else if (pole.PoleLodi[r, s] == 2) PoleRect[r, s].Tag = 2;
+                            else if ((int)PoleRect[r, s].Tag == 3) pole.PoleLodi[r, s] = 3;
+
+
+
+                        }
+
+                    }
+                    Rec.Tag = 4;
+                    for (int r = 0; r < pole.PoleLodi.GetLength(0); r++)
+                    {
+
+                        for (int s = 0; s < pole.PoleLodi.GetLength(1); s++)
+                        {
+
+                            if ((int)PoleRect[r, s].Tag == 4)
+                            {
+
+                                if (pole.PoleLodi[r, s] == 0 && lode < 5)
+                                {
+                                    if (pole.PoleLodi[r - 1, s] != 2 &&
+                                        pole.PoleLodi[r + 1, s] != 2 &&
+                                        pole.PoleLodi[r, s - 1] != 2 &&
+                                        pole.PoleLodi[r, s + 1] != 2 &&
+                                        pole.PoleLodi[r - 1, s] != 5 &&
+                                        pole.PoleLodi[r + 1, s] != 5 &&
+                                        pole.PoleLodi[r, s - 1] != 5 &&
+                                        pole.PoleLodi[r, s + 1] != 5 &&
+                                        pole.PoleLodi[r - 1, s] != 6 &&
+                                        pole.PoleLodi[r + 1, s] != 6 &&
+                                        pole.PoleLodi[r, s - 1] != 6 &&
+                                        pole.PoleLodi[r, s + 1] != 6)
+                                    {
+                                        PoleRect[r, s].Tag = 2;
+                                        pole.PoleLodi[r, s] = 2;
+                                        Uri lod;
+                                        lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
+                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod));
+                                        lode++;
+                                        Console.WriteLine(lode);
+                                    }
+                                }
+
+
+                            }
+                            Console.Write(pole.PoleLodi[r, s]);
+                        }
+                        Console.WriteLine();
+                    }
+                }
             }
 
         }
@@ -420,23 +497,52 @@ namespace Mat_projekt
         private void Client_DataReceived(object sender, Message e)
         {
             int[] tmp = Lode.DeserializeXml<int[]>(e.MessageString);
- 
+
             int poradi = 0;
 
             hrajes = true;
 
+            if (readyHost && readyClient)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+
+                    for (int n = 0; n < 12; n++)
+                    {
+                        pole.PoleLodi[i, n] = tmp[poradi++];
+
+                        //Console.Write(pole.PoleLodi[i,n]);
+
+
+                    }
+                    //Console.WriteLine();
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 12; i++)
+                {
+
+                    for (int n = 0; n < 12; n++)
+                    {
+                        poradi++;
+
+                        //Console.Write(pole.PoleLodi[i,n]);
+
+
+                    }
+                    //Console.WriteLine();
+                }
+            }
+
             for (int i = 0; i < 12; i++)
             {
-                
+
                 for (int n = 0; n < 12; n++)
                 {
-                    pole.PoleLodi[i, n] = tmp[poradi++];
-
-
-                    
+                    pole.PoleLodi2[i, n] = tmp[poradi++];
 
                 }
-               
             }
             if (tmp[poradi++] == 1)
             {
@@ -458,18 +564,44 @@ namespace Mat_projekt
 
                 for (int n = 0; n < 12; n++)
                 {
-                    pole.PoleLodi2[i, n] = tmp[poradi++];
+                    pole.PoleLodi[i, n] = tmp[poradi++];
 
+                    //Console.Write(pole.PoleLodi[i,n]);
 
-                
 
                 }
-
+                //Console.WriteLine();
             }
+            if (readyHost && readyClient)
+            {
+                for (int i = 0; i < 12; i++)
+                {
+
+                    for (int n = 0; n < 12; n++)
+                    {
+                        pole.PoleLodi2[i, n] = tmp[poradi++];
+
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < 12; i++)
+                {
+
+                    for (int n = 0; n < 12; n++)
+                    {
+                        poradi++;
+
+                    }
+                }
+            }
+
             if (tmp[poradi++] == 1)
             {
                 readyClient = true;
             }
+
 
 
         }
@@ -550,234 +682,331 @@ namespace Mat_projekt
 
         private void mrizka_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            }
+        }
 
         private void mrizka2_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (readyClient == true && readyHost == true)
             {
 
-            
 
-            if (sender is Rectangle Rec && hrajes == true)
-            {
-                hrajes = false;
-                for (int r = 0; r < PoleRect2.GetLength(0); r++)
+
+                if (sender is Rectangle Rec && hrajes == true)
                 {
-                    for (int s = 0; s < PoleRect2.GetLength(1); s++)
+                    hrajes = false;
+                    for (int r = 0; r < PoleRect2.GetLength(0); r++)
                     {
-                        if (pole.PoleLodi2[r, s] == 1) PoleRect2[r, s].Tag = 1;
-                        else if (pole.PoleLodi2[r, s] == 0) PoleRect2[r, s].Tag = 0;
-                        else if (pole.PoleLodi2[r, s] == 2) PoleRect2[r, s].Tag = 2;
-                        else if (pole.PoleLodi2[r, s] == 2) lode++;
-                        else if ((int)PoleRect2[r, s].Tag == 3) pole.PoleLodi2[r, s] = 3;
+                        for (int s = 0; s < PoleRect2.GetLength(1); s++)
+                        {
+                            if (pole.PoleLodi2[r, s] == 1) PoleRect2[r, s].Tag = 1;
+                            else if (pole.PoleLodi2[r, s] == 0) PoleRect2[r, s].Tag = 0;
+                            else if (pole.PoleLodi2[r, s] == 2) PoleRect2[r, s].Tag = 2;
+                            else if (pole.PoleLodi2[r, s] == 2) lode++;
+                            else if ((int)PoleRect2[r, s].Tag == 3) pole.PoleLodi2[r, s] = 3;
+
+
+                        }
+
+                    }
+
+
+                    Rec.Tag = 4;
+
+
+                    for (int r = 0; r < pole.PoleLodi2.GetLength(0); r++)
+                    {
+                        for (int s = 0; s < pole.PoleLodi2.GetLength(1); s++)
+                        {
+
+                            if ((int)PoleRect2[r, s].Tag == 4)
+                            {
+                                if (PoleRect2[r, s].Fill == Brushes.White)
+                                {
+
+
+                                    if ((int)PoleRect2[r, s].Tag == 3)
+                                    {
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect2[r, s].Tag = 3;
+                                        pole.PoleLodi2[r, s] = 3;
+                                        r--;
+
+                                    }
+
+                                    if (pole.PoleLodi2[r, s] == 2)
+                                    {
+                                        PoleRect2[r, s].Tag = 9;
+                                        pole.PoleLodi2[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                    }
+
+
+                                    if (pole.PoleLodi2[r, s] == 9)
+                                    {
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect2[r, s].Tag = 9;
+                                        pole.PoleLodi2[r, s] = 9;
+                                    }
+
+                                    if (pole.PoleLodi2[r, s] == 1)
+                                    {
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect2[r, s].Tag = 1;
+                                        pole.PoleLodi2[r, s] = 1;
+
+                                        s--;
+
+
+                                    }
+
+                                    else if ((int)PoleRect2[r, s].Tag == 4)
+                                    {
+
+                                        indx = r;
+                                        indy = s;
+
+                                        PoleRect2[r, s].Tag = 4;
+                                        pole.PoleLodi2[r, s] = 4;
+
+
+
+
+                                        if (PoleRect2[r, s].Fill == Brushes.White)
+                                        {
+                                            Uri miss;
+                                            miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
+                                            PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(miss));
+
+
+                                        }
+                                    }
+
+
+                                }
+                                else if (pole.PoleLodi2[r, s] == 2 || pole.PoleLodi2[r, s] == 5 || pole.PoleLodi2[r, s] == 6)
+                                {
+
+                                    indx = r;
+                                    indy = s;
+
+                                    if (pole.PoleLodi2[r, s] == 2)
+                                    {
+                                        PoleRect2[r, s].Tag = 2;
+                                        pole.PoleLodi2[r, s] = 2;
+
+
+                                    }
+                                    else if (pole.PoleLodi2[r, s] == 5)
+                                    {
+                                        PoleRect2[r, s].Tag = 5;
+                                        pole.PoleLodi2[r, s] = 5;
+
+                                    }
+                                    else if (pole.PoleLodi2[r, s] == 6)
+                                    {
+                                        PoleRect2[r, s].Tag = 6;
+                                        pole.PoleLodi2[r, s] = 6;
+
+                                    }
+
+
+
+
+                                    if (pole.PoleLodi2[r, s] == 2)
+                                    {
+                                        PoleRect2[r, s].Tag = 9;
+                                        pole.PoleLodi2[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        lode--;
+
+
+                                    }
+
+                                    else if ((int)PoleRect2[r, s].Tag == 5)
+                                    {
+                                        PoleRect2[r, s].Tag = 9;
+                                        pole.PoleLodi2[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        lode--;
+
+                                    }
+
+
+                                    else if ((int)PoleRect2[r, s].Tag == 6)
+                                    {
+                                        PoleRect2[r, s].Tag = 9;
+                                        pole.PoleLodi2[r, s] = 9;
+                                        Uri hit;
+                                        hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
+                                        PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
+                                        lode--;
+
+                                    }
+
+                                }
+
+
+                            }
+
+                        }
+
+
+                        PoleRect2[indx, indy].Tag = 3;
 
 
                     }
 
+
                 }
-
-
-                Rec.Tag = 4;
-
-
-                for (int r = 0; r < pole.PoleLodi2.GetLength(0); r++)
+                int[] tmp = new int[12 * 12 + 12 * 12 + 1];
+                int poradi = 0;
+                for (int i = 0; i < 12; i++)
                 {
-                    for (int s = 0; s < pole.PoleLodi2.GetLength(1); s++)
+                    for (int n = 0; n < 12; n++)
+                    {
+                        tmp[poradi++] = pole.PoleLodi[i, n];
+                    }
+                }
+                for (int i = 0; i < 12; i++)
+                {
+                    for (int n = 0; n < 12; n++)
+                    {
+                        tmp[poradi++] = pole.PoleLodi2[i, n];
+                    }
+                }
+                client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp), new TimeSpan(0));
+            }
+
+
+            else if (isHost == true)
+            {
+                if (sender is Rectangle Rec)
+                {
+                    for (int r = 0; r < PoleRect2.GetLength(0); r++)
+                    {
+                        for (int s = 0; s < PoleRect2.GetLength(1); s++)
+                        {
+                            if (pole.PoleLodi2[r, s] == 1) PoleRect2[r, s].Tag = 1;
+                            else if (pole.PoleLodi2[r, s] == 0) PoleRect2[r, s].Tag = 0;
+                            else if (pole.PoleLodi2[r, s] == 2) PoleRect2[r, s].Tag = 2;
+                            else if ((int)PoleRect2[r, s].Tag == 3) pole.PoleLodi2[r, s] = 3;
+
+
+
+                        }
+
+                    }
+                    Rec.Tag = 4;
+                    for (int r = 0; r < pole.PoleLodi2.GetLength(0); r++)
                     {
 
-                        if ((int)PoleRect2[r, s].Tag == 4)
+                        for (int s = 0; s < pole.PoleLodi2.GetLength(1); s++)
                         {
-                            if (PoleRect2[r, s].Fill == Brushes.White)
+
+                            if ((int)PoleRect2[r, s].Tag == 4)
                             {
 
-
-                                if ((int)PoleRect2[r, s].Tag == 3)
+                                if (pole.PoleLodi2[r, s] == 0 && lode < 5)
                                 {
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect2[r, s].Tag = 3;
-                                    pole.PoleLodi2[r, s] = 3;
-                                    r--;
-
-                                }
-
-                                if (pole.PoleLodi2[r, s] == 2)
-                                {
-                                    PoleRect2[r, s].Tag = 9;
-                                    pole.PoleLodi2[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                }
-
-
-                                if (pole.PoleLodi2[r, s] == 9)
-                                {
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect2[r, s].Tag = 9;
-                                    pole.PoleLodi2[r, s] = 9;
-                                }
-
-                                if (pole.PoleLodi2[r, s] == 1)
-                                {
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect2[r, s].Tag = 1;
-                                    pole.PoleLodi2[r, s] = 1;
-
-                                    s--;
-
-
-                                }
-
-                                else if ((int)PoleRect2[r, s].Tag == 4)
-                                {
-
-                                    indx = r;
-                                    indy = s;
-
-                                    PoleRect2[r, s].Tag = 4;
-                                    pole.PoleLodi2[r, s] = 4;
-
-
-
-
-                                    if (PoleRect2[r, s].Fill == Brushes.White)
+                                    if (pole.PoleLodi2[r - 1, s] != 2 &&
+                                        pole.PoleLodi2[r + 1, s] != 2 &&
+                                        pole.PoleLodi2[r, s - 1] != 2 &&
+                                        pole.PoleLodi2[r, s + 1] != 2 &&
+                                        pole.PoleLodi2[r - 1, s] != 5 &&
+                                        pole.PoleLodi2[r + 1, s] != 5 &&
+                                        pole.PoleLodi2[r, s - 1] != 5 &&
+                                        pole.PoleLodi2[r, s + 1] != 5 &&
+                                        pole.PoleLodi2[r - 1, s] != 6 &&
+                                        pole.PoleLodi2[r + 1, s] != 6 &&
+                                        pole.PoleLodi2[r, s - 1] != 6 &&
+                                        pole.PoleLodi2[r, s + 1] != 6)
                                     {
-                                        Uri miss;
-                                        miss = new Uri("pack://application:,,,/Pictures/LodeMiss.jpg");
-                                        PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(miss));
-
+                                        PoleRect2[r, s].Tag = 2;
+                                        pole.PoleLodi2[r, s] = 2;
+                                        Uri lod;
+                                        lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
+                                        PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod));
+                                        lode++;
 
                                     }
                                 }
 
 
                             }
-                            else if (pole.PoleLodi2[r, s] == 2 || pole.PoleLodi2[r, s] == 5 || pole.PoleLodi2[r, s] == 6)
-                            {
-
-                                indx = r;
-                                indy = s;
-
-                                if (pole.PoleLodi2[r, s] == 2)
-                                {
-                                    PoleRect2[r, s].Tag = 2;
-                                    pole.PoleLodi2[r, s] = 2;
-
-
-                                }
-                                else if (pole.PoleLodi2[r, s] == 5)
-                                {
-                                    PoleRect2[r, s].Tag = 5;
-                                    pole.PoleLodi2[r, s] = 5;
-
-                                }
-                                else if (pole.PoleLodi2[r, s] == 6)
-                                {
-                                    PoleRect2[r, s].Tag = 6;
-                                    pole.PoleLodi2[r, s] = 6;
-
-                                }
-
-
-
-
-                                if (pole.PoleLodi2[r, s] == 2)
-                                {
-                                    PoleRect2[r, s].Tag = 9;
-                                    pole.PoleLodi2[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                    lode--;
-
-
-                                }
-
-                                else if ((int)PoleRect2[r, s].Tag == 5)
-                                {
-                                    PoleRect2[r, s].Tag = 9;
-                                    pole.PoleLodi2[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                    lode--;
-
-                                }
-
-
-                                else if ((int)PoleRect2[r, s].Tag == 6)
-                                {
-                                    PoleRect2[r, s].Tag = 9;
-                                    pole.PoleLodi2[r, s] = 9;
-                                    Uri hit;
-                                    hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
-                                    PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(hit));
-                                    lode--;
-
-                                }
-
-                            }
-
-
                         }
-
                     }
-                    
-
-                    PoleRect2[indx, indy].Tag = 3;
-
-
                 }
-
-
             }
 
-            int[] tmp = new int[12 * 12 + 1];
-            int poradi = 0;
-            for (int i = 0; i < 12; i++)
-                for (int n = 0; n < 12; n++)
-                {
-                    tmp[poradi++] = pole.PoleLodi2[i, n];
-                }
-            client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp),new TimeSpan(0));
-            }
         }
+
+
 
         private void btn_ready_Host_LBL_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            int[] tmp = new int[12 * 12 + 1];
+            int[] tmp = new int[12 * 12 + 12 * 12 + 1];
             int poradi = 0;
             for (int i = 0; i < 12; i++)
+            {
                 for (int n = 0; n < 12; n++)
                 {
                     tmp[poradi++] = pole.PoleLodi[i, n];
                 }
+            }
+            for (int i = 0; i < 12; i++)
+            {
+                for (int n = 0; n < 12; n++)
+                {
+                    tmp[poradi++] = pole.PoleLodi2[i, n];
+                    Console.Write(pole.PoleLodi2[i, n]);
+                }
+                Console.WriteLine();
+
+            }
+
             tmp[poradi++] = 1;
             server.Broadcast(Lode.SerializeXml<int[]>(tmp));
 
             readyHost = true;
+            Plachta.Visibility = Visibility.Visible;
         }
 
         private void btn_ready_Client_LBL_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
-            int[] tmp = new int[12 * 12 + 1];
+            int[] tmp = new int[12 * 12 + 12 * 12 + 1];
             int poradi = 0;
             for (int i = 0; i < 12; i++)
+            {
+                for (int n = 0; n < 12; n++)
+                {
+                    tmp[poradi++] = pole.PoleLodi[i, n];
+                }
+            }
+            for (int i = 0; i < 12; i++)
+            {
                 for (int n = 0; n < 12; n++)
                 {
                     tmp[poradi++] = pole.PoleLodi2[i, n];
                 }
+            }
+
             tmp[poradi++] = 1;
             client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp), new TimeSpan(0));
             readyClient = true;
+            Plachta2.Visibility = Visibility.Visible;
         }
     }
 
