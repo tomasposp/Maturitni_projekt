@@ -34,7 +34,41 @@
         <Rectangle Name="Plachta" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="400,53,0,0" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden" />
         <Rectangle Name="Plachta2" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="45,51,0,0" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden"/>
 
+        <Grid Name="VyhraGrid" Opacity="0" Visibility="Hidden">
+            <Image Name="VyhraIMG" Source="/Pictures/Vyhra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+
+
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.071"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.628"/>
+
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+        </Grid>
+
+        <Grid Name="ProhraGrid" Opacity="0" Visibility="Hidden">
+            <Image Name="ProhraIMG" Source="/Pictures/Prohra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+
+
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.071"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.628"/>
+
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+        </Grid>
 
     </Grid>
+    
+    
 
 </Window>
