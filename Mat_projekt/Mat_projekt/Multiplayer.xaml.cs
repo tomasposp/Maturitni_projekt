@@ -158,7 +158,9 @@ namespace Mat_projekt
 
         private void Timer_Tick(object sender, EventArgs e)
         {
-            if (!isHost)
+
+
+                if (!isHost)
             {
                 Console.Clear();
                 for (int i = 0; i < pole.PoleLodi.GetLength(0); i++)
@@ -230,6 +232,17 @@ namespace Mat_projekt
                 ProhraTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
                 ProhraTimerAnimace.Start();
                 Console.WriteLine("KEK");
+
+            }
+            if (readyClient == true && readyHost == true)
+            {
+                btn_ready_Host_rdy.Visibility = Visibility.Hidden;
+                btn_ready_Host_LBL.Visibility = Visibility.Hidden;
+                btn_ready_Host.Visibility = Visibility.Hidden;
+
+                btn_ready_Client_rdy.Visibility = Visibility.Hidden;
+                btn_ready_Client_LBL.Visibility = Visibility.Hidden;
+                btn_ready_Client.Visibility = Visibility.Hidden;
             }
         }
 
@@ -547,6 +560,7 @@ namespace Mat_projekt
 
             if (readyHost && readyClient)
             {
+
                 for (int i = 0; i < 12; i++)
                 {
 

@@ -142,8 +142,8 @@
                 </Image.RenderTransform>
             </Image>
         </Grid>
-        <Label Name="HracovoPole" Content="Vaše pole" HorizontalAlignment="Left" Margin="540,192,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="65" Visibility="Hidden"/>
-        <Label Name="PoleNepritele" Content="Nepřítelovo pole" HorizontalAlignment="Left" Margin="167,192,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="103" Visibility="Hidden"/>
+        <Label Name="HracovoPole" Content="Vaše pole" HorizontalAlignment="Left" Margin="97,102,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="65" Visibility="Hidden"/>
+        <Label Name="PoleNepritele" Content="Nepřítelovo pole" HorizontalAlignment="Left" Margin="350,204,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="103" Visibility="Hidden"/>
 
         <Grid Name="PotopenaLodGrid" Opacity="0" Visibility="Hidden" Panel.ZIndex="999">
             <Image Name="PotopenaLodImg" Source="/Pictures/Potopena.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
@@ -159,8 +159,7 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-            <Image Name="PokracovaniImg" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="Pokracovani_Click" Source="Pictures/long.png" Stretch="Fill"/>
-            <Label Name="PokracovaniLbl" Content="Pokračovat" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="Pokracovani_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+           
         </Grid>
         
     </Grid>
