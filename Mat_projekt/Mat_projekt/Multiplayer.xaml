@@ -8,7 +8,7 @@
         Title="Multiplayer" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Grid Name="mrizka" Margin="69,61,414,38" MouseDown="mrizka_MouseDown">
+        <Grid Name="mrizka" Margin="240,63,243,36" MouseDown="mrizka_MouseDown">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
@@ -16,7 +16,7 @@
             </Grid.Background>
         </Grid>
 
-        <Grid Name="mrizka2" Margin="414,56,69,43" RenderTransformOrigin="1.922,0.522" MouseDown="mrizka2_MouseDown">
+        <Grid Name="mrizka2" Margin="240,61,243,38" RenderTransformOrigin="1.922,0.522" MouseDown="mrizka2_MouseDown">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
@@ -31,9 +31,10 @@
         <Image Name="btn_ready_Client" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill"/>
         <Label Name="btn_ready_Client_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="630,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="btn_ready_Client_LBL_MouseDown"/>
         <Image Name="btn_ready_Client_rdy" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long_hover.png" Stretch="Fill" Panel.ZIndex="20" Visibility="Hidden"/>
-        <Rectangle Name="Plachta" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="400,53,0,0" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden" />
-        <Rectangle Name="Plachta2" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="45,51,0,0" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden"/>
+        <Rectangle Name="Plachta" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="69, 61, 597, 232" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden" />
+        <Rectangle Name="Plachta2" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="69, 61, 597, 232" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden"/>
 
+        <Label Name="Hrac_LBL" Content="" HorizontalAlignment="Left" Margin="280,19,0,0" VerticalAlignment="Top" Width="159" Visibility="Hidden"/>
         <Grid Name="VyhraGrid" Opacity="0" Visibility="Hidden">
             <Image Name="VyhraIMG" Source="/Pictures/Vyhra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
 
@@ -66,9 +67,13 @@
                 </Image.RenderTransform>
             </Image>
         </Grid>
-
+        <Image Name="SingleLod" HorizontalAlignment="Left" Height="30" Margin="35,90,0,0" VerticalAlignment="Top" Width="105" MouseDown="SingleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="SingleLod_LBL" Content="Jedničková loď" HorizontalAlignment="Left" Margin="35,90,0,301" MouseDown="SingleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+       
+        <!--<Image Name="DoubleLod" HorizontalAlignment="Left" Height="30" Margin="35,150,0,0" VerticalAlignment="Top" Width="105" MouseDown="DoubleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="DoubleLod_LBL" Content="Dvojková loď" HorizontalAlignment="Left" Margin="35,150,0,241" MouseDown="DoubleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>-->
     </Grid>
-    
-    
+
+
 
 </Window>

@@ -39,6 +39,7 @@ namespace Mat_projekt
         bool hrajes;
         bool readyHost = false;
         bool readyClient = false;
+        bool JednaLod = false;
 
 
         SimpleTcpServer server;
@@ -159,8 +160,18 @@ namespace Mat_projekt
         private void Timer_Tick(object sender, EventArgs e)
         {
 
+            if (hrajes == true)
+            {
+                
+                Hrac_LBL.Content = "Jsi na tahu";
+            }
+            else if (hrajes == false)
+            {
+               
+                Hrac_LBL.Content = "Soupeř je na tahu";
+            }
 
-                if (!isHost)
+            if (!isHost)
             {
                 Console.Clear();
                 for (int i = 0; i < pole.PoleLodi.GetLength(0); i++)
@@ -185,7 +196,7 @@ namespace Mat_projekt
                 }
                 btn_ready_Host_LBL.IsEnabled = false;
 
-
+                mrizka2.Visibility = Visibility.Hidden;
             }
 
             if (isHost)
@@ -212,6 +223,7 @@ namespace Mat_projekt
                 }
 
                 btn_ready_Client_LBL.IsEnabled = false;
+                mrizka.Visibility = Visibility.Hidden;
             }
 
             if (readyClient)
@@ -225,13 +237,14 @@ namespace Mat_projekt
 
             if (enemy_lode < 1 && readyClient && readyHost && ProhraGrid.Visibility == Visibility.Hidden)
             {
+                Hrac_LBL.Visibility = Visibility.Hidden;
                 ProhraGrid.Visibility = Visibility.Visible;
                 DispatcherTimer ProhraTimerAnimace = new DispatcherTimer();
 
                 ProhraTimerAnimace.Tick += ProhraTimerAnimace_Tick;
                 ProhraTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
                 ProhraTimerAnimace.Start();
-                Console.WriteLine("KEK");
+             
 
             }
             if (readyClient == true && readyHost == true)
@@ -243,6 +256,26 @@ namespace Mat_projekt
                 btn_ready_Client_rdy.Visibility = Visibility.Hidden;
                 btn_ready_Client_LBL.Visibility = Visibility.Hidden;
                 btn_ready_Client.Visibility = Visibility.Hidden;
+
+                SingleLod.Visibility = Visibility.Hidden;
+                SingleLod_LBL.Visibility = Visibility.Hidden;
+
+                Hrac_LBL.Visibility = Visibility.Visible;
+
+                if (isHost)
+                {
+                    mrizka.Visibility = Visibility.Visible;
+                    mrizka2.Margin = new Thickness(69, 61, 597, 232);
+
+
+                }
+                if (!isHost)
+                {
+                    mrizka2.Visibility = Visibility.Visible;
+
+
+                    mrizka.Margin = new Thickness(69, 61, 597, 232);
+                }
             }
         }
 
@@ -512,31 +545,34 @@ namespace Mat_projekt
 
                             if ((int)PoleRect[r, s].Tag == 4)
                             {
-
-                                if (pole.PoleLodi[r, s] == 0 && lode < 5)
+                                if (JednaLod == true)
                                 {
-                                    if (pole.PoleLodi[r - 1, s] != 2 &&
-                                        pole.PoleLodi[r + 1, s] != 2 &&
-                                        pole.PoleLodi[r, s - 1] != 2 &&
-                                        pole.PoleLodi[r, s + 1] != 2 &&
-                                        pole.PoleLodi[r - 1, s] != 5 &&
-                                        pole.PoleLodi[r + 1, s] != 5 &&
-                                        pole.PoleLodi[r, s - 1] != 5 &&
-                                        pole.PoleLodi[r, s + 1] != 5 &&
-                                        pole.PoleLodi[r - 1, s] != 6 &&
-                                        pole.PoleLodi[r + 1, s] != 6 &&
-                                        pole.PoleLodi[r, s - 1] != 6 &&
-                                        pole.PoleLodi[r, s + 1] != 6)
+                                    if (pole.PoleLodi[r, s] == 0 && lode < 5)
                                     {
-                                        PoleRect[r, s].Tag = 2;
-                                        pole.PoleLodi[r, s] = 2;
-                                        Uri lod;
-                                        lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
-                                        PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod));
-                                        lode++;
-                                        
+                                        if (pole.PoleLodi[r - 1, s] != 2 &&
+                                            pole.PoleLodi[r + 1, s] != 2 &&
+                                            pole.PoleLodi[r, s - 1] != 2 &&
+                                            pole.PoleLodi[r, s + 1] != 2 &&
+                                            pole.PoleLodi[r - 1, s] != 5 &&
+                                            pole.PoleLodi[r + 1, s] != 5 &&
+                                            pole.PoleLodi[r, s - 1] != 5 &&
+                                            pole.PoleLodi[r, s + 1] != 5 &&
+                                            pole.PoleLodi[r - 1, s] != 6 &&
+                                            pole.PoleLodi[r + 1, s] != 6 &&
+                                            pole.PoleLodi[r, s - 1] != 6 &&
+                                            pole.PoleLodi[r, s + 1] != 6)
+                                        {
+                                            PoleRect[r, s].Tag = 2;
+                                            pole.PoleLodi[r, s] = 2;
+                                            Uri lod;
+                                            lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
+                                            PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod));
+                                            lode++;
+
+                                        }
                                     }
                                 }
+                                
 
 
                             }
@@ -1011,33 +1047,33 @@ namespace Mat_projekt
 
                             if ((int)PoleRect2[r, s].Tag == 4)
                             {
-
-                                if (pole.PoleLodi2[r, s] == 0 && lode < 5)
+                                if (JednaLod == true)
                                 {
-                                    if (pole.PoleLodi2[r - 1, s] != 2 &&
-                                        pole.PoleLodi2[r + 1, s] != 2 &&
-                                        pole.PoleLodi2[r, s - 1] != 2 &&
-                                        pole.PoleLodi2[r, s + 1] != 2 &&
-                                        pole.PoleLodi2[r - 1, s] != 5 &&
-                                        pole.PoleLodi2[r + 1, s] != 5 &&
-                                        pole.PoleLodi2[r, s - 1] != 5 &&
-                                        pole.PoleLodi2[r, s + 1] != 5 &&
-                                        pole.PoleLodi2[r - 1, s] != 6 &&
-                                        pole.PoleLodi2[r + 1, s] != 6 &&
-                                        pole.PoleLodi2[r, s - 1] != 6 &&
-                                        pole.PoleLodi2[r, s + 1] != 6)
+                                    if (pole.PoleLodi2[r, s] == 0 && lode < 5)
                                     {
-                                        PoleRect2[r, s].Tag = 2;
-                                        pole.PoleLodi2[r, s] = 2;
-                                        Uri lod;
-                                        lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
-                                        PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod));
-                                        lode++;
+                                        if (pole.PoleLodi2[r - 1, s] != 2 &&
+                                            pole.PoleLodi2[r + 1, s] != 2 &&
+                                            pole.PoleLodi2[r, s - 1] != 2 &&
+                                            pole.PoleLodi2[r, s + 1] != 2 &&
+                                            pole.PoleLodi2[r - 1, s] != 5 &&
+                                            pole.PoleLodi2[r + 1, s] != 5 &&
+                                            pole.PoleLodi2[r, s - 1] != 5 &&
+                                            pole.PoleLodi2[r, s + 1] != 5 &&
+                                            pole.PoleLodi2[r - 1, s] != 6 &&
+                                            pole.PoleLodi2[r + 1, s] != 6 &&
+                                            pole.PoleLodi2[r, s - 1] != 6 &&
+                                            pole.PoleLodi2[r, s + 1] != 6)
+                                        {
+                                            PoleRect2[r, s].Tag = 2;
+                                            pole.PoleLodi2[r, s] = 2;
+                                            Uri lod;
+                                            lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
+                                            PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod));
+                                            lode++;
 
+                                        }
                                     }
                                 }
-
-
                             }
                         }
                     }
@@ -1109,6 +1145,14 @@ namespace Mat_projekt
             client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp), new TimeSpan(0));
             readyClient = true;
             Plachta2.Visibility = Visibility.Visible;
+        }
+        private void SingleLod_Click(object sender, RoutedEventArgs e)
+        {
+            JednaLod = true;
+            if (JednaLod == true)
+            {
+                SingleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
+            }
         }
     }
 
