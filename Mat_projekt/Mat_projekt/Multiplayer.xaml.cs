@@ -41,6 +41,8 @@ namespace Mat_projekt
         bool readyClient = false;
         bool JednaLod = false;
         bool DoubleLod = false;
+        int pocetDvojkoveLode = 3;
+        int pocetJednickoveLode = 5;
 
 
         SimpleTcpServer server;
@@ -551,7 +553,7 @@ namespace Mat_projekt
                             {
                                 if (JednaLod == true)
                                 {
-                                    if (pole.PoleLodi[r, s] == 0 && lode < 5)
+                                    if (pole.PoleLodi[r, s] == 0 && pocetJednickoveLode > 0)
                                     {
                                         if (pole.PoleLodi[r - 1, s] != 2 &&
                                             pole.PoleLodi[r + 1, s] != 2 &&
@@ -572,14 +574,14 @@ namespace Mat_projekt
                                             lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
                                             PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod));
                                             lode++;
-
+                                            pocetJednickoveLode--;
                                         }
                                     }
                                 }
 
                                 if (DoubleLod == true)
                                 {
-                                     if (pole.PoleLodi[r, s - 1] != 1 && pole.PoleLodi[r, s] == 0)
+                                     if (pole.PoleLodi[r, s - 1] != 1 && pole.PoleLodi[r, s] == 0 && pocetDvojkoveLode > 0)
                                     {
                                         if (pole.PoleLodi[r - 1, s] != 5 &&
                                             pole.PoleLodi[r + 1, s] != 5 &&
@@ -622,6 +624,7 @@ namespace Mat_projekt
                                             lod1 = new Uri("pack://application:,,,/Pictures/LodZada.jpg");
                                             PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod1));
                                             PoleRect[r, s - 1].Fill = new ImageBrush(new BitmapImage(lod));
+                                            pocetDvojkoveLode--;
                                         }
                                     }
                                 }
@@ -1099,7 +1102,7 @@ namespace Mat_projekt
                             {
                                 if (JednaLod == true)
                                 {
-                                    if (pole.PoleLodi2[r, s] == 0 && lode < 5)
+                                    if (pole.PoleLodi2[r, s] == 0 && pocetJednickoveLode > 0)
                                     {
                                         if (pole.PoleLodi2[r - 1, s] != 2 &&
                                             pole.PoleLodi2[r + 1, s] != 2 &&
@@ -1120,13 +1123,13 @@ namespace Mat_projekt
                                             lod = new Uri("pack://application:,,,/Pictures/JednickovaLod.jpg");
                                             PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod));
                                             lode++;
-
+                                            pocetJednickoveLode--;
                                         }
                                     }
                                 }
                                 if (DoubleLod == true)
                                 {
-                                    if (pole.PoleLodi2[r, s - 1] != 1 && pole.PoleLodi2[r, s] == 0)
+                                    if (pole.PoleLodi2[r, s - 1] != 1 && pole.PoleLodi2[r, s] == 0 && pocetDvojkoveLode > 0)
                                     {
                                         if (pole.PoleLodi2[r - 1, s] != 5 &&
                                             pole.PoleLodi2[r + 1, s] != 5 &&
@@ -1168,6 +1171,7 @@ namespace Mat_projekt
                                             lod1 = new Uri("pack://application:,,,/Pictures/LodZada.jpg");
                                             PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod1));
                                             PoleRect2[r, s - 1].Fill = new ImageBrush(new BitmapImage(lod));
+                                            pocetDvojkoveLode--;
                                         }
                                     }
                                 }
