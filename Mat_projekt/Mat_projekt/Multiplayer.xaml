@@ -67,11 +67,11 @@
                 </Image.RenderTransform>
             </Image>
         </Grid>
-        <Image Name="SingleLod" HorizontalAlignment="Left" Height="30" Margin="35,90,0,0" VerticalAlignment="Top" Width="105" MouseDown="SingleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Image Name="SingleLodIMG" HorizontalAlignment="Left" Height="30" Margin="35,90,0,0" VerticalAlignment="Top" Width="105" MouseDown="SingleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
         <Label Name="SingleLod_LBL" Content="Jedničková loď" HorizontalAlignment="Left" Margin="35,90,0,301" MouseDown="SingleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-       
-        <!--<Image Name="DoubleLod" HorizontalAlignment="Left" Height="30" Margin="35,150,0,0" VerticalAlignment="Top" Width="105" MouseDown="DoubleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="DoubleLod_LBL" Content="Dvojková loď" HorizontalAlignment="Left" Margin="35,150,0,241" MouseDown="DoubleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>-->
+
+        <Image Name="DoubleLodIMG" HorizontalAlignment="Left" Height="30" Margin="35,150,0,0" VerticalAlignment="Top" Width="105" MouseDown="DoubleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
+        <Label Name="DoubleLod_LBL" Content="Dvojková loď" HorizontalAlignment="Left" Margin="35,150,0,241" MouseDown="DoubleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
     </Grid>
 
 

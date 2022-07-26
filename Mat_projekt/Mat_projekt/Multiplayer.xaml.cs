@@ -40,6 +40,7 @@ namespace Mat_projekt
         bool readyHost = false;
         bool readyClient = false;
         bool JednaLod = false;
+        bool DoubleLod = false;
 
 
         SimpleTcpServer server;
@@ -257,8 +258,11 @@ namespace Mat_projekt
                 btn_ready_Client_LBL.Visibility = Visibility.Hidden;
                 btn_ready_Client.Visibility = Visibility.Hidden;
 
-                SingleLod.Visibility = Visibility.Hidden;
+                SingleLodIMG.Visibility = Visibility.Hidden;
                 SingleLod_LBL.Visibility = Visibility.Hidden;
+
+                DoubleLodIMG.Visibility = Visibility.Hidden;
+                DoubleLod_LBL.Visibility = Visibility.Hidden;
 
                 Hrac_LBL.Visibility = Visibility.Visible;
 
@@ -298,7 +302,7 @@ namespace Mat_projekt
                             else if (pole.PoleLodi[r, s] == 0) PoleRect[r, s].Tag = 0;
                             else if (pole.PoleLodi[r, s] == 2) PoleRect[r, s].Tag = 2;
                             else if (pole.PoleLodi[r, s] == 2) lode++;
-                            else if ((int)PoleRect[r, s].Tag == 3) pole.PoleLodi[r, s] = 3;
+                            //else if ((int)PoleRect[r, s].Tag == 3) pole.PoleLodi[r, s] = 3;
 
 
                         }
@@ -572,9 +576,55 @@ namespace Mat_projekt
                                         }
                                     }
                                 }
-                                
+
+                                if (DoubleLod == true)
+                                {
+                                     if (pole.PoleLodi[r, s - 1] != 1 && pole.PoleLodi[r, s] == 0)
+                                    {
+                                        if (pole.PoleLodi[r - 1, s] != 5 &&
+                                            pole.PoleLodi[r + 1, s] != 5 &&
+                                            pole.PoleLodi[r, s - 2] != 5 &&
+                                            pole.PoleLodi[r, s - 1] != 5 &&
+                                            pole.PoleLodi[r, s + 1] != 5 &&
+                                            pole.PoleLodi[r + 1, s + 1] != 5 &&
+                                            pole.PoleLodi[r - 1, s + 1] != 5 &&
+                                            pole.PoleLodi[r + 1, s - 1] != 5 &&
+                                            pole.PoleLodi[r - 1, s - 1] != 5 &&
+                                            pole.PoleLodi[r - 1, s] != 2 &&
+                                            pole.PoleLodi[r + 1, s] != 2 &&
+                                            pole.PoleLodi[r, s - 2] != 2 &&
+                                            pole.PoleLodi[r, s - 1] != 2 &&
+                                            pole.PoleLodi[r, s + 1] != 2 &&
+                                            pole.PoleLodi[r + 1, s + 1] != 2 &&
+                                            pole.PoleLodi[r - 1, s + 1] != 2 &&
+                                            pole.PoleLodi[r + 1, s - 1] != 2 &&
+                                            pole.PoleLodi[r - 1, s - 1] != 2 &&
+                                            pole.PoleLodi[r - 1, s] != 6 &&
+                                            pole.PoleLodi[r + 1, s] != 6 &&
+                                            pole.PoleLodi[r, s - 2] != 6 &&
+                                            pole.PoleLodi[r, s - 1] != 6 &&
+                                            pole.PoleLodi[r, s + 1] != 6 &&
+                                            pole.PoleLodi[r + 1, s + 1] != 6 &&
+                                            pole.PoleLodi[r - 1, s + 1] != 6 &&
+                                            pole.PoleLodi[r + 1, s - 1] != 6 &&
+                                            pole.PoleLodi[r - 1, s - 1] != 6)
+                                        {
 
 
+                                            PoleRect[r, s].Tag = 2;
+                                            pole.PoleLodi[r, s] = 2;
+                                            PoleRect[r, s - 1].Tag = 2;
+                                            pole.PoleLodi[r, s - 1] = 2;
+                                            lode += 2;
+                                            Uri lod;
+                                            Uri lod1;
+                                            lod = new Uri("pack://application:,,,/Pictures/LodPredek.jpg");
+                                            lod1 = new Uri("pack://application:,,,/Pictures/LodZada.jpg");
+                                            PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod1));
+                                            PoleRect[r, s - 1].Fill = new ImageBrush(new BitmapImage(lod));
+                                        }
+                                    }
+                                }
                             }
                            
                         }
@@ -802,7 +852,7 @@ namespace Mat_projekt
                             else if (pole.PoleLodi2[r, s] == 0) PoleRect2[r, s].Tag = 0;
                             else if (pole.PoleLodi2[r, s] == 2) PoleRect2[r, s].Tag = 2;
                             else if (pole.PoleLodi2[r, s] == 2) lode++;
-                            else if ((int)PoleRect2[r, s].Tag == 3) pole.PoleLodi2[r, s] = 3;
+                            //else if ((int)PoleRect2[r, s].Tag == 3) pole.PoleLodi2[r, s] = 3;
 
 
                         }
@@ -1074,6 +1124,54 @@ namespace Mat_projekt
                                         }
                                     }
                                 }
+                                if (DoubleLod == true)
+                                {
+                                    if (pole.PoleLodi2[r, s - 1] != 1 && pole.PoleLodi2[r, s] == 0)
+                                    {
+                                        if (pole.PoleLodi2[r - 1, s] != 5 &&
+                                            pole.PoleLodi2[r + 1, s] != 5 &&
+                                            pole.PoleLodi2[r, s - 2] != 5 &&
+                                            pole.PoleLodi2[r, s - 1] != 5 &&
+                                            pole.PoleLodi2[r, s + 1] != 5 &&
+                                            pole.PoleLodi2[r + 1, s + 1] != 5 &&
+                                            pole.PoleLodi2[r - 1, s + 1] != 5 &&
+                                            pole.PoleLodi2[r + 1, s - 1] != 5 &&
+                                            pole.PoleLodi2[r - 1, s - 1] != 5 &&
+                                            pole.PoleLodi2[r - 1, s] != 2 &&
+                                            pole.PoleLodi2[r + 1, s] != 2 &&
+                                            pole.PoleLodi2[r, s - 2] != 2 &&
+                                            pole.PoleLodi2[r, s - 1] != 2 &&
+                                            pole.PoleLodi2[r, s + 1] != 2 &&
+                                            pole.PoleLodi2[r + 1, s + 1] != 2 &&
+                                            pole.PoleLodi2[r - 1, s + 1] != 2 &&
+                                            pole.PoleLodi2[r + 1, s - 1] != 2 &&
+                                            pole.PoleLodi2[r - 1, s - 1] != 2 &&
+                                            pole.PoleLodi2[r - 1, s] != 6 &&
+                                            pole.PoleLodi2[r + 1, s] != 6 &&
+                                            pole.PoleLodi2[r, s - 2] != 6 &&
+                                            pole.PoleLodi2[r, s - 1] != 6 &&
+                                            pole.PoleLodi2[r, s + 1] != 6 &&
+                                            pole.PoleLodi2[r + 1, s + 1] != 6 &&
+                                            pole.PoleLodi2[r - 1, s + 1] != 6 &&
+                                            pole.PoleLodi2[r + 1, s - 1] != 6 &&
+                                            pole.PoleLodi2[r - 1, s - 1] != 6)
+                                        {
+
+                                            PoleRect2[r, s].Tag = 2;
+                                            pole.PoleLodi2[r, s] = 2;
+                                            PoleRect2[r, s - 1].Tag = 2;
+                                            pole.PoleLodi2[r, s - 1] = 2;
+                                            lode += 2;
+                                            Uri lod;
+                                            Uri lod1;
+                                            lod = new Uri("pack://application:,,,/Pictures/LodPredek.jpg");
+                                            lod1 = new Uri("pack://application:,,,/Pictures/LodZada.jpg");
+                                            PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod1));
+                                            PoleRect2[r, s - 1].Fill = new ImageBrush(new BitmapImage(lod));
+                                        }
+                                    }
+                                }
+
                             }
                         }
                     }
@@ -1149,19 +1247,31 @@ namespace Mat_projekt
         private void SingleLod_Click(object sender, RoutedEventArgs e)
         {
             JednaLod = true;
+            DoubleLod = false;
             if (JednaLod == true)
             {
-                SingleLod.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
+                SingleLodIMG.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
+            }
+            if (DoubleLod == false)
+            {
+                DoubleLodIMG.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
+            }
+        }
+        private void DoubleLod_Click(object sender, RoutedEventArgs e)
+        {
+            JednaLod = false;
+            DoubleLod = true;
+
+            if (DoubleLod == true)
+            {
+                DoubleLodIMG.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long_hover.png"));
+            }
+            if (JednaLod == false)
+            {
+                SingleLodIMG.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
             }
         }
     }
 
 
 }
-
-
-
-
-
-
-
