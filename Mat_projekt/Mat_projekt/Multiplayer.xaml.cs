@@ -43,6 +43,13 @@ namespace Mat_projekt
         bool DoubleLod = false;
         int pocetDvojkoveLode = 3;
         int pocetJednickoveLode = 5;
+        int pocetJednaClient = 0;
+        int pocetDvaClient = 0;
+        int pocetJednaHost = 0;
+        int pocetDvaHost = 0;
+        int JednickovaLod = 5;
+        int DvojkovaLod = 3;
+        int dvapocet = 0;
 
 
         SimpleTcpServer server;
@@ -176,11 +183,12 @@ namespace Mat_projekt
 
             if (!isHost)
             {
-                Console.Clear();
+               
                 for (int i = 0; i < pole.PoleLodi.GetLength(0); i++)
                 {
                     for (int y = 0; y < pole.PoleLodi.GetLength(1); y++)
                     {
+
                         if (pole.PoleLodi[i, y] == 4 || pole.PoleLodi[i, y] == 3)
                         {
                             Uri miss;
@@ -193,9 +201,9 @@ namespace Mat_projekt
                             hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
                             PoleRect[i, y].Fill = new ImageBrush(new BitmapImage(hit));
                         }
-                        Console.Write(pole.PoleLodi[i,y]);
+                      
                     }
-                    Console.WriteLine();
+                    
                 }
                 btn_ready_Host_LBL.IsEnabled = false;
 
@@ -247,7 +255,13 @@ namespace Mat_projekt
                 ProhraTimerAnimace.Tick += ProhraTimerAnimace_Tick;
                 ProhraTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
                 ProhraTimerAnimace.Start();
-             
+
+
+                Jednickovalod.Visibility = Visibility.Hidden;
+                Dvojkovalod.Visibility = Visibility.Hidden;
+                JednickovaLod_IMG.Visibility = Visibility.Hidden;
+                DvojkovaLod_IMG.Visibility = Visibility.Hidden;
+
 
             }
             if (readyClient == true && readyHost == true)
@@ -294,7 +308,7 @@ namespace Mat_projekt
                 if (sender is Rectangle Rec && hrajes == true)
                 {
 
-                    hrajes = false;
+                    
 
                     for (int r = 0; r < PoleRect.GetLength(0); r++)
                     {
@@ -324,8 +338,7 @@ namespace Mat_projekt
                             {
                                 if (PoleRect[r, s].Fill == Brushes.White)
                                 {
-
-
+                                    hrajes = false;
                                     if ((int)PoleRect[r, s].Tag == 3)
                                     {
                                         indx = r;
@@ -353,8 +366,44 @@ namespace Mat_projekt
                                             VyhraTimerAnimace.Tick += VyhraTimerAnimace_Tick;
                                             VyhraTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
                                             VyhraTimerAnimace.Start();
+
+                                            Jednickovalod.Visibility = Visibility.Hidden;
+                                            Dvojkovalod.Visibility = Visibility.Hidden;
+                                            JednickovaLod_IMG.Visibility = Visibility.Hidden;
+                                            DvojkovaLod_IMG.Visibility = Visibility.Hidden;
+                                        }
+                                        if(pole.PoleLodi[r, s + 1] == 2 || pole.PoleLodi[r, s - 1] == 2 || pole.PoleLodi[r + 1, s] == 2 || pole.PoleLodi[r, s - 1] == 2 || pole.PoleLodi[r, s + 1] == 9 || pole.PoleLodi[r, s - 1] == 9 || pole.PoleLodi[r + 1, s] == 9 || pole.PoleLodi[r, s - 1] == 9)
+                                        {
+                                            dvapocet++;
+                                            if (dvapocet == 2)
+                                            {
+                                                DvojkovaLod--;
+                                                Dvojkovalod.Content = DvojkovaLod + "/3";
+                                                dvapocet = 0;
+
+                                                PotopenaLodGrid.Visibility = Visibility.Visible;
+                                                DispatcherTimer PotopenaTimerAnimace = new DispatcherTimer();
+
+                                                PotopenaTimerAnimace.Tick += PotopenaTimerAnimace_Tick; ;
+                                                PotopenaTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
+                                                PotopenaTimerAnimace.Start();
+                                            }
                                         }
 
+                                        else if (pole.PoleLodi[r, s + 1] != 2 && pole.PoleLodi[r, s - 1] != 2 && pole.PoleLodi[r + 1, s] != 2 && pole.PoleLodi[r - 1, s] != 2)
+                                        {
+                                            PotopenaLodGrid.Visibility = Visibility.Visible;
+                                            DispatcherTimer PotopenaTimerAnimace = new DispatcherTimer();
+
+                                            PotopenaTimerAnimace.Tick += PotopenaTimerAnimace_Tick; ;
+                                            PotopenaTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
+                                            PotopenaTimerAnimace.Start();
+                                            JednickovaLod--;
+                                            Jednickovalod.Content = JednickovaLod + "/5";
+                                        }
+
+
+                                        
                                     }
 
 
@@ -446,6 +495,12 @@ namespace Mat_projekt
                                             VyhraTimerAnimace.Tick += VyhraTimerAnimace_Tick;
                                             VyhraTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
                                             VyhraTimerAnimace.Start();
+
+
+                                            Jednickovalod.Visibility = Visibility.Hidden;
+                                            Dvojkovalod.Visibility = Visibility.Hidden;
+                                            JednickovaLod_IMG.Visibility = Visibility.Hidden;
+                                            DvojkovaLod_IMG.Visibility = Visibility.Hidden;
                                         }
 
                                     }
@@ -575,6 +630,8 @@ namespace Mat_projekt
                                             PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod));
                                             lode++;
                                             pocetJednickoveLode--;
+                                            pocetJednaClient++;
+                                            Jednickovalod.Content = pocetJednaClient + "/5";
                                         }
                                     }
                                 }
@@ -625,6 +682,8 @@ namespace Mat_projekt
                                             PoleRect[r, s].Fill = new ImageBrush(new BitmapImage(lod1));
                                             PoleRect[r, s - 1].Fill = new ImageBrush(new BitmapImage(lod));
                                             pocetDvojkoveLode--;
+                                            pocetDvaClient++;
+                                            Dvojkovalod.Content = pocetDvaClient + "/3";
                                         }
                                     }
                                 }
@@ -636,6 +695,11 @@ namespace Mat_projekt
                 }
             }
 
+            if (pocetJednaClient == 5 && pocetDvaClient == 3)
+            {
+                btn_ready_Client_LBL.IsEnabled = true;
+                
+            }
         }
 
         private void Client_DataReceived(object sender, Message e)
@@ -695,7 +759,7 @@ namespace Mat_projekt
             {
                 readyHost = true;
             }
-            Console.WriteLine(enemy_lode);
+          
 
 
         }
@@ -755,7 +819,7 @@ namespace Mat_projekt
                 readyClient = true;
             }
 
-            Console.WriteLine(enemy_lode);
+            
 
         }
 
@@ -846,7 +910,7 @@ namespace Mat_projekt
 
                 if (sender is Rectangle Rec && hrajes == true)
                 {
-                    hrajes = false;
+
                     for (int r = 0; r < PoleRect2.GetLength(0); r++)
                     {
                         for (int s = 0; s < PoleRect2.GetLength(1); s++)
@@ -865,17 +929,18 @@ namespace Mat_projekt
 
                     Rec.Tag = 4;
 
-
+                   
                     for (int r = 0; r < pole.PoleLodi2.GetLength(0); r++)
                     {
                         for (int s = 0; s < pole.PoleLodi2.GetLength(1); s++)
                         {
+                           
 
                             if ((int)PoleRect2[r, s].Tag == 4)
                             {
                                 if (PoleRect2[r, s].Fill == Brushes.White)
                                 {
-
+                                    hrajes = false;
 
                                     if ((int)PoleRect2[r, s].Tag == 3)
                                     {
@@ -904,6 +969,42 @@ namespace Mat_projekt
                                             VyhraTimerAnimace.Tick += VyhraTimerAnimace_Tick;
                                             VyhraTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
                                             VyhraTimerAnimace.Start();
+
+
+                                            Jednickovalod.Visibility = Visibility.Hidden;
+                                            Dvojkovalod.Visibility = Visibility.Hidden;
+                                            JednickovaLod_IMG.Visibility = Visibility.Hidden;
+                                            DvojkovaLod_IMG.Visibility = Visibility.Hidden;
+                                        }
+
+                                        if(pole.PoleLodi2[r, s + 1] == 2 || pole.PoleLodi2[r, s - 1] == 2 || pole.PoleLodi2[r + 1, s] == 2 || pole.PoleLodi2[r, s - 1] == 2 || pole.PoleLodi2[r, s + 1] == 9 || pole.PoleLodi2[r, s - 1] == 9 || pole.PoleLodi2[r + 1, s] == 9 || pole.PoleLodi2[r, s - 1] == 9)
+                                        {
+                                            dvapocet++;
+                                            if (dvapocet == 2)
+                                            {
+                                                DvojkovaLod--;
+                                                Dvojkovalod.Content = DvojkovaLod + "/3";
+                                                dvapocet = 0;
+
+                                                PotopenaLodGrid.Visibility = Visibility.Visible;
+                                                DispatcherTimer PotopenaTimerAnimace = new DispatcherTimer();
+
+                                                PotopenaTimerAnimace.Tick += PotopenaTimerAnimace_Tick; ;
+                                                PotopenaTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
+                                                PotopenaTimerAnimace.Start();
+                                            }
+                                        }
+
+                                        else if (pole.PoleLodi2[r, s + 1] != 2 && pole.PoleLodi2[r, s - 1] != 2 && pole.PoleLodi2[r + 1, s] != 2 && pole.PoleLodi2[r - 1, s] != 2)
+                                        {
+                                            PotopenaLodGrid.Visibility = Visibility.Visible;
+                                            DispatcherTimer PotopenaTimerAnimace = new DispatcherTimer();
+
+                                            PotopenaTimerAnimace.Tick += PotopenaTimerAnimace_Tick; ;
+                                            PotopenaTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
+                                            PotopenaTimerAnimace.Start();
+                                            JednickovaLod--;
+                                            Jednickovalod.Content = JednickovaLod + "/5";
                                         }
 
                                     }
@@ -1003,7 +1104,14 @@ namespace Mat_projekt
                                             VyhraTimerAnimace.Tick += VyhraTimerAnimace_Tick;
                                             VyhraTimerAnimace.Interval = TimeSpan.FromMilliseconds(33);
                                             VyhraTimerAnimace.Start();
+
+
+                                            Jednickovalod.Visibility = Visibility.Hidden;
+                                            Dvojkovalod.Visibility = Visibility.Hidden;
+                                            JednickovaLod_IMG.Visibility = Visibility.Hidden;
+                                            DvojkovaLod_IMG.Visibility = Visibility.Hidden;
                                         }
+
 
                                     }
 
@@ -1045,15 +1153,15 @@ namespace Mat_projekt
                         {
                             PoleRect2[indx, indy].Tag = 3;
                         }
-                        
+
 
 
                     }
 
 
                 }
-
-                int[] tmp = new int[12 * 12 + 12 * 12 + 1];
+                
+                    int[] tmp = new int[12 * 12 + 12 * 12 + 1];
                 int poradi = 0;
                 for (int i = 0; i < 12; i++)
                 {
@@ -1070,7 +1178,8 @@ namespace Mat_projekt
                     }
                 }
                 client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp), new TimeSpan(0));
-            }
+            
+        }
 
 
             else if (isHost == true)
@@ -1124,6 +1233,8 @@ namespace Mat_projekt
                                             PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod));
                                             lode++;
                                             pocetJednickoveLode--;
+                                            pocetJednaHost++;
+                                            Jednickovalod.Content = pocetJednaHost + "/5";
                                         }
                                     }
                                 }
@@ -1172,16 +1283,48 @@ namespace Mat_projekt
                                             PoleRect2[r, s].Fill = new ImageBrush(new BitmapImage(lod1));
                                             PoleRect2[r, s - 1].Fill = new ImageBrush(new BitmapImage(lod));
                                             pocetDvojkoveLode--;
+                                            pocetDvaHost++;
+                                            Dvojkovalod.Content = pocetDvaHost + "/3";
                                         }
                                     }
                                 }
-
                             }
                         }
                     }
                 }
             }
 
+
+            if (pocetJednaHost == 5 && pocetDvaHost == 3)
+            {
+                btn_ready_Host_LBL.IsEnabled = true;
+            }
+
+
+        }
+
+        private void PotopenaTimerAnimace_Tick(object sender, EventArgs e)
+        {
+            if (PotopenaLodGrid.Opacity < 1) PotopenaLodGrid.Opacity += 0.05;
+            else
+            {
+                ((DispatcherTimer)sender).Stop();
+                DispatcherTimer PotopenaTimerAnimace2 = new DispatcherTimer();
+                PotopenaTimerAnimace2.Tick += PotopenaTimerAnimace2_Tick; ; ;
+                PotopenaTimerAnimace2.Interval = TimeSpan.FromMilliseconds(33);
+                PotopenaTimerAnimace2.Start();
+            }
+
+        }
+
+        private void PotopenaTimerAnimace2_Tick(object sender, EventArgs e)
+        {
+            if (PotopenaLodGrid.Opacity > 0) PotopenaLodGrid.Opacity -= 0.01;
+            else
+            {
+                ((DispatcherTimer)sender).Stop();
+                PotopenaLodGrid.Visibility = Visibility.Hidden;
+            }
         }
 
         private void ProhraTimerAnimace_Tick(object sender, EventArgs e)
@@ -1193,6 +1336,8 @@ namespace Mat_projekt
         {
             if (VyhraGrid.Opacity < 1) VyhraGrid.Opacity += 0.05;
         }
+
+
 
         private void btn_ready_Host_LBL_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -1275,6 +1420,7 @@ namespace Mat_projekt
                 SingleLodIMG.Source = new BitmapImage(new Uri("pack://application:,,,/Pictures/long.png"));
             }
         }
+
     }
 
 

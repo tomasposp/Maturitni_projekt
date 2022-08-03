@@ -25,11 +25,11 @@
         </Grid>
 
         <Image Name="btn_ready_Host" HorizontalAlignment="Left" Height="38" Margin="465,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="btn_ready_Host_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="475,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="btn_ready_Host_LBL_MouseDown"/>
+        <Label Name="btn_ready_Host_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="475,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="btn_ready_Host_LBL_MouseDown" FontFamily="Cooper Black" IsEnabled="False"/>
         <Image Name="btn_ready_Host_rdy" HorizontalAlignment="Left" Height="38" Margin="465,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long_hover.png" Stretch="Fill" Panel.ZIndex="20" Visibility="Hidden"/>
 
         <Image Name="btn_ready_Client" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="btn_ready_Client_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="630,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="btn_ready_Client_LBL_MouseDown"/>
+        <Label Name="btn_ready_Client_LBL" Content="Připraven" HorizontalAlignment="Left" Margin="630,10,0,369" VerticalAlignment="Center" Height="40" Width="120" FontSize="15" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="btn_ready_Client_LBL_MouseDown" FontFamily="Cooper Black" IsEnabled="False"/>
         <Image Name="btn_ready_Client_rdy" HorizontalAlignment="Left" Height="38" Margin="622,10,0,0" VerticalAlignment="Top" Width="143" Source="Pictures/long_hover.png" Stretch="Fill" Panel.ZIndex="20" Visibility="Hidden"/>
         <Rectangle Name="Plachta" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="69, 61, 597, 232" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden" />
         <Rectangle Name="Plachta2" Fill="Transparent" HorizontalAlignment="Left" Height="332" Margin="69, 61, 597, 232" VerticalAlignment="Top" Width="350" RenderTransformOrigin="1.15,1.1" Visibility="Hidden"/>
@@ -68,10 +68,32 @@
             </Image>
         </Grid>
         <Image Name="SingleLodIMG" HorizontalAlignment="Left" Height="30" Margin="35,90,0,0" VerticalAlignment="Top" Width="105" MouseDown="SingleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="SingleLod_LBL" Content="Jedničková loď" HorizontalAlignment="Left" Margin="35,90,0,301" MouseDown="SingleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="SingleLod_LBL" Content="Jedničková loď" HorizontalAlignment="Left" Margin="35,90,0,301" MouseDown="SingleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
 
         <Image Name="DoubleLodIMG" HorizontalAlignment="Left" Height="30" Margin="35,150,0,0" VerticalAlignment="Top" Width="105" MouseDown="DoubleLod_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="DoubleLod_LBL" Content="Dvojková loď" HorizontalAlignment="Left" Margin="35,150,0,241" MouseDown="DoubleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="DoubleLod_LBL" Content="Dvojková loď" HorizontalAlignment="Left" Margin="35,150,0,241" MouseDown="DoubleLod_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
+
+        <Grid Name="PotopenaLodGrid" Opacity="0" Visibility="Hidden" Panel.ZIndex="999">
+            <Image Name="PotopenaLodImg" Source="/Pictures/Potopena.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+
+
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.071"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.628"/>
+
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
+        </Grid>
+
+        <Label Name="Jednickovalod" Content="0/5" HorizontalAlignment="Left" Height="30" Margin="660,90,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" FontFamily="Cooper Black"/>
+        <Label Name="Dvojkovalod" Content="0/3" HorizontalAlignment="Left" Height="30" Margin="660,152,0,0" VerticalAlignment="Top" Width="54" RenderTransformOrigin="0.5,0.5" FontFamily="Cooper Black"/>
+        <Image Name="JednickovaLod_IMG" HorizontalAlignment="Left" Height="26" Margin="700,94,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
+        <Image Name="DvojkovaLod_IMG" HorizontalAlignment="Left" Height="26" Margin="700,152,0,0" VerticalAlignment="Top" Width="55"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
     </Grid>
 
 

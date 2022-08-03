@@ -26,21 +26,33 @@ namespace Mat_projekt
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            
             Multiplayer newGame = new Multiplayer(false, TextIP.Text);
-
+            this.Close();
             if (!newGame.IsDisposed)
             {
                 newGame.ShowDialog();
             }
+            
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            
             Multiplayer newGame = new Multiplayer(true);
+            this.Close();
             if (!newGame.IsDisposed)
             {
-                newGame.ShowDialog();
+                newGame.ShowDialog();              
             }
+        }
+        private void Back_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Window1 win = new Window1();
+            win.Top = this.Top;
+            win.Left = this.Left;
+            win.Show();
+            this.Close();
         }
     }
 }

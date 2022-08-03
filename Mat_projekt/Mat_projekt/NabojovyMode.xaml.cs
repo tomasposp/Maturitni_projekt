@@ -237,6 +237,7 @@ namespace Mat_projekt
                                         Lode.Zasah(r,s);
                                         ScoreLBL.Content = "Skóre: " + mode.score;
                                         mode.naboje--;
+                                        
                                     }
 
                                 }
@@ -361,6 +362,8 @@ namespace Mat_projekt
                 ScoreTimerAnimace.Start();
                 FinalniScoreLBL.Content = "Gratuluji, tvoje finální skóre je: " + mode.score;
             }
+
+            JednickovalodPocet.Content = mode.lode + "/10";
 
         }
 

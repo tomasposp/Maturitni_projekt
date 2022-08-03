@@ -8,12 +8,12 @@
         Title="VyberObtiznostiPocitace" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Image Name="Easy" HorizontalAlignment="Left" Height="90" Margin="265,130,0,0" VerticalAlignment="Top" Width="285" MouseDown="Easy_Click" Source="Pictures/long.png"/>
-        <Label Name="Easy_LBL" Content="Jednoduchý" HorizontalAlignment="Left" Margin="265,130,0,211" MouseDown="Easy_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.368,0.562"/>
-        <Image Name="Medium" HorizontalAlignment="Left" Height="90" Margin="265,260,0,0" VerticalAlignment="Top" Width="285" MouseDown="Medium_Click" Source="Pictures/long.png"/>
-        <Label Name="Medium_LBL" Content="Střední" HorizontalAlignment="Left" Margin="265,260,0,81" MouseDown="Medium_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="Easy" HorizontalAlignment="Left" Height="90" Margin="245,130,0,0" VerticalAlignment="Top" Width="285" MouseDown="Easy_Click" Source="Pictures/long.png"/>
+        <Label Name="Easy_LBL" Content="Jednoduchý" Margin="245,130,264,211" MouseDown="Easy_Click" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" RenderTransformOrigin="0.368,0.562" FontFamily="Cooper Black"/>
+        <Image Name="Medium" HorizontalAlignment="Left" Height="90" Margin="245,260,0,0" VerticalAlignment="Top" Width="285" MouseDown="Medium_Click" Source="Pictures/long.png"/>
+        <Label Name="Medium_LBL" Content="Střední" HorizontalAlignment="Left" Margin="245,260,0,0" MouseDown="Medium_Click" VerticalAlignment="Top" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
         <Image Name="Back" HorizontalAlignment="Left" Height="60" Margin="605,361,0,0" VerticalAlignment="Top" Width="179" MouseDown="Back_MouseDown" Source="Pictures/long.png"/>
-        <Label Name="Back_LBL" Content="Zpět" HorizontalAlignment="Left" Margin="580,350,-16,10" VerticalAlignment="Center" Height="61" Width="230" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="Back_MouseDown"/>
+        <Label Name="Back_LBL" Content="Zpět" HorizontalAlignment="Left" Margin="580,350,-16,10" VerticalAlignment="Center" Height="61" Width="230" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="Back_MouseDown" FontFamily="Cooper Black"/>
 
 
     </Grid>

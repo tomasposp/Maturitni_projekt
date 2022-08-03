@@ -8,12 +8,12 @@
         Title="SingleVyber" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Image Name="Pocitac" HorizontalAlignment="Left" Height="90" Margin="245,120,0,0" VerticalAlignment="Top" Width="285" MouseDown="Pocitac_Click" Source="Pictures/long.png"/>
-        <Label Name="Pocitac_LBL" Content="Počítač" HorizontalAlignment="Left" Margin="245,120,0,221" MouseDown="Pocitac_Click" VerticalAlignment="Center" Height="80" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Image Name="Pocitac" HorizontalAlignment="Left" Height="90" Margin="245,130,0,0" VerticalAlignment="Top" Width="285" MouseDown="Pocitac_Click" Source="Pictures/long.png"/>
+        <Label Name="Pocitac_LBL" Content="Počítač" Margin="245,140,264,211" MouseDown="Pocitac_Click" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
         <Image Name="NabojovyMode" HorizontalAlignment="Left" Height="90" Margin="245,250,0,0" VerticalAlignment="Top" Width="285" MouseDown="NabojovyMode_Click" Source="Pictures/long.png"/>
-        <Label Name="NabojovyMode_LBL" Content="Nábojový Mode" HorizontalAlignment="Left" Margin="245,250,0,101" MouseDown="NabojovyMode_Click" VerticalAlignment="Center" Height="70" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label Name="NabojovyMode_LBL" Content="Nábojový Mode" HorizontalAlignment="Left" Margin="245,260,0,0" MouseDown="NabojovyMode_Click" VerticalAlignment="Top" Height="70" Width="285" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
         <Image Name="Back" HorizontalAlignment="Left" Height="60" Margin="605,361,0,0" VerticalAlignment="Top" Width="179" MouseDown="Back_MouseDown" Source="Pictures/long.png"/>
-        <Label Name="Back_LBL" Content="Zpět" HorizontalAlignment="Left" Margin="580,350,-16,10" VerticalAlignment="Center" Height="61" Width="230" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="Back_MouseDown"/>
+        <Label Name="Back_LBL" Content="Zpět" HorizontalAlignment="Left" Margin="580,350,-16,10" VerticalAlignment="Center" Height="61" Width="230" FontSize="35" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" MouseDown="Back_MouseDown" FontFamily="Cooper Black"/>
 
     </Grid>
 </Window>
