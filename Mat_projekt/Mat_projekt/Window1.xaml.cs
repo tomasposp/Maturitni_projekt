@@ -26,7 +26,7 @@ namespace Mat_projekt
 
         private void SinglePlayer_Click(object sender, RoutedEventArgs e)
         {
-            
+
             SingleVyber win = new SingleVyber();
             win.Top = this.Top;
             win.Left = this.Left;

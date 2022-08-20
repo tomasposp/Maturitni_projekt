@@ -48,7 +48,7 @@ namespace Mat_projekt
             mode.score = 300;
             mode.lode = 10;
             ScoreLBL.Content = "Skóre: " + mode.score;
-            Naboje.Content = mode.naboje;
+            Naboje.Content = "Nábjoje: " + mode.naboje;
 
 
             mode.poleRect = new Rectangle[12, 12];
@@ -334,7 +334,7 @@ namespace Mat_projekt
 
                         mode.poleRect[indx, indy].Tag = 3;
                         
-                        Naboje.Content = mode.naboje;
+                        Naboje.Content = "Náboje: "+ mode.naboje;
 
                     }
 
@@ -401,7 +401,7 @@ namespace Mat_projekt
                 mode.score -= 500;
                 ScoreLBL.Content = "Skóre: " + mode.score;
                 mode.naboje += 10;
-                Naboje.Content = mode.naboje;
+                Naboje.Content = "Náboje: " + mode.naboje;
                
             }
             

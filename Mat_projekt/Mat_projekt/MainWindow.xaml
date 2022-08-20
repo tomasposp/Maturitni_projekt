@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" KeyDown="Window_KeyDown" ResizeMode="NoResize">
+        Title="Hra Jednoho Hráče" Height="450" Width="800" KeyDown="Window_KeyDown" ResizeMode="NoResize">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
         <Grid Name="mrizka" Margin="90,63,404,51">
@@ -112,20 +112,20 @@
         <Label Name="Delete_LBL2" Content="špatně položenou loď z nepřítelova pole" HorizontalAlignment="Left" Margin="14,328,0,0" VerticalAlignment="Top" Foreground="Red" Height="32" Width="230" Visibility="Hidden"/>
 
         <Grid Name="VyhraGrid" Opacity="0" Visibility="Hidden">
-        <Image Name="VyhraIMG" Source="/Pictures/Vyhra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
+            <Image Name="VyhraIMG" Source="/Pictures/Vyhra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
 
-            
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform AngleY="0.071"/>
-                    <RotateTransform/>
-                    <TranslateTransform Y="0.628"/>
-                    
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
-            
+
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform AngleY="0.071"/>
+                        <RotateTransform/>
+                        <TranslateTransform Y="0.628"/>
+
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
+
         </Grid>
         <Grid Name="ProhraGrid" Opacity="0" Visibility="Hidden">
             <Image Name="ProhraIMG" Source="/Pictures/Prohra.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
@@ -159,8 +159,9 @@
                     </TransformGroup>
                 </Image.RenderTransform>
             </Image>
-           
+
         </Grid>
-        
+        <Label Name="Otoceni_LBL" Content="Pro otočení lodě &#10;Svisle použijte → &#10;Pro otočení lodě&#10;vodorovně použijte ←" HorizontalAlignment="Left" Margin="14,102,0,125" Width="148" FontFamily="Cooper Black" VerticalContentAlignment="Center"/>
+
     </Grid>
 </Window>

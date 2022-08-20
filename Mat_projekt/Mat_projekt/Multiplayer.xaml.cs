@@ -77,7 +77,7 @@ namespace Mat_projekt
             if (isHost)
             {
                 server = new SimpleTcpServer();
-                server.Start(6969);
+                server.Start(1234);
                 int clientsConnected = server.ConnectedClientsCount;
 
 
@@ -89,8 +89,7 @@ namespace Mat_projekt
             {
                 try
                 {
-                    client = new SimpleTcpClient().Connect("127.0.0.1", 6969);
-                    var replyMsg = client.WriteLineAndGetReply("Hello world!", TimeSpan.FromSeconds(3));
+                    client = new SimpleTcpClient().Connect("127.0.0.1", 1234);
                     client.DataReceived += Client_DataReceived;
 
                     hrajes = false;
@@ -172,18 +171,18 @@ namespace Mat_projekt
 
             if (hrajes == true)
             {
-                
+
                 Hrac_LBL.Content = "Jsi na tahu";
             }
             else if (hrajes == false)
             {
-               
+
                 Hrac_LBL.Content = "Soupeř je na tahu";
             }
 
             if (!isHost)
             {
-               
+
                 for (int i = 0; i < pole.PoleLodi.GetLength(0); i++)
                 {
                     for (int y = 0; y < pole.PoleLodi.GetLength(1); y++)
@@ -201,9 +200,9 @@ namespace Mat_projekt
                             hit = new Uri("pack://application:,,,/Pictures/LodeHit.jpg");
                             PoleRect[i, y].Fill = new ImageBrush(new BitmapImage(hit));
                         }
-                      
+
                     }
-                    
+
                 }
                 btn_ready_Host_LBL.IsEnabled = false;
 
@@ -308,7 +307,7 @@ namespace Mat_projekt
                 if (sender is Rectangle Rec && hrajes == true)
                 {
 
-                    
+
 
                     for (int r = 0; r < PoleRect.GetLength(0); r++)
                     {
@@ -318,7 +317,7 @@ namespace Mat_projekt
                             else if (pole.PoleLodi[r, s] == 0) PoleRect[r, s].Tag = 0;
                             else if (pole.PoleLodi[r, s] == 2) PoleRect[r, s].Tag = 2;
                             else if (pole.PoleLodi[r, s] == 2) lode++;
-                            //else if ((int)PoleRect[r, s].Tag == 3) pole.PoleLodi[r, s] = 3;
+
 
 
                         }
@@ -372,7 +371,7 @@ namespace Mat_projekt
                                             JednickovaLod_IMG.Visibility = Visibility.Hidden;
                                             DvojkovaLod_IMG.Visibility = Visibility.Hidden;
                                         }
-                                        if(pole.PoleLodi[r, s + 1] == 2 || pole.PoleLodi[r, s - 1] == 2 || pole.PoleLodi[r + 1, s] == 2 || pole.PoleLodi[r, s - 1] == 2 || pole.PoleLodi[r, s + 1] == 9 || pole.PoleLodi[r, s - 1] == 9 || pole.PoleLodi[r + 1, s] == 9 || pole.PoleLodi[r, s - 1] == 9)
+                                        if (pole.PoleLodi[r, s + 1] == 2 || pole.PoleLodi[r, s - 1] == 2 || pole.PoleLodi[r + 1, s] == 2 || pole.PoleLodi[r, s - 1] == 2 || pole.PoleLodi[r, s + 1] == 9 || pole.PoleLodi[r, s - 1] == 9 || pole.PoleLodi[r + 1, s] == 9 || pole.PoleLodi[r, s - 1] == 9)
                                         {
                                             dvapocet++;
                                             if (dvapocet == 2)
@@ -403,7 +402,7 @@ namespace Mat_projekt
                                         }
 
 
-                                        
+
                                     }
 
 
@@ -561,9 +560,9 @@ namespace Mat_projekt
                         for (int n = 0; n < 12; n++)
                         {
                             tmp[poradi++] = pole.PoleLodi[i, n];
-                            
+
                         }
-                        
+
                     }
                     for (int i = 0; i < 12; i++)
                     {
@@ -638,7 +637,7 @@ namespace Mat_projekt
 
                                 if (DoubleLod == true)
                                 {
-                                     if (pole.PoleLodi[r, s - 1] != 1 && pole.PoleLodi[r, s] == 0 && pocetDvojkoveLode > 0)
+                                    if (pole.PoleLodi[r, s - 1] != 1 && pole.PoleLodi[r, s] == 0 && pocetDvojkoveLode > 0)
                                     {
                                         if (pole.PoleLodi[r - 1, s] != 5 &&
                                             pole.PoleLodi[r + 1, s] != 5 &&
@@ -688,9 +687,9 @@ namespace Mat_projekt
                                     }
                                 }
                             }
-                           
+
                         }
-                       
+
                     }
                 }
             }
@@ -698,7 +697,7 @@ namespace Mat_projekt
             if (pocetJednaClient == 5 && pocetDvaClient == 3)
             {
                 btn_ready_Client_LBL.IsEnabled = true;
-                
+
             }
         }
 
@@ -725,7 +724,7 @@ namespace Mat_projekt
                             enemy_lode++;
                         }
                     }
-                   
+
                 }
             }
             else
@@ -738,11 +737,11 @@ namespace Mat_projekt
                     {
                         poradi++;
 
-                        
+
 
 
                     }
-                    
+
                 }
             }
 
@@ -759,7 +758,7 @@ namespace Mat_projekt
             {
                 readyHost = true;
             }
-          
+
 
 
         }
@@ -769,7 +768,7 @@ namespace Mat_projekt
             int[] tmp = Lode.DeserializeXml<int[]>(e.MessageString);
             enemy_lode = 0;
             int poradi = 0;
-         
+
 
             hrajes = true;
             for (int i = 0; i < 12; i++)
@@ -783,7 +782,7 @@ namespace Mat_projekt
 
 
                 }
-               
+
             }
             if (readyHost && readyClient)
             {
@@ -819,7 +818,7 @@ namespace Mat_projekt
                 readyClient = true;
             }
 
-            
+
 
         }
 
@@ -843,7 +842,7 @@ namespace Mat_projekt
                     pole[row, col].Fill = Brushes.White;
                     pole[row, col].StrokeThickness = 0.2;
                     pole[row, col].Stroke = Brushes.Black;
-                    //pole[row, col].MouseLeftButtonDown += Multiplayer_MouseLeftButtonDown;
+
 
 
 
@@ -879,7 +878,6 @@ namespace Mat_projekt
 
                     pole2[row, col].Fill = Brushes.White;
 
-                    //pole2[row, col].MouseLeftButtonDown += Multiplayer_MouseLeftButtonDown1;
                     pole2[row, col].StrokeThickness = 0.2;
                     pole2[row, col].Stroke = Brushes.Black;
                     pole2[row, col].Height = mrizka2.Height / pole2.GetLength(0);
@@ -896,10 +894,6 @@ namespace Mat_projekt
 
 
         public bool IsDisposed { get; }
-
-        private void mrizka_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-        }
 
         private void mrizka2_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -919,7 +913,7 @@ namespace Mat_projekt
                             else if (pole.PoleLodi2[r, s] == 0) PoleRect2[r, s].Tag = 0;
                             else if (pole.PoleLodi2[r, s] == 2) PoleRect2[r, s].Tag = 2;
                             else if (pole.PoleLodi2[r, s] == 2) lode++;
-                            //else if ((int)PoleRect2[r, s].Tag == 3) pole.PoleLodi2[r, s] = 3;
+
 
 
                         }
@@ -929,12 +923,12 @@ namespace Mat_projekt
 
                     Rec.Tag = 4;
 
-                   
+
                     for (int r = 0; r < pole.PoleLodi2.GetLength(0); r++)
                     {
                         for (int s = 0; s < pole.PoleLodi2.GetLength(1); s++)
                         {
-                           
+
 
                             if ((int)PoleRect2[r, s].Tag == 4)
                             {
@@ -977,7 +971,7 @@ namespace Mat_projekt
                                             DvojkovaLod_IMG.Visibility = Visibility.Hidden;
                                         }
 
-                                        if(pole.PoleLodi2[r, s + 1] == 2 || pole.PoleLodi2[r, s - 1] == 2 || pole.PoleLodi2[r + 1, s] == 2 || pole.PoleLodi2[r, s - 1] == 2 || pole.PoleLodi2[r, s + 1] == 9 || pole.PoleLodi2[r, s - 1] == 9 || pole.PoleLodi2[r + 1, s] == 9 || pole.PoleLodi2[r, s - 1] == 9)
+                                        if (pole.PoleLodi2[r, s + 1] == 2 || pole.PoleLodi2[r, s - 1] == 2 || pole.PoleLodi2[r + 1, s] == 2 || pole.PoleLodi2[r, s - 1] == 2 || pole.PoleLodi2[r, s + 1] == 9 || pole.PoleLodi2[r, s - 1] == 9 || pole.PoleLodi2[r + 1, s] == 9 || pole.PoleLodi2[r, s - 1] == 9)
                                         {
                                             dvapocet++;
                                             if (dvapocet == 2)
@@ -1053,9 +1047,6 @@ namespace Mat_projekt
 
                                         }
                                     }
-
-
-
 
                                 }
                                 else if (pole.PoleLodi2[r, s] == 2 || pole.PoleLodi2[r, s] == 5 || pole.PoleLodi2[r, s] == 6)
@@ -1160,8 +1151,8 @@ namespace Mat_projekt
 
 
                 }
-                
-                    int[] tmp = new int[12 * 12 + 12 * 12 + 1];
+
+                int[] tmp = new int[12 * 12 + 12 * 12 + 1];
                 int poradi = 0;
                 for (int i = 0; i < 12; i++)
                 {
@@ -1178,8 +1169,8 @@ namespace Mat_projekt
                     }
                 }
                 client.WriteLineAndGetReply(Lode.SerializeXml<int[]>(tmp), new TimeSpan(0));
-            
-        }
+
+            }
 
 
             else if (isHost == true)
@@ -1355,9 +1346,9 @@ namespace Mat_projekt
                 for (int n = 0; n < 12; n++)
                 {
                     tmp[poradi++] = pole.PoleLodi2[i, n];
-                   
+
                 }
-               
+
 
             }
 

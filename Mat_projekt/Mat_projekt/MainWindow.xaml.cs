@@ -223,7 +223,7 @@ namespace Mat_projekt
             JednickovalodPC.Visibility = Visibility.Hidden;
             DvojkovalodPC.Visibility = Visibility.Hidden;
             TrojkovalodPC.Visibility = Visibility.Hidden;
-
+            Otoceni_LBL.Visibility = Visibility.Hidden;
 
             jednotka1 = jednotka;
             dvojovka1 = dvojovka;

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="Window1" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual">
+        Title="Hlavní Menu" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual">
     <Grid>
         <Image Source="Pictures/background1.png" Stretch="Fill"/>
         <Image Name="SinglePlayer" HorizontalAlignment="Left" Height="90" Margin="245,150,0,0" VerticalAlignment="Top" Width="310" MouseDown="SinglePlayer_Click" Source="Pictures/long.png"/>

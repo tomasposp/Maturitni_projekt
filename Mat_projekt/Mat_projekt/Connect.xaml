@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="Connect" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Připojení" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
 
         <TextBox Name="TextIP" HorizontalAlignment="Left" Height="23" Margin="205,109,0,0" TextWrapping="Wrap" Text="localhost" VerticalAlignment="Top" Width="120"/>
 
         <Image Name="ConnectImg" HorizontalAlignment="Left" Height="30" Margin="420,102,0,0" VerticalAlignment="Top" Width="105" MouseDown="Button_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="Connect_Label" Content="Connect" HorizontalAlignment="Left" Margin="420,104,0,285" MouseDown="Button_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
+        <Label Name="Connect_Label" Content="Připojit se" HorizontalAlignment="Left" Margin="420,105,0,286" MouseDown="Button_Click" VerticalAlignment="Center" Height="30" Width="105" FontSize="18" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
         <Image Name="Server" HorizontalAlignment="Left" Height="105" Margin="170,195,0,0" VerticalAlignment="Top" Width="535" MouseDown="Button_Click_1" Source="Pictures/long.png" Stretch="Fill"/>
         <Label Name="Server_LBL" Content="Vytvořit server" HorizontalAlignment="Left" Margin="190,195,0,119" MouseDown="Button_Click_1" VerticalAlignment="Center" Height="105" Width="495" FontSize="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontFamily="Cooper Black"/>
         <Image Name="Back" HorizontalAlignment="Left" Height="60" Margin="605,361,0,0" VerticalAlignment="Top" Width="179" MouseDown="Back_MouseDown" Source="Pictures/long.png"/>

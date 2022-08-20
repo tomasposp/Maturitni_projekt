@@ -5,31 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="NabojovyMode" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Nábojový Mód" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
-        <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Grid Name="mrizka" Margin="240,70,243,29">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="381*"/>
+        </Grid.RowDefinitions>
+        <Image Source="Pictures/background2.png" Stretch="Fill" Grid.RowSpan="3"/>
+        <Grid Name="mrizka" Margin="240,30,243,29" Grid.Row="2">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
                 </LinearGradientBrush>
             </Grid.Background>
         </Grid>
-        <Label Name="Naboje" HorizontalAlignment="Center" Height="30" Margin="345,25,324,366" VerticalAlignment="Center" Width="125" FontFamily="Cooper Black"/>
+        <Label Name="Naboje" Height="30" Margin="335,25,334,366" VerticalAlignment="Center" FontFamily="Cooper Black" Grid.RowSpan="3" HorizontalAlignment="Center"/>
 
-        <Image Name="MainMenu" HorizontalAlignment="Left" Height="26" Margin="660,383,0,0" VerticalAlignment="Top" Width="80" MouseDown="MainMenu_Click" Source="Pictures/long.png" Stretch="Fill" Panel.ZIndex="999"/>
-        <Label Name="Main_Menu" Content="Hlavní Menu" HorizontalAlignment="Left" Margin="660,385,0,13" MouseDown="MainMenu_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Panel.ZIndex="999" FontFamily="Cooper Black"/>
-        <Label Name="ScoreLBL" Content="Skóre:" HorizontalAlignment="Left" Height="30" Margin="525,10,0,0" VerticalAlignment="Top" Width="130" FontFamily="Cooper Black"/>
-        <Image Name="RadarImg" HorizontalAlignment="Left" Height="37" Margin="60,70,0,0" VerticalAlignment="Top" Width="125" MouseDown="RadarBtn_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="RadarLbl" Content="Radar (300)" HorizontalAlignment="Left" Height="26" Margin="75,81,0,314" VerticalAlignment="Center" Width="110" MouseDown="RadarBtn_Click" FontFamily="Cooper Black" FontSize="15"/>
-        <Image Name="AirstrikeImg" HorizontalAlignment="Left" Height="37" Margin="60,170,0,0" VerticalAlignment="Top" Width="125" MouseDown="AirstrikeBtn_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="AirstrikeLbl" Content="Airstrike (400)" HorizontalAlignment="Left" Height="26" Margin="60,181,0,214" VerticalAlignment="Center" Width="125" MouseDown="AirstrikeBtn_Click" FontFamily="Cooper Black" FontSize="15"/>
-        <Image Name="NabojeImg" HorizontalAlignment="Left" Height="37" Margin="60,268,0,0" VerticalAlignment="Top" Width="125" MouseDown="NabojeBtn_Click" Source="Pictures/long.png" Stretch="Fill"/>
-        <Label Name="NabojeLbl" Content="Náboje (500)" HorizontalAlignment="Left" Height="27" Margin="75,278,0,116" VerticalAlignment="Center" Width="110" MouseDown="NabojeBtn_Click" FontFamily="Cooper Black" FontSize="15"/>
-        <Image Name="JednickovaLod" HorizontalAlignment="Left" Height="26" Margin="700,90,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308"/>
-        <Label Name="JednickovalodPocet" Content="10/10" HorizontalAlignment="Left" Height="30" Margin="660,90,0,0" VerticalAlignment="Top" Width="55" FontFamily="Cooper Black"/>
-        
-        <Grid Name="FinalniScoreGrid" Opacity="0" Visibility="Hidden">
+        <Image Name="MainMenu" HorizontalAlignment="Left" Height="26" Margin="660,343,0,0" VerticalAlignment="Top" Width="80" MouseDown="MainMenu_Click" Source="Pictures/long.png" Stretch="Fill" Panel.ZIndex="999" Grid.Row="2"/>
+        <Label Name="Main_Menu" Content="Hlavní Menu" HorizontalAlignment="Left" Margin="660,345,0,13" MouseDown="MainMenu_Click" VerticalAlignment="Center" Height="23" Width="80" FontSize="10" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Panel.ZIndex="999" FontFamily="Cooper Black" Grid.Row="2"/>
+        <Label Name="ScoreLBL" Content="Skóre:" HorizontalAlignment="Left" Height="30" Margin="525,10,0,0" VerticalAlignment="Top" Width="130" FontFamily="Cooper Black" Grid.RowSpan="2"/>
+        <Image Name="RadarImg" HorizontalAlignment="Left" Height="37" Margin="60,30,0,0" VerticalAlignment="Top" Width="125" MouseDown="RadarBtn_Click" Source="Pictures/long.png" Stretch="Fill" Grid.Row="2"/>
+        <Label Name="RadarLbl" Content="Radar (300)" HorizontalAlignment="Left" Height="26" Margin="75,41,0,314" VerticalAlignment="Center" Width="110" MouseDown="RadarBtn_Click" FontFamily="Cooper Black" FontSize="15" Grid.Row="2"/>
+        <Image Name="AirstrikeImg" HorizontalAlignment="Left" Height="37" Margin="60,130,0,0" VerticalAlignment="Top" Width="125" MouseDown="AirstrikeBtn_Click" Source="Pictures/long.png" Stretch="Fill" Grid.Row="2"/>
+        <Label Name="AirstrikeLbl" Content="Airstrike (400)" HorizontalAlignment="Left" Height="26" Margin="60,141,0,214" VerticalAlignment="Center" Width="125" MouseDown="AirstrikeBtn_Click" FontFamily="Cooper Black" FontSize="15" Grid.Row="2"/>
+        <Image Name="NabojeImg" HorizontalAlignment="Left" Height="37" Margin="60,228,0,0" VerticalAlignment="Top" Width="125" MouseDown="NabojeBtn_Click" Source="Pictures/long.png" Stretch="Fill" Grid.Row="2"/>
+        <Label Name="NabojeLbl" Content="Náboje (500)" HorizontalAlignment="Left" Height="27" Margin="75,238,0,116" VerticalAlignment="Center" Width="110" MouseDown="NabojeBtn_Click" FontFamily="Cooper Black" FontSize="15" Grid.Row="2"/>
+        <Image Name="JednickovaLod" HorizontalAlignment="Left" Height="26" Margin="700,50,0,0" VerticalAlignment="Top" Width="30"  Source="Pictures/JednickovaLod.png" Stretch="Fill" RenderTransformOrigin="1.667,-10.308" Grid.Row="2"/>
+        <Label Name="JednickovalodPocet" Content="10/10" HorizontalAlignment="Left" Height="30" Margin="660,50,0,0" VerticalAlignment="Top" Width="55" FontFamily="Cooper Black" Grid.Row="2"/>
+
+        <Grid Name="FinalniScoreGrid" Opacity="0" Visibility="Hidden" Grid.RowSpan="3">
             <Image Name="FinalniScoreImg" Source="/Pictures/EndingScore.png" Margin="0,0,-1,0" Stretch="Fill" RenderTransformOrigin="0.5,0.5">
 
 

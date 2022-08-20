@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="VyberObtiznostiPocitace" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual">
+        Title="Výběr Obtížnosti Počítače" Height="450" Width="800" ResizeMode="NoResize" WindowStartupLocation="Manual">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
         <Image Name="Easy" HorizontalAlignment="Left" Height="90" Margin="245,130,0,0" VerticalAlignment="Top" Width="285" MouseDown="Easy_Click" Source="Pictures/long.png"/>

@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mat_projekt"
         mc:Ignorable="d"
-        Title="Multiplayer" Height="450" Width="800" ResizeMode="NoResize">
+        Title="Hra více hráčů" Height="450" Width="800" ResizeMode="NoResize">
     <Grid>
         <Image Source="Pictures/background2.png" Stretch="Fill"/>
-        <Grid Name="mrizka" Margin="240,63,243,36" MouseDown="mrizka_MouseDown">
+        <Grid Name="mrizka" Margin="240,63,243,36">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
 
